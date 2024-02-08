@@ -1,3 +1,15 @@
+/* Fonts */
+@font-face {
+  font-family: "SuisseIntl";
+  src: local("SuisseIntlRegular"),
+    url("/public/fonts/suisse-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "SuisseIntl";
+  src: local("SuisseIntlBold"),
+    url("/public/fonts/suisse-bold.ttf") format("truetype");
+}
+
 /* Reset styles */
 h1,
 h2,
@@ -34,5 +46,28 @@ img {
   height: auto;
 }
 
-/* .container {
-} */
+/* Variables */
+body {
+  --main-green: #0ef387;
+  --main-green-hover: #0ebb69;
+
+  --grey-20: rgba(250, 250, 250, 0.2);
+  --grey-40: rgba(250, 250, 250, 0.4);
+  --grey-50: rgba(250, 250, 250, 0.5);
+
+  --dark-grey: #29292b;
+
+  --paper: #fafafa;
+
+  -error: #e74a3b;
+
+  --background-main: rgb(13, 13, 13);
+  --background-modal: rgb(24, 24, 25);
+}
+
+body {
+  margin: 0;
+  font-family: Suisse Intl, sans-serif;
+  background-color: var(--background-main);
+  color: white;
+}
