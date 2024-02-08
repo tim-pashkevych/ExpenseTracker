@@ -47,7 +47,7 @@ img {
 }
 
 /* Variables */
-body {
+:root {
   --main-green: #0ef387;
   --main-green-hover: #0ebb69;
 
