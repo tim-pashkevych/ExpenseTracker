@@ -16,7 +16,6 @@ export default defineConfig(() => {
         "@": new URL("src/", import.meta.url).pathname,
         components: "/src/components",
         pages: "/src/pages",
-        // redux: "/src/redux",
         constants: "/src/constants",
         icons: "/src/assets/icons",
         images: "/src/assets/images",

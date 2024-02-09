@@ -3,12 +3,7 @@ import styles from "./BgImageWrapper.module.css";
 
 export const BgImageWrapper = () => {
   return (
-    <div
-      className={styles.bgImageWrapper}
-      style={{
-        position: "relative",
-      }}
-    >
+    <div className={styles.bgImgWrapper}>
       <DecorationTab />
     </div>
   );
