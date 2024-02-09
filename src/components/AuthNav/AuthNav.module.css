@@ -39,7 +39,8 @@
   background-color: var(--main-green);
   color: #0c0d0d;
 }
-.navLinkSignUp:hover {
+.navLinkSignUp:hover,
+.navLinkSignUp:focus {
   background-color: var(--main-green-hover);
   transition: background-color var(--delay) var(--timing-function);
 }
@@ -59,7 +60,8 @@
   align-items: center;
   border: 1px solid var(--grey-40);
 }
-.navLinkSignIn:hover {
+.navLinkSignIn:hover,
+.navLinkSignIn:focus {
   border-color: rgba(14, 243, 135);
   transition: border-color var(--delay) var(--timing-function);
 }

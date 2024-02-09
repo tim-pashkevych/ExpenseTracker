@@ -1,20 +1,22 @@
 import { AuthForm } from "../index";
 import styles from "./RegisterPage.module.css";
+import * as Yup from "yup";
 export const RegisterPage = () => {
-  const initialState = {
-    name: "",
-    email: "",
-    password: "",
-  };
   const formData = [
-    { name: "name", type: "text", label: "Username" },
-    { name: "email", type: "email", label: "Useremail" },
-    { name: "password", type: "password", label: "Userpassword" },
+    { name: "name", type: "text", placeholder: "Name" },
+    { name: "email", type: "email", placeholder: "Email" },
+    { name: "password", type: "password", placeholder: "Password" },
   ];
-
   const onSumbit = (data) => {
-    console.log(data);
+    console.log("TEST", data);
   };
+  const navigation = {
+    text: "Already have account?",
+    textLink: "Sign In",
+    route: "/login",
+  };
+  //   const validationSchema = Yup.object().shape({});
+  const divWrapper = { marginBottom: "80px" };
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>Sign Up</h1>
@@ -23,10 +25,12 @@ export const RegisterPage = () => {
         towards financial mastery begins here.
       </p>
       <AuthForm
-        initialState={initialState}
+        divWrapperStyles={divWrapper}
         formData={formData}
         buttonText="Sign Up"
         onSumbit={onSumbit}
+        navigation={navigation}
+        // validation={validationSchema}
       />
     </div>
   );
