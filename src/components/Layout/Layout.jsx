@@ -1,6 +1,5 @@
 // import { Outlet } from "react-router-dom";
-import { Container } from "../index";
-import TransactionForm from "../TransactionForm/TransactionForm";
+import { Container, TransactionForm } from "../index";
 
 export const Layout = () => {
   return (
