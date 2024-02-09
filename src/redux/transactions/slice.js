@@ -69,6 +69,7 @@ const slice = createSlice({
   },
   selectors: {
     selectTransactions: state => state.list,
+    selectTransactionsTotal: state => state.transactionsTotal,
     selectIsLoading: state => state.isLoading,
     selectError: state => state.error,
   },
@@ -78,6 +79,7 @@ export const transactionsReducer = slice.reducer
 
 export const {
   selectTransactions,
+  selectTransactionsTotal,
   selectIsLoading,
   selectError,
 } = slice.selectors
