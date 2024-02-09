@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 import { loginThunk, logoutThunk } from "../auth/operations"
 import {
   deleteUsersAvatarThunk,
-  fetchUsersCurrentThunk,
+  fetchUserThunk,
   updateUsersAvatarThunk,
   updateUsersInfoThunk,
 } from "./operations"
@@ -31,7 +31,7 @@ const slice = createSlice({
         spreadUser(user)
       )
       .addCase(logoutThunk.fulfilled, () => initialState)
-      .addCase(fetchUsersCurrentThunk.fulfilled, (_, { payload }) =>
+      .addCase(fetchUserThunk.fulfilled, (_, { payload }) =>
         spreadUser(payload)
       )
       .addCase(
@@ -50,7 +50,7 @@ const slice = createSlice({
       })
       .addMatcher(
         isAnyOf(
-          fetchUsersCurrentThunk.pending,
+          fetchUserThunk.pending,
           updateUsersInfoThunk.pending,
           updateUsersAvatarThunk.pending,
           deleteUsersAvatarThunk.pending
@@ -61,7 +61,7 @@ const slice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          fetchUsersCurrentThunk.fulfilled,
+          fetchUserThunk.fulfilled,
           updateUsersInfoThunk.fulfilled,
           updateUsersAvatarThunk.fulfilled,
           deleteUsersAvatarThunk.fulfilled
@@ -72,7 +72,7 @@ const slice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          fetchUsersCurrentThunk.rejected,
+          fetchUserThunk.rejected,
           updateUsersInfoThunk.rejected,
           updateUsersAvatarThunk.rejected,
           deleteUsersAvatarThunk.rejected

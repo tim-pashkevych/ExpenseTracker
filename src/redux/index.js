@@ -14,12 +14,13 @@ import storage from "redux-persist/lib/storage"
 import { authReducer } from "./auth/slice"
 import { userReducer } from "./user/slice"
 import { categoriesReducer } from "./categories/slice"
+import { transactionsReducer } from "./transactions/slice"
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["sid", "accessToken", "refreshToken"],
+  whitelist: ["sid", "accessToken", "refreshToken", "isLoggedIn"],
 }
 
 const persistedAuth = persistReducer(persistConfig, authReducer)
@@ -29,6 +30,7 @@ export const store = configureStore({
     auth: persistedAuth,
     user: userReducer,
     categories: categoriesReducer,
+    transactions: transactionsReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

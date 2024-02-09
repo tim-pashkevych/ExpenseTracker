@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { api, setToken, clearToken } from "../../axiosConfig/expenseTrackerApi"
 
-export const fetchUsersCurrentThunk = createAsyncThunk(
+export const fetchUserThunk = createAsyncThunk(
   "get user",
   async (accessToken, thunkAPI) => {
     try {
