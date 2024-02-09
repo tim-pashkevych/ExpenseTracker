@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Container } from "../index";
+import { BgImageWrapper, Container } from "../index";
 
 export const Layout = () => {
   return (
