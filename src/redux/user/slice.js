@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, isAnyOf } from "@reduxjs/toolkit"
 import { loginThunk, logoutThunk } from "../auth/operations"
 import {
   deleteUsersAvatarThunk,
@@ -16,7 +16,7 @@ const initialState = {
 const slice = createSlice({
   name: "user",
   initialState,
-  extraReducers: builder =>
+  extraReducers: builder => {
     builder
       .addCase(loginThunk.fulfilled, (state, { payload: { user } }) => {
         state.user = user
@@ -38,12 +38,37 @@ const slice = createSlice({
       })
       .addCase(deleteUsersAvatarThunk.fulfilled, state => {
         state.user.avatarUrl = null
-      }),
+      })
+      .addMatcher(
+        isAnyOf(
+          fetchUsersCurrentThunk.pending,
+          updateUsersInfoThunk.pending,
+          updateUsersAvatarThunk.pending,
+          deleteUsersAvatarThunk.pending
+        ),
+        state => {
+          state.isLoading = true
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchUsersCurrentThunk.rejected,
+          updateUsersInfoThunk.rejected,
+          updateUsersAvatarThunk.rejected,
+          deleteUsersAvatarThunk.rejected
+        ),
+        (state, { payload }) => {
+          state.error = payload
+        }
+      )
+  },
   selectors: {
     selectUser: state => state.user,
+    selectIsLoading: state => state.isLoading,
+    selectError: state => state.error,
   },
 })
 
 export const userReducer = slice.reducer
 
-export const { selectUser } = slice.selectors
+export const { selectUser, selectIsLoading, selectError } = slice.selectors
