@@ -8,9 +8,18 @@ import {
 } from "./operations"
 
 const initialState = {
-  user: null,
+  _id: null,
+  name: null,
+  email: null,
+  avatarUrl: null,
+  currency: null,
   isLoading: false,
   error: null,
+}
+
+const spreadUser = ({ _id, name, email, avatarUrl, currency }) => {
+  const newState = { ...initialState, _id, name, email, avatarUrl, currency }
+  return newState
 }
 
 const slice = createSlice({
@@ -18,26 +27,26 @@ const slice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(loginThunk.fulfilled, (state, { payload: { user } }) => {
-        state.user = user
-      })
+      .addCase(loginThunk.fulfilled, (_, { payload: { user } }) =>
+        spreadUser(user)
+      )
       .addCase(logoutThunk.fulfilled, () => initialState)
-      .addCase(fetchUsersCurrentThunk.fulfilled, (state, { payload }) => {
-        state.user = payload
-      })
+      .addCase(fetchUsersCurrentThunk.fulfilled, (_, { payload }) =>
+        spreadUser(payload)
+      )
       .addCase(
         updateUsersInfoThunk.fulfilled,
         (state, { payload: { _id, name, currency } }) => {
-          state.user._id = _id
-          state.user.name = name
-          state.user.currency = currency
+          state._id = _id
+          state.name = name
+          state.currency = currency
         }
       )
       .addCase(updateUsersAvatarThunk.fulfilled, (state, { payload }) => {
-        state.user.avatarUrl = payload
+        state.avatarUrl = payload
       })
       .addCase(deleteUsersAvatarThunk.fulfilled, state => {
-        state.user.avatarUrl = null
+        state.avatarUrl = null
       })
       .addMatcher(
         isAnyOf(
@@ -48,6 +57,17 @@ const slice = createSlice({
         ),
         state => {
           state.isLoading = true
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          fetchUsersCurrentThunk.fulfilled,
+          updateUsersInfoThunk.fulfilled,
+          updateUsersAvatarThunk.fulfilled,
+          deleteUsersAvatarThunk.fulfilled
+        ),
+        state => {
+          state.isLoading = false
         }
       )
       .addMatcher(
@@ -63,7 +83,11 @@ const slice = createSlice({
       )
   },
   selectors: {
-    selectUser: state => state.user,
+    selectId: state => state._id,
+    selectName: state => state.name,
+    selectEmail: state => state.email,
+    selectAvatarUrl: state => state.email,
+    selectCurrency: state => state.currency,
     selectIsLoading: state => state.isLoading,
     selectError: state => state.error,
   },
@@ -71,4 +95,12 @@ const slice = createSlice({
 
 export const userReducer = slice.reducer
 
-export const { selectUser, selectIsLoading, selectError } = slice.selectors
+export const {
+  selectId,
+  selectName,
+  selectEmail,
+  selectAvatarUrl,
+  selectCurrency,
+  selectIsLoading,
+  selectError,
+} = slice.selectors
