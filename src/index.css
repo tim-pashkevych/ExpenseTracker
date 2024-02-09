@@ -63,6 +63,10 @@ img {
 
   --background-main: rgb(13, 13, 13);
   --background-modal: rgb(24, 24, 25);
+
+  /* transition */
+  --delay: 350ms;
+  --timing-function: ease;
 }
 
 body {

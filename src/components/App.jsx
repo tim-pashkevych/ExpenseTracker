@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "../components";
+import { Layout, LoginPage, RegisterPage } from "../components";
 
 import { ROUTES } from "../constants";
 
@@ -10,8 +10,8 @@ function App() {
     <Routes>
       <Route path={HOME} element={<Layout />}>
         <Route index element />
-        <Route path={SIGN_IN} element />
-        <Route path={SIGN_UP} element />
+        <Route path={SIGN_IN} element={<LoginPage />} />
+        <Route path={SIGN_UP} element={<RegisterPage />} />
         <Route path={`${TRANSACTION}/:transactionsType`} element />
         <Route path={`${TRANSACTION}/${HISTORY}/:transactionsType`} element />
       </Route>

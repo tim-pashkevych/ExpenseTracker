@@ -1,4 +1,31 @@
-.bgImage {
+.bgImageWrapper {
   height: 381px;
   border-radius: 20px;
+  background-repeat: no-repeat;
+
+  background-image: image-set(
+    url("../../../src/assets/images/image-mobile@1x.jpg") 1x,
+    url("../../../src/assets/images/image-mobile@2x.jpg") 2x
+  );
+}
+
+@media only screen and (min-width: 768px) {
+  .bgImageWrapper {
+    height: 482px;
+    background-image: image-set(
+      url("../../../src/assets/images/image-tablet@1x.jpg") 1x,
+      url("../../../src/assets/images/image-tablet@2x.jpg") 2x
+    );
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .bgImageWrapper {
+    height: 568px;
+    width: 611px;
+    background-image: image-set(
+      url("../../../src/assets/images/image-desktop@1x.jpg") 1x,
+      url("../../../src/assets/images/image-desktop@2x.jpg") 2x
+    );
+  }
 }
