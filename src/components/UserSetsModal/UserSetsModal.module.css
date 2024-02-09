@@ -1,0 +1,29 @@
+.wrapperSettings {
+  position: relative;
+  width: 335px;
+  height: 444px;
+}
+
+.titleProfileSettings {
+}
+
+.closeButtonX {
+  padding: 0;
+  border: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #171719;
+  border: none;
+  width: 20px;
+  height: 20px;
+}
+
+.userImg {
+}
+
+.buttonRemove {
+}
+
+.buttonSave {
+}
