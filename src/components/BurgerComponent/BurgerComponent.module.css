@@ -1,0 +1,16 @@
+.wrapperBurger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonBurger {
+  background-color: var(--background-main);
+  border: none;
+  padding: 0;
+}
+
+.svgBurger {
+  stroke-width: 3px;
+  stroke: var(--paper);
+}
