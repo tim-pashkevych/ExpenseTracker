@@ -1,27 +1,25 @@
-import { Route, Routes } from "react-router-dom";
-import { Layout, Loader } from "../components";
-import { LoginPage, RegisterPage } from "../pages";
-import { ROUTES } from "../constants";
-import { PublicRoute } from "@/routes/PublicRoute";
-// import { useDispatch, useSelector } from "react-redux";
-// import { selectIsLoading } from "@/redux/auth/slice";
-// import { useEffect } from "react";
-// import { refreshThunk } from "@/redux/auth/operations";
+import { Route, Routes } from "react-router-dom"
+import { Layout, Loader } from "../components"
+import { LoginPage, RegisterPage } from "../pages"
+import { ROUTES } from "../constants"
+import { PublicRoute } from "@/routes/PublicRoute"
+import { useDispatch, useSelector } from "react-redux"
+import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
+import { useEffect } from "react"
+import { refreshThunk } from "@/redux/auth/operations"
 
-const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES;
+const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
 function App() {
-  // const isRefreshing = useSelector(selectIsLoading);
-  const isLoading = false;
+  const dispatch = useDispatch()
+  const refreshToken = useSelector(selectRefreshToken)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(refreshThunk());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (refreshToken && !isLoggedIn) dispatch(refreshThunk())
+  }, [dispatch, isLoggedIn, refreshToken])
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
         <Route index element />
@@ -45,7 +43,7 @@ function App() {
         <Route path={`${TRANSACTION}/${HISTORY}/:transactionsType`} element />
       </Route>
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App
