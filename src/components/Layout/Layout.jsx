@@ -1,5 +1,11 @@
-import React from "react";
+import { Outlet } from "react-router-dom";
+import { Container } from "../index";
 
 export const Layout = () => {
-  return <div>Layout</div>;
+  return (
+    <Container>
+      {/* Header  */}
+      <Outlet />
+    </Container>
+  );
 };

@@ -1,0 +1,42 @@
+.decorationTab {
+  width: 248px;
+  height: 81px;
+  background-color: var(--paper);
+  border-radius: 20px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+.text {
+  color: rgba(17, 16, 28, 0.5);
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.incomeList {
+  display: flex;
+  gap: 14px;
+}
+.income {
+  color: #11101c;
+  font-weight: 700;
+  font-size: 18px;
+}
+.icomePercentage {
+  background-color: rgba(2, 177, 90, 0.15);
+  color: #02b15a;
+  width: 58px;
+  height: 22px;
+  border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.arrowTopRight {
+  stroke: red;
+}

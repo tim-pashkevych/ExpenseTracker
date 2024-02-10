@@ -1,0 +1,30 @@
+.wrapperWelcomePage {
+  padding-bottom: 40px;
+}
+.mainTitle {
+  font-weight: 400;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+  margin-bottom: 14px;
+}
+.mainTitleSpan {
+  text-decoration: underline;
+  color: #0ef387;
+}
+
+.mainDescription {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--grey-40);
+  margin-bottom: 30px;
+}
+.description {
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--grey-40);
+  text-transform: uppercase;
+}
