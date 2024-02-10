@@ -17,6 +17,7 @@ export const loginThunk = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await api.post("/auth/login", credentials)
+      setToken(data.accessToken)
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
@@ -24,18 +25,14 @@ export const loginThunk = createAsyncThunk(
   }
 )
 
-export const logoutThunk = createAsyncThunk(
-  "logout",
-  async ({ sid, accessToken }, thunkAPI) => {
-    try {
-      setToken(accessToken)
-      await api.get("/auth/logout", { sid })
-      clearToken()
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message)
-    }
+export const logoutThunk = createAsyncThunk("logout", async (sid, thunkAPI) => {
+  try {
+    await api.get("/auth/logout", { sid })
+    clearToken()
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
   }
-)
+})
 
 export const refreshThunk = createAsyncThunk(
   "refresh",
@@ -43,7 +40,7 @@ export const refreshThunk = createAsyncThunk(
     try {
       setToken(refreshToken)
       const { data } = await api.post("/auth/refresh", { sid })
-      clearToken()
+      setToken(data.accessToken)
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
