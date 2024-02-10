@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+// import OpenEye from "../../../src/assets/icons/OpenEye.svg?react";
+// import ClosedEye from "../../../src/assets/icons/ClosedEye.svg?react";
 import styles from "./AuthForm.module.css";
 export const AuthForm = ({
   formData,
@@ -11,8 +13,16 @@ export const AuthForm = ({
   initialState,
   validation,
   navigation,
-  divWrapperStyles,
 }) => {
+  const location = useLocation();
+  const getClassNameDivWrapper = () => {
+    if (location.pathname === "/login") {
+      return styles.inputsWrapperLogin;
+    } else {
+      return styles.inputsWrapperRegister;
+    }
+  };
+  const classNamesDiv = getClassNameDivWrapper();
   //   const [showPass, setShowPass] = useState(false);
   //   const passVisibility = () => {
   //     setShowPass((prevState) => !prevState);
@@ -26,7 +36,7 @@ export const AuthForm = ({
   //   const validationSchema = Yup.object().shape({ });
   return (
     <form onSubmit={handleSubmit(onSubmitHandel)} className={styles.form}>
-      <div className={styles.inputsWrapper} style={divWrapperStyles}>
+      <div className={classNamesDiv}>
         {formData?.map((input) => (
           <input
             placeholder={input.placeholder}

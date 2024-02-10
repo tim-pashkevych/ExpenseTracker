@@ -1,4 +1,4 @@
-import { AuthForm } from "../index";
+import { AuthForm } from "../../components/index";
 import styles from "./LoginPage.module.css";
 export const LoginPage = () => {
   const formData = [
@@ -11,7 +11,7 @@ export const LoginPage = () => {
     textLink: "Sign Up",
     route: "/register",
   };
-  const divWrapper = { marginBottom: "142px" };
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>Sign In</h1>
@@ -20,7 +20,6 @@ export const LoginPage = () => {
         awaits.
       </p>
       <AuthForm
-        divWrapperStyles={divWrapper}
         formData={formData}
         buttonText="Sign In"
         onSumbit={onSumbit}

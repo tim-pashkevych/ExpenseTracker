@@ -1,4 +1,4 @@
-import { AuthForm } from "../index";
+import { AuthForm } from "../../components/index";
 import styles from "./RegisterPage.module.css";
 import * as Yup from "yup";
 export const RegisterPage = () => {
@@ -16,7 +16,6 @@ export const RegisterPage = () => {
     route: "/login",
   };
   //   const validationSchema = Yup.object().shape({});
-  const divWrapper = { marginBottom: "80px" };
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.title}>Sign Up</h1>
@@ -25,7 +24,6 @@ export const RegisterPage = () => {
         towards financial mastery begins here.
       </p>
       <AuthForm
-        divWrapperStyles={divWrapper}
         formData={formData}
         buttonText="Sign Up"
         onSumbit={onSumbit}
