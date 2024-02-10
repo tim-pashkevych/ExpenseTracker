@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import styles from "./AuthForm.module.css"
 import { Fragment } from "react"
@@ -10,11 +10,20 @@ export const AuthForm = ({
   errors,
   register,
   navigation,
-  divWrapperStyles,
 }) => {
+  const location = useLocation()
+  const getClassNameDivWrapper = () => {
+    if (location.pathname === "/login") {
+      return styles.inputsWrapperLogin
+    } else {
+      return styles.inputsWrapperRegister
+    }
+  }
+  const classNamesDiv = getClassNameDivWrapper()
+
   return (
     <form onSubmit={onSumbit} className={styles.form}>
-      <div className={styles.inputsWrapper} style={divWrapperStyles}>
+      <div className={classNamesDiv}>
         {formData?.map(input => (
           <Fragment key={input.name}>
             <input

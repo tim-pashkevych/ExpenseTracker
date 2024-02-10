@@ -1,28 +1,30 @@
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 import * as yup from "yup"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useDispatch, useSelector } from "react-redux"
+import { toast } from "react-toastify"
 
 import { AuthForm } from "../index"
 
-import styles from "./LoginPage.module.css"
-import { loginThunk } from "@/redux/auth/operations"
-import { useEffect } from "react"
+import { registerThunk } from "@/redux/auth/operations"
 import { selectError } from "@/redux/auth/slice"
-import { toast } from "react-toastify"
+import styles from "./RegisterPage.module.css"
 
-export const LoginPage = () => {
+export const RegisterPage = () => {
   const dispatch = useDispatch()
   const error = useSelector(selectError)
 
   const formData = [
-    { name: "email", type: "text", placeholder: "Email" },
+    { name: "name", type: "text", placeholder: "Name" },
+    { name: "email", type: "email", placeholder: "Email" },
     { name: "password", type: "password", placeholder: "Password" },
   ]
 
   const validationSchema = yup.object().shape({
+    name: yup.string().required("Name is required"),
     email: yup.string().email("Invalid email").required("Email is required"),
-    password: yup.string().required("Password is required"),
+    password: yup.string().required("Password is required").min(8),
   })
 
   const {
@@ -33,31 +35,28 @@ export const LoginPage = () => {
     resolver: yupResolver(validationSchema),
   })
 
-  const onSumbit = handleSubmit(data => dispatch(loginThunk(data)))
+  const onSumbit = handleSubmit(data => dispatch(registerThunk(data)))
 
   useEffect(() => {
     if (error) toast.error(error)
   }, [error])
 
   const navigation = {
-    text: "Don't have an account?",
-    textLink: "Sign Up",
-    route: "/register",
+    text: "Already have account?",
+    textLink: "Sign In",
+    route: "/login",
   }
-
-  const divWrapper = { marginBottom: "142px" }
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.title}>Sign In</h1>
+      <h1 className={styles.title}>Sign Up</h1>
       <p className={styles.description}>
-        Welcome back to effortless expense tracking! Your financial dashboard
-        awaits.
+        Step into a world of hassle-free expense <br /> management! Your journey
+        towards financial mastery begins here.
       </p>
       <AuthForm
-        divWrapperStyles={divWrapper}
         formData={formData}
-        buttonText="Sign In"
+        buttonText="Sign Up"
         onSumbit={onSumbit}
         register={register}
         errors={errors}
