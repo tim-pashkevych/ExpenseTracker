@@ -1,7 +1,14 @@
-.inputsWrapper {
+.inputsWrapperRegister {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-bottom: 80px;
+}
+.inputsWrapperLogin {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 142px;
 }
 .input {
   width: 100%;
