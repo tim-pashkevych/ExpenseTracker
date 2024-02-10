@@ -66,6 +66,7 @@ const slice = createSlice({
         ),
         (state, { payload }) => {
           state.error = payload
+          state.isLoading = false
         }
       )
   },
