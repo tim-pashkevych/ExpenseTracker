@@ -1,4 +1,4 @@
-import { AuthNav, BgImageWrapper, AllUsersTab } from "../index";
+import { AuthNav, BgImageWrapper, AllUsersTab } from "../../components/index";
 import styles from "./WelcomePage.module.css";
 
 export const WelcomePage = () => {

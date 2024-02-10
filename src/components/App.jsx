@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { Layout, LoginPage, RegisterPage } from "../components";
-
+import { Layout } from "../components";
+import { LoginPage, RegisterPage } from "../pages";
 import { ROUTES } from "../constants";
 
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES;
