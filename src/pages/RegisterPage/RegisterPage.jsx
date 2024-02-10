@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import * as yup from "yup"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -8,12 +8,17 @@ import { toast } from "react-toastify"
 import { AuthForm } from "../../components/index"
 
 import { registerThunk } from "@/redux/auth/operations"
-import { selectError } from "@/redux/auth/slice"
+import { selectError, selectIsLoading } from "@/redux/auth/slice"
 import styles from "./RegisterPage.module.css"
+import { useNavigate } from "react-router"
 
 export const RegisterPage = () => {
   const dispatch = useDispatch()
   const error = useSelector(selectError)
+  
+  const [isRequested, setIsRequested] = useState(false)
+  const isLoading = useSelector(selectIsLoading)
+  const navigate = useNavigate()
 
   const formData = [
     { name: "name", type: "text", placeholder: "Name" },
@@ -35,11 +40,21 @@ export const RegisterPage = () => {
     resolver: yupResolver(validationSchema),
   })
 
-  const onSumbit = handleSubmit(data => dispatch(registerThunk(data)))
+  const onSumbit = handleSubmit(data => {
+    dispatch(registerThunk(data))
+    setIsRequested(true)
+  })
 
   useEffect(() => {
     if (error) toast.error(error)
   }, [error])
+
+  useEffect(() => {
+    if (isRequested && !isLoading) {
+      setIsRequested(false)
+      navigate("/login")
+    }
+  }, [isLoading, isRequested, navigate])
 
   const navigation = {
     text: "Already have account?",

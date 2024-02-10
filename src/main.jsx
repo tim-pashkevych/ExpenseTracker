@@ -10,6 +10,7 @@ import { persistor, store } from "./redux"
 import "modern-normalize/modern-normalize.css"
 import "./index.css"
 import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.min.css"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
