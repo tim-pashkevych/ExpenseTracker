@@ -149,8 +149,40 @@
   resize: none;
 }
 
+.commentFieldWrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
 .commentField {
   height: 64px;
+  width: 100%;
+}
+
+.textArea {
+  --sb-track-color: #0c0d0d;
+  --sb-thumb-color: #4dc274;
+  --sb-size: 7px;
+}
+
+.textArea::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.textArea::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 20px;
+}
+
+.textArea::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 20px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .textArea {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
 }
 
 .sendButton {
