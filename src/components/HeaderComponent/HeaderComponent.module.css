@@ -8,22 +8,24 @@
   text-align: center;
 }
 
+@media only screen and (min-width: 768px) {
+  .wrapperLogo {
+    text-align: start;
+  }
+}
+
 .titleLogo {
   font-family: "Suisse Int'l", sans-serif;
   font-weight: 700;
   font-size: 18px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  color: #fafafa;
+  color: var(--paper);
 }
 
 .logo {
   width: 27px;
   height: 16px;
-}
-
-.sectionStyle {
-  width: 100%;
 }
 
 .sectionStyle {

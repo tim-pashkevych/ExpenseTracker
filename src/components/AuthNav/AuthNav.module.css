@@ -1,7 +1,17 @@
 .navList {
   display: flex;
   gap: 20px;
-  padding-bottom: 40px;
+  margin-bottom: 40px;
+}
+@media only screen and (min-width: 768px) {
+  .navList {
+    margin-bottom: 36px;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .navList {
+    margin-bottom: 166px;
+  }
 }
 .navElem {
   border-radius: 40px;
@@ -10,6 +20,13 @@
   letter-spacing: -0.02em;
   width: 138px;
   height: 44px;
+}
+@media only screen and (min-width: 768px) {
+  .navElem {
+    font-size: 16px;
+    width: 145px;
+    height: 47px;
+  }
 }
 
 .navLinkSignUp {
@@ -22,6 +39,17 @@
   background-color: var(--main-green);
   color: #0c0d0d;
 }
+.navLinkSignUp:hover,
+.navLinkSignUp:focus {
+  background-color: var(--main-green-hover);
+  transition: background-color var(--delay) var(--timing-function);
+}
+@media only screen and (min-width: 768px) {
+  .navLinkSignUp {
+    width: 145px;
+    height: 47px;
+  }
+}
 
 .navLinkSignIn {
   width: 138px;
@@ -31,4 +59,15 @@
   justify-content: center;
   align-items: center;
   border: 1px solid var(--grey-40);
+}
+.navLinkSignIn:hover,
+.navLinkSignIn:focus {
+  border-color: rgba(14, 243, 135);
+  transition: border-color var(--delay) var(--timing-function);
+}
+@media only screen and (min-width: 768px) {
+  .navLinkSignIn {
+    width: 145px;
+    height: 47px;
+  }
 }

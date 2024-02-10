@@ -1,21 +1,21 @@
 import React from "react";
-import s from "./SureLogOutModal.module.css";
+import styles from "./SureLogOutModal.module.css";
 import CloseSure from "@/assets/icons/CloseSure.svg?react";
 
 export const SureLogOutModal = () => {
   return (
-    <div className={s.backDropSure}>
-      <div className={s.wrapperModalSure}>
-        <button className={s.sureClose}>
-          <CloseSure className={s.svgCloseSure} />
+    <div className={styles.backDropSure}>
+      <div className={styles.wrapperModalSure}>
+        <button className={styles.sureClose}>
+          <CloseSure className={styles.svgCloseSure} />
         </button>
-        <p className={s.textSure}>Are you sure you want to log out?</p>
-        <ul className={s.listButtonSure}>
+        <p className={styles.textSure}>Are you sure you want to log out?</p>
+        <ul className={styles.listButtonSure}>
           <li>
-            <button className={s.buttonLogOut}>Log out</button>
+            <button className={styles.buttonLogOut}>Log out</button>
           </li>
           <li>
-            <button className={s.buttonCancel}>Cancel</button>
+            <button className={styles.buttonCancel}>Cancel</button>
           </li>
         </ul>
       </div>

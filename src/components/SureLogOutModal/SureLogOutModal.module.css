@@ -11,18 +11,31 @@
   flex-direction: column;
 }
 
+@media only screen and (min-width: 768px) {
+  .wrapperModalSure {
+    width: 500px;
+    height: 266px;
+  }
+}
+
 .textSure {
   font-family: "Suisse Intl", sans-serif;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #fafafa;
+  color: var(--paper);
   margin-bottom: 40px;
 }
 
+@media only screen and (min-width: 768px) {
+  .textSure {
+    font-size: 16px;
+  }
+}
+
 .buttonLogOut {
-  background-color: #0ef387;
+  background-color: var(--main-green);
   border-radius: 40px;
   border: none;
   padding: 14px 44px;
@@ -33,10 +46,26 @@
   font-size: 14px;
   letter-spacing: -0.02em;
   color: #0c0d0d;
+  &:hover {
+    background-color: var(--main-green-hover);
+    transition: var(--delay);
+  }
+  &:focus {
+    background-color: var(--main-green-hover);
+    transition: var(--delay);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .buttonLogOut {
+    font-size: 16px;
+    width: 142px;
+    height: 47px;
+  }
 }
 
 .buttonCancel {
-  background-color: #29292b;
+  background-color: var(--dark-grey);
   border-radius: 40px;
   border: none;
   padding: 14px 44px;
@@ -46,7 +75,23 @@
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.02em;
-  color: #fafafa;
+  color: var(--paper);
+  &:hover {
+    color: var(--grey-50);
+    transition: var(--delay);
+  }
+  &:focus {
+    color: var(--grey-50);
+    transition: var(--delay);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .buttonCancel {
+    font-size: 16px;
+    width: 139px;
+    height: 47px;
+  }
 }
 
 .listButtonSure {
@@ -72,8 +117,21 @@
   height: 20px;
 }
 
+@media only screen and (min-width: 768px) {
+  .sureClose {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .svgCloseSure {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .backDropSure {
-  width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;

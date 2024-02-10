@@ -1,6 +1,6 @@
 import React from "react";
-import s from "./UserBarBtn.module.css";
+import styles from "./UserBarBtn.module.css";
 
 export const UserBarBtn = () => {
-  return <div className={s.wrapperSummary}></div>;
+  return <div className={styles.wrapperSummary}></div>;
 };

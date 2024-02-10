@@ -12,5 +12,5 @@
 
 .svgBurger {
   stroke-width: 3px;
-  stroke: #fafafa;
+  stroke: var(--paper);
 }
