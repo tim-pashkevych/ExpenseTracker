@@ -1,25 +1,21 @@
-import React, { useEffect, useRef } from "react";
-import styles from "./styles/ExpensesMain.module.css";
-import { Cell, Pie, PieChart } from "recharts";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTransactionsThunk } from "@/redux/transactions/operations";
-import { ExpensesDonut } from "./ExpensesDonut";
-import { selectTransactions } from "@/redux/transactions/slice";
-import { selectIsLoading, selectRefreshToken } from "@/redux/auth/slice";
-import { refreshThunk } from "@/redux/auth/operations";
+import React, { useEffect, useRef } from "react"
+import styles from "./styles/ExpensesMain.module.css"
+import { Cell, Pie, PieChart } from "recharts"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchTransactionsThunk } from "@/redux/transactions/operations"
+import { ExpensesDonut } from "./ExpensesDonut"
+import { selectTransactions } from "@/redux/transactions/slice"
+import { selectIsLoading } from "@/redux/auth/slice"
 
 const ExpensesMain = () => {
+  const dispatch = useDispatch()
+  const expenses = useSelector(selectTransactions)
 
+  useEffect(() => {
+    dispatch(fetchTransactionsThunk("expenses"))
+  }, [dispatch])
 
-    const isLoading = useSelector(selectIsLoading);
-    const token = useRef(useSelector(selectRefreshToken));
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-      dispatch(refreshThunk(token));
-    }, [dispatch, token]);
-
+  console.log(expenses)
 
   return (
     <div className={styles.container}>
@@ -29,7 +25,7 @@ const ExpensesMain = () => {
         <div className={styles.list}></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ExpensesMain;
+export default ExpensesMain

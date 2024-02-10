@@ -10,6 +10,7 @@ import Expenses from "./ExpensesCategories"
 import { ROUTES } from "../constants"
 import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
 import { refreshThunk } from "@/redux/auth/operations"
+import { PrivateRoute } from "@/routes/PrivateRoute"
 
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
@@ -44,7 +45,14 @@ function App() {
         />
         <Route path={`${TRANSACTION}/:transactionsType`} element />
         <Route path={`${TRANSACTION}/${HISTORY}/:transactionsType`} element />
-        <Route path={`/exp`} element={<Expenses />} />
+        <Route
+          path={`/exp`}
+          element={
+            <PrivateRoute>
+              <Expenses />
+            </PrivateRoute>
+          }
+        />
       </Route>
     </Routes>
   )
