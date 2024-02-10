@@ -6,13 +6,22 @@ import TransactionFormActionType from "../../constants/TransactionFormActionType
 import CurrencyType from "../../constants/CurrencyType";
 import { CategoriesModal } from "../CategoriesModal/CategoriesModal";
 import { Modal } from "../Modal/Modal";
+import { useForm } from "react-hook-form";
+import TransactionFormFields from "../../constants/TransactionFormFields";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
   formData = {
     TransactionType: TransactionType.Expense,
     Date: new Date().toISOString().split("T")[0],
-    Time: "00:00:00",
+    Time: new Date()
+      .toISOString()
+      .split("T")[1]
+      .split(":")
+      .slice(0, 2)
+      .join(":"),
     Category: "",
     Sum: "",
     Comment: "",
@@ -21,30 +30,24 @@ export const TransactionForm = ({
 }) => {
   const [isModalWindowOpened, setIsModalWindowOpened] = useState(false);
 
-  const [transactionType, setTransactionType] = useState(
-    formData.TransactionType
-  );
-  const [transactionDate, setTransactionDate] = useState(formData.Date);
-  const [transactionTime, setTransactionTime] = useState(formData.Time);
-  const [transactionCategory, setTransactionCategory] = useState(
-    formData.Category
-  );
-  const [transactionSum, setTransactionSum] = useState(formData.Sum);
-  const [transactionComment, setTransactionComment] = useState(
-    formData.Comment
-  );
+  const schema = yup.object({
+    [TransactionFormFields.TransactionType]: yup.string().required(),
+    [TransactionFormFields.Date]: yup.string().required(),
+    [TransactionFormFields.Time]: yup.string().required(),
+    [TransactionFormFields.Sum]: yup.string().required(),
+  });
 
-  const handleTransactionTypeChange = (event) => {
-    setTransactionType(event.target.value);
-  };
-
-  const handleTransactionDateOnChange = (event) => {
-    setTransactionDate(event.target.value);
-  };
-
-  const handleTransactionTimeOnChange = (event) => {
-    setTransactionTime(event.target.value);
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = useForm({
+    defaultValues: formData,
+    resolver: yupResolver(schema),
+  });
 
   const handleCategoryFieldOnClickOnFocus = () => {
     const categoryTextBox = document.getElementById("categoryTextBox");
@@ -53,41 +56,24 @@ export const TransactionForm = ({
     setIsModalWindowOpened(true);
   };
 
-  const handleCategoryOnChange = (event) => {
-    setTransactionCategory(event.target.value);
-  };
-
-  const handleSumOnChange = (event) => {
-    setTransactionSum(event.target.value);
-  };
-
-  const handleCommentOnChange = (event) => {
-    setTransactionComment(event.target.value);
-  };
-
-  const handleTransactionFormOnSubmit = (event) => {
+  const handleTransactionFormOnSubmit = (data) => {
     if (actionType === TransactionFormActionType.Add) {
       alert("New transaction was added");
     } else if (actionType === TransactionFormActionType.Send) {
       alert("New transaction was sended");
     }
-    event.preventDefault();
 
-    const formdata = {
-      TransactionType: transactionType,
-      Date: transactionDate,
-      Time: transactionTime,
-      Category: transactionCategory,
-      Sum: transactionSum,
-      Comment: transactionComment,
-    };
+    if (data.Category === "") {
+      data.Category = "Different";
+    }
 
-    console.log(formdata);
+    console.log(data);
+    reset();
   };
 
   const handleApproveCategory = (category) => {
     setIsModalWindowOpened(false);
-    setTransactionCategory(category.name);
+    setValue(TransactionFormFields.Category, category.name);
   };
 
   return (
@@ -95,7 +81,7 @@ export const TransactionForm = ({
       <div className={styles.transactionFormContainer}>
         <form
           className={styles.transactionForm}
-          onSubmit={handleTransactionFormOnSubmit}
+          onSubmit={handleSubmit(handleTransactionFormOnSubmit)}
         >
           {/* Radio buttons */}
           <div className={styles.radioButtonsContainer}>
@@ -103,10 +89,9 @@ export const TransactionForm = ({
               <input
                 className={styles.hiddenRadioButton}
                 type="radio"
-                name="transactionType"
+                name={TransactionFormFields.TransactionType}
                 value={TransactionType.Expense}
-                checked={transactionType === TransactionType.Expense}
-                onChange={handleTransactionTypeChange}
+                {...register(TransactionFormFields.TransactionType)}
               />
               <span className={styles.customRadioButton}></span>
               <span>Expense</span>
@@ -115,10 +100,9 @@ export const TransactionForm = ({
               <input
                 className={styles.hiddenRadioButton}
                 type="radio"
-                name="transactionType"
+                name={TransactionFormFields.TransactionType}
                 value={TransactionType.Income}
-                checked={transactionType === TransactionType.Income}
-                onChange={handleTransactionTypeChange}
+                {...register(TransactionFormFields.TransactionType)}
               />
               <span className={styles.customRadioButton}></span>
               <span>Income</span>
@@ -130,8 +114,7 @@ export const TransactionForm = ({
               <label>Date</label>
               <input
                 type="date"
-                value={transactionDate}
-                onChange={handleTransactionDateOnChange}
+                {...register(TransactionFormFields.Date)}
               ></input>
             </div>
             <div className={styles.fieldContainer}>
@@ -139,8 +122,7 @@ export const TransactionForm = ({
               <input
                 className={clsx(styles.timeField, styles.timePicker)}
                 type="time"
-                value={transactionTime}
-                onChange={handleTransactionTimeOnChange}
+                {...register(TransactionFormFields.Time)}
               ></input>
             </div>
           </div>
@@ -152,10 +134,9 @@ export const TransactionForm = ({
               type="text"
               placeholder="Different"
               id="categoryTextBox"
-              value={transactionCategory}
               onClick={handleCategoryFieldOnClickOnFocus}
               onFocus={handleCategoryFieldOnClickOnFocus}
-              onChange={handleCategoryOnChange}
+              {...register(TransactionFormFields.Category)}
             ></input>
           </div>
           {/* Sum */}
@@ -166,11 +147,16 @@ export const TransactionForm = ({
               type="text"
               pattern="[0-9]*"
               placeholder="Enter the sum"
-              value={transactionSum}
-              onChange={handleSumOnChange}
+              {...register(TransactionFormFields.Sum)}
             ></input>
             <span className={styles.currencyLabel}>{currency}</span>
           </div>
+          {/* Sum Validation error */}
+          {errors[TransactionFormFields.Sum] && (
+            <p style={{ color: "red" }}>
+              {errors[TransactionFormFields.Sum]?.message}
+            </p>
+          )}
           {/* Comment */}
           <div className={styles.fieldContainer}>
             <label>Comment</label>
@@ -183,11 +169,10 @@ export const TransactionForm = ({
                   styles.sharedTextFieldStyles,
                   styles.commentField
                 )}
-                name=""
-                id=""
+                name="comment"
+                id="commentTextBox"
                 placeholder="Enter the text"
-                value={transactionComment}
-                onChange={handleCommentOnChange}
+                {...register(TransactionFormFields.Comment)}
               ></textarea>
             </div>
           </div>
@@ -202,7 +187,8 @@ export const TransactionForm = ({
         onClose={() => setIsModalWindowOpened(false)}
       >
         <CategoriesModal
-          transactionType={transactionType}
+          // transactionType={transactionType}
+          transactionType={getValues("transactionType")}
           approveCategory={handleApproveCategory}
         />
       </Modal>

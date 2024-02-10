@@ -11,6 +11,7 @@ export const CategoriesModal = ({
   approveCategory,
 }) => {
   const [newCategory, setNewCategory] = useState("");
+
   const [categories, setCategories] = useState(backendCategories);
   const [formActionType, setFormActionType] = useState(CategoryActionType.Add);
   const [activeCategory, setActiveCategory] = useState({});
@@ -37,10 +38,6 @@ export const CategoriesModal = ({
   const handleAddCategoryOnChange = (event) => {
     setNewCategory(event.target.value);
   };
-
-  // const handleApproveCategory = (category) => {
-  //   approveCategory(category);
-  // };
 
   const editCategory = (category) => {
     setIsBeingEdited(true);
@@ -94,6 +91,7 @@ export const CategoriesModal = ({
               placeholder="Enter the text"
               value={newCategory}
               onChange={handleAddCategoryOnChange}
+              required
             />
             <button className={styles.addCategoryButton}>
               {formActionType}
