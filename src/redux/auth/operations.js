@@ -14,7 +14,7 @@ export const registerThunk = createAsyncThunk(
 
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const loginThunk = createAsyncThunk(
@@ -27,7 +27,7 @@ export const loginThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 export const logoutThunk = createAsyncThunk("logout", async (sid, thunkAPI) => {
