@@ -1,10 +1,10 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit"
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import {
   loginThunk,
   logoutThunk,
   refreshThunk,
   registerThunk,
-} from "./operations"
+} from "./operations";
 
 const initialState = {
   sid: null,
@@ -13,40 +13,31 @@ const initialState = {
   isLoggedIn: false,
   error: null,
   isLoading: false,
-  isRefreshing: false,
-}
+};
 
 const slice = createSlice({
   name: "auth",
   initialState,
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(
         loginThunk.fulfilled,
         (state, { payload: { sid, accessToken, refreshToken } }) => {
-          state.sid = sid
-          state.accessToken = accessToken
-          state.refreshToken = refreshToken
-          state.isLoggedIn = true
+          state.sid = sid;
+          state.accessToken = accessToken;
+          state.refreshToken = refreshToken;
+          state.isLoggedIn = true;
         }
       )
       .addCase(logoutThunk.fulfilled, () => initialState)
       .addCase(
         refreshThunk.fulfilled,
         (state, { payload: { sid, accessToken, refreshToken } }) => {
-          state.sid = sid
-          state.accessToken = accessToken
-          state.refreshToken = refreshToken
-          state.isRefreshing = false
+          state.sid = sid;
+          state.accessToken = accessToken;
+          state.refreshToken = refreshToken;
         }
       )
-      .addCase(refreshThunk.pending, state => {
-        state.isRefreshing = true
-      })
-      .addCase(refreshThunk.rejected, state => {
-        state.isRefreshing = false
-      })
-
       .addMatcher(
         isAnyOf(
           registerThunk.pending,
@@ -54,8 +45,8 @@ const slice = createSlice({
           logoutThunk.pending,
           refreshThunk.pending
         ),
-        state => {
-          state.isLoading = true
+        (state) => {
+          state.isLoading = true;
         }
       )
       .addMatcher(
@@ -65,8 +56,8 @@ const slice = createSlice({
           logoutThunk.fulfilled,
           refreshThunk.fulfilled
         ),
-        state => {
-          state.isLoading = false
+        (state) => {
+          state.isLoading = false;
         }
       )
       .addMatcher(
@@ -77,23 +68,22 @@ const slice = createSlice({
           refreshThunk.rejected
         ),
         (state, { payload }) => {
-          state.error = payload
-          state.isLoading = false
+          state.error = payload;
+          state.isLoading = false;
         }
-      )
+      );
   },
   selectors: {
-    selectSid: state => state.sid,
-    selectAccessToken: state => state.accessToken,
-    selectRefreshToken: state => state.refreshToken,
-    selectIsLoggedIn: state => state.isLoggedIn,
-    selectError: state => state.error,
-    selectIsLoading: state => state.isLoading,
-    selectIsRefreshing: state => state.isRefreshing,
+    selectSid: (state) => state.sid,
+    selectAccessToken: (state) => state.accessToken,
+    selectRefreshToken: (state) => state.refreshToken,
+    selectIsLoggedIn: (state) => state.isLoggedIn,
+    selectError: (state) => state.error,
+    selectIsLoading: (state) => state.isLoading,
   },
-})
+});
 
-export const authReducer = slice.reducer
+export const authReducer = slice.reducer;
 
 export const {
   selectSid,
@@ -102,5 +92,4 @@ export const {
   selectIsLoggedIn,
   selectError,
   selectIsLoading,
-  selectIsRefreshing,
-} = slice.selectors
+} = slice.selectors;
