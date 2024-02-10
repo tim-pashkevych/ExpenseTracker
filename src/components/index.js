@@ -8,8 +8,4 @@ export * from "./HeaderComponent/HeaderComponent";
 export * from "./Loader/Loader";
 export * from "./AllUsersTab/AllUsersTab";
 
-export * from "./RegisterPage/RegisterPage";
-export * from "./LoginPage/LoginPage";
 export * from "./AuthForm/AuthForm";
-
-
