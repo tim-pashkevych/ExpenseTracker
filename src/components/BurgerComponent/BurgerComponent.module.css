@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+@media only screen and (min-width: 1440px) {
+  .wrapperBurger {
+    display: none;
+  }
+}
+
 .buttonBurger {
   background-color: var(--background-main);
   border: none;
