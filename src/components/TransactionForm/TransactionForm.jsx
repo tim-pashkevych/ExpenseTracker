@@ -10,6 +10,11 @@ import { useForm } from "react-hook-form";
 import TransactionFormFields from "../../constants/TransactionFormFields";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import TimePicker from "rc-time-picker";
+import { Icon } from "./TimePicker/Icon";
+import moment from "moment";
+import "rc-time-picker/assets/index.css";
+import "./TimePicker/TimePicker.css";
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
@@ -28,6 +33,8 @@ export const TransactionForm = ({
   },
   currency = CurrencyType.UAH,
 }) => {
+  const defaultTime = moment();
+
   const [isModalWindowOpened, setIsModalWindowOpened] = useState(false);
 
   const schema = yup.object({
@@ -119,11 +126,16 @@ export const TransactionForm = ({
             </div>
             <div className={styles.fieldContainer}>
               <label>Time</label>
-              <input
+              {/* <input
                 className={clsx(styles.timeField, styles.timePicker)}
                 type="time"
                 {...register(TransactionFormFields.Time)}
-              ></input>
+              ></input> */}
+              <TimePicker
+                inputIcon={<Icon />}
+                clearIcon={<Icon />}
+                defaultValue={defaultTime}
+              />
             </div>
           </div>
           {/* Category */}

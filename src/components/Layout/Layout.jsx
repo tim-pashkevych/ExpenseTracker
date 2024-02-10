@@ -18,15 +18,15 @@ export const Layout = () => {
         }}
       >
         <TransactionForm
-          actionType={TransactionFormActionType.Add}
-          // formData={{
-          //   TransactionType: TransactionType.Income,
-          //   Date: "2024-02-12",
-          //   Time: "12:04",
-          //   Category: "Movies",
-          //   Sum: "130",
-          //   Comment: "Avengers: EndGame",
-          // }}
+          actionType={TransactionFormActionType.Send}
+          /* formData={{
+            TransactionType: TransactionType.Income,
+            Date: "2024-02-12",
+            Time: "12:04",
+            Category: "Movies",
+            Sum: "130",
+            Comment: "Avengers: EndGame",
+          }} */
           currency={CurrencyType.EUR}
         />
       </div>
