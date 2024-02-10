@@ -4,22 +4,22 @@ import { LoginPage, RegisterPage } from "../pages";
 import { ROUTES } from "../constants";
 import { PublicRoute } from "@/routes/PublicRoute";
 // import { useDispatch, useSelector } from "react-redux";
-// import { selectIsRefreshing } from "@/redux/auth/slice";
+// import { selectIsLoading } from "@/redux/auth/slice";
 // import { useEffect } from "react";
 // import { refreshThunk } from "@/redux/auth/operations";
 
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES;
 
 function App() {
-  // const isRefreshing = useSelector(selectIsRefreshing);
-  const isRefreshing = false;
+  // const isRefreshing = useSelector(selectIsLoading);
+  const isLoading = false;
 
   // const dispatch = useDispatch();
   // useEffect(() => {
   //   dispatch(refreshThunk());
   // }, [dispatch]);
 
-  return isRefreshing ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <Routes>
