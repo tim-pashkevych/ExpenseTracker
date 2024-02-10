@@ -1,28 +1,28 @@
 import { Route, Routes } from "react-router-dom"
-import { Layout, Loader } from "../components"
-import { LoginPage, RegisterPage } from "../pages"
-import { ROUTES } from "../constants"
-import Expenses from "./ExpensesCategories"
-import { PublicRoute } from "@/routes/PublicRoute"
-import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+
+import { Layout } from "../components"
+import { PublicRoute } from "@/routes/PublicRoute"
+import { LoginPage, RegisterPage } from "../pages"
+import Expenses from "./ExpensesCategories"
+
+import { ROUTES } from "../constants"
+import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
 import { refreshThunk } from "@/redux/auth/operations"
-import { selectIsLoading, selectRefreshToken } from "@/redux/auth/slice"
-import { fetchTransactionsThunk } from "@/redux/transactions/operations"
-import { selectTransactions } from "@/redux/transactions/slice"
+
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
 function App() {
   const dispatch = useDispatch()
-  const expenses = useSelector(selectTransactions)
-  const isLoading = useSelector(selectIsLoading)
-  useEffect(() => {
-    if (!isLoading) dispatch(fetchTransactionsThunk("expenses"))
-  }, [dispatch, isLoading])
+  const refreshToken = useSelector(selectRefreshToken)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  useEffect(() => {
+    if (refreshToken && !isLoggedIn) dispatch(refreshThunk())
+  }, [dispatch, isLoggedIn, refreshToken])
+
+  return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
         <Route index element />
