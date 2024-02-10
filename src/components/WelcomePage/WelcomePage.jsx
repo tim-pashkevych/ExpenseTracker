@@ -1,4 +1,4 @@
-import { AuthNav, BgImageWrapper } from "../index";
+import { AuthNav, BgImageWrapper, AllUsersTab } from "../index";
 import styles from "./WelcomePage.module.css";
 
 export const WelcomePage = () => {
@@ -18,7 +18,8 @@ export const WelcomePage = () => {
         </p>
       </div>
       <AuthNav />
-      <BgImageWrapper />
+      {/* <BgImageWrapper /> */}
+      <AllUsersTab />
     </div>
   );
 };

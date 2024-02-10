@@ -1,9 +1,8 @@
 import styles from "./DecorationTab.module.css";
-// import { ReactComponent as ArrowTopRight } from "../icons/ArrowTopRight.svg";
+import ArrowTopRight from "../../../src/assets/icons/ArrowTopRight.svg?react";
 export const DecorationTab = () => {
   return (
     <div
-      className={styles.decorationTabTest}
       style={{
         position: "absolute",
         bottom: `141px`,
@@ -11,7 +10,9 @@ export const DecorationTab = () => {
       }}
     >
       <div className={styles.decorationTab}>
-        {/* <ArrowTopRight className={styles.arrowTopRight} /> */}
+        <div className={styles.arrowWrapper}>
+          <ArrowTopRight className={styles.arrowTopRight} />
+        </div>
         <div>
           <h3 className={styles.text}>Your balance</h3>
           <ul className={styles.incomeList}>
