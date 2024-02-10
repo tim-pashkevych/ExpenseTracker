@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useDispatch, useSelector } from "react-redux"
 
-import { AuthForm } from "../index"
+import { AuthForm } from "../../components/index"
 
 import styles from "./LoginPage.module.css"
 import { loginThunk } from "@/redux/auth/operations"

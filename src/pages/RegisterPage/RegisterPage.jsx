@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { toast } from "react-toastify"
 
-import { AuthForm } from "../index"
+import { AuthForm } from "../../components/index"
 
 import { registerThunk } from "@/redux/auth/operations"
 import { selectError } from "@/redux/auth/slice"
