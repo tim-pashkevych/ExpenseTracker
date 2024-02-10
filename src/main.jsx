@@ -9,6 +9,7 @@ import App from "./components/App.jsx"
 import { persistor, store } from "./redux"
 import "modern-normalize/modern-normalize.css"
 import "./index.css"
+import { ToastContainer } from "react-toastify"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
+          <ToastContainer/>
         </PersistGate>
       </Provider>
     </BrowserRouter>
