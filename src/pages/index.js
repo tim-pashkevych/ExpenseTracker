@@ -1,3 +1,3 @@
-export * from "../pages/RegisterPage/RegisterPage";
-export * from "../pages/LoginPage/LoginPage";
-export * from "../pages/WelcomePage/WelcomePage";
+export * from "./RegisterPage/RegisterPage";
+export * from "./LoginPage/LoginPage";
+export * from "./WelcomePage/WelcomePage";
