@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import svgr from "vite-plugin-svgr";
 
 // https://vitejs.dev/config/
 export default defineConfig(() => {
@@ -9,6 +10,16 @@ export default defineConfig(() => {
     build: {
       outDir: "./dist", // the output directory (dist folder) (it's also the path from index.html to the dist folder)
     },
-    plugins: [react()],
+    plugins: [react(), svgr()],
+    resolve: {
+      alias: {
+        "@": new URL("src/", import.meta.url).pathname,
+        components: "/src/components",
+        pages: "/src/pages",
+        constants: "/src/constants",
+        icons: "/src/assets/icons",
+        images: "/src/assets/images",
+      },
+    },
   };
 });

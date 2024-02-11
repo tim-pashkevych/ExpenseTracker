@@ -1,7 +1,7 @@
 export const ROUTES = {
   HOME: "/",
-  SIGN_IN: "sign_in",
-  SIGN_UP: "sign_up",
+  SIGN_IN: "login",
+  SIGN_UP: "register",
   TRANSACTION: "transactions",
   HISTORY: "history",
 };

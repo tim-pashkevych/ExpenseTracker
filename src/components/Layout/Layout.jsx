@@ -1,12 +1,21 @@
+import { Outlet } from "react-router-dom"
+import { Container, HeaderComponent, Loader } from "../index"
+import { useSelector } from "react-redux"
+import { selectIsLoading } from "@/redux/auth/slice"
 // import { Outlet } from "react-router-dom";
-import CurrencyType from "../../constants/CurrencyType";
-import TransactionFormActionType from "../../constants/TransactionFormActionType";
-import TransactionType from "../../constants/TransactionType";
-import { CategoriesModal, Container, TransactionForm } from "../index";
+import CurrencyType from "../../constants/CurrencyType"
+import TransactionFormActionType from "../../constants/TransactionFormActionType"
+import TransactionType from "../../constants/TransactionType"
+import { CategoriesModal, Container, TransactionForm } from "../index"
 
 export const Layout = () => {
+  const isLoading = useSelector(selectIsLoading)
+
   return (
     <Container>
+      <HeaderComponent />
+
+      {isLoading ? <Loader /> : <Outlet />}
       {/* Header  */}
       {/* <Outlet /> */}
       <div
@@ -31,5 +40,5 @@ export const Layout = () => {
         />
       </div>
     </Container>
-  );
-};
+  )
+}

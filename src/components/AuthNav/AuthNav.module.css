@@ -1,0 +1,84 @@
+.navList {
+  display: flex;
+  gap: 20px;
+}
+
+.navElemSignUp {
+  border-radius: 40px;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  width: 138px;
+  height: 44px;
+}
+@media only screen and (max-width: 374.99px) {
+  .navElemSignUp {
+    width: 129px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .navElemSignUp {
+    font-size: 16px;
+    width: 145px;
+    height: 47px;
+  }
+}
+.navElemLogIn {
+  border-radius: 40px;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  width: 131px;
+  height: 44px;
+  color: var(--paper);
+}
+@media only screen and (min-width: 768px) {
+  .navElemLogIn {
+    font-size: 16px;
+    width: 137px;
+    height: 47px;
+  }
+}
+.navLinkSignUp {
+  width: 138px;
+  border-radius: 40px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-green);
+  color: #0c0d0d;
+}
+.navLinkSignUp:hover,
+.navLinkSignUp:focus {
+  background-color: var(--main-green-hover);
+  transition: background-color var(--delay) var(--timing-function);
+}
+@media only screen and (min-width: 768px) {
+  .navLinkSignUp {
+    width: 145px;
+    height: 47px;
+  }
+}
+
+.navLinkSignIn {
+  width: 131px;
+  border-radius: 40px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--grey-40);
+  color: var(--paper);
+}
+.navLinkSignIn:hover,
+.navLinkSignIn:focus {
+  border-color: rgba(14, 243, 135);
+  transition: border-color var(--delay) var(--timing-function);
+}
+@media only screen and (min-width: 768px) {
+  .navLinkSignIn {
+    width: 137px;
+    height: 47px;
+  }
+}

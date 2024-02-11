@@ -1,0 +1,75 @@
+.decorationTab {
+  width: 248px;
+  height: 81px;
+  background-color: var(--paper);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  gap: 12px;
+}
+@media only screen and (min-width: 768px) {
+  .decorationTab {
+    width: 303px;
+    height: 121px;
+    gap: 22px;
+  }
+}
+
+.text {
+  color: rgba(17, 16, 28, 0.5);
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+@media only screen and (min-width: 768px) {
+  .text {
+    font-size: 16px;
+    margin-bottom: 7px;
+  }
+}
+.incomeList {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.income {
+  color: #11101c;
+  font-weight: 700;
+  font-size: 18px;
+}
+@media only screen and (min-width: 768px) {
+  .income {
+    font-size: 24px;
+  }
+}
+.icomePercentage {
+  background-color: rgba(2, 177, 90, 0.15);
+  color: #02b15a;
+  width: 58px;
+  height: 22px;
+  border-radius: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.arrowWrapper {
+  background-color: var(--main-green);
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (min-width: 768px) {
+  .arrowWrapper {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+  }
+}
