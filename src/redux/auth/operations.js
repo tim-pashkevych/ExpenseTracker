@@ -54,6 +54,9 @@ export const refreshThunk = createAsyncThunk("refresh", async (_, thunkAPI) => {
 
     return data
   } catch (error) {
+    const status = error.request.status
+    if (status !== 400) return thunkAPI.rejectWithValue("reset")
+
     return thunkAPI.rejectWithValue(error.message)
   }
 })
