@@ -10,13 +10,9 @@ export const Layout = () => {
   const isLoading = useSelector(selectIsLoading)
 
   return (
-    <Container>
+    <>
       <HeaderComponent />
-
-
-      {isLoading ? <Loader /> : <Outlet />}
-      <BgImageWrapper />
-
-    </Container>
+      <Container>{isLoading ? <Loader /> : <Outlet />}</Container>
+    </>
   )
 }
