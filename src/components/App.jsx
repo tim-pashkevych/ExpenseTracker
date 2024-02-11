@@ -4,7 +4,7 @@ import { lazy, useEffect } from "react"
 
 import { Layout } from "../components"
 import { PublicRoute } from "@/routes/PublicRoute"
-import { LoginPage, RegisterPage } from "../pages"
+import { LoginPage, RegisterPage, WelcomePage } from "../pages"
 import Expenses from "./ExpensesCategories"
 
 import { ROUTES } from "../constants"
@@ -30,7 +30,7 @@ function App() {
   return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
-        <Route index element />
+        <Route index element={<WelcomePage />} />
         <Route
           path={SIGN_IN}
           element={

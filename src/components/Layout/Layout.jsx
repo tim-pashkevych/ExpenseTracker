@@ -1,14 +1,17 @@
+import { Suspense } from "react"
 import { Outlet } from "react-router-dom"
 import { Container, HeaderComponent, Loader } from "../index"
-import { Suspense } from "react"
+
+import { useSelector } from "react-redux"
+import { selectIsLoading } from "@/redux/auth/slice"
 
 export const Layout = () => {
+  const isLoading = useSelector(selectIsLoading)
+
   return (
     <Container>
       <HeaderComponent />
-      <Suspense fallback={<Loader />}>
-        <Outlet />
-      </Suspense>
+      {isLoading ? <Loader /> :  <Suspense fallback={<Loader />}><Outlet /></Suspense>}
     </Container>
   )
 }
