@@ -1,4 +1,5 @@
 import styles from "./CategoryItem.module.css";
+import icons from "icons/icons.svg";
 
 export const CategoryItem = ({
   id,
@@ -24,7 +25,7 @@ export const CategoryItem = ({
               width="16"
               height="16"
             >
-              <use href="/icons/icons.svg#icon-check-mark"></use>
+              <use href={`${icons}#icon-check-mark`}></use>
             </svg>
           </button>
         </li>
@@ -39,7 +40,7 @@ export const CategoryItem = ({
               width="16"
               height="16"
             >
-              <use href="/icons/icons.svg#icon-edit-pencil"></use>
+              <use href={`${icons}#icon-edit-pencil`}></use>
             </svg>
           </button>
         </li>
@@ -55,7 +56,7 @@ export const CategoryItem = ({
               width="16"
               height="16"
             >
-              <use href="/icons/icons.svg#icon-trash-can"></use>
+              <use href={`${icons}#icon-trash-can`}></use>
             </svg>
           </button>
         </li>

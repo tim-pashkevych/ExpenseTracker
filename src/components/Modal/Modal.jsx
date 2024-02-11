@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
 import { useCallback, useEffect } from "react";
+import icons from "icons/icons.svg";
 
 export const Modal = ({ children, isOpened, onClose }) => {
   const handleKeyPress = useCallback(
@@ -33,7 +34,7 @@ export const Modal = ({ children, isOpened, onClose }) => {
       <div className={styles.modalWindowContent}>
         <button className={styles.closeModalButton} onClick={() => onClose()}>
           <svg width={20} height={20}>
-            <use href="/icons/icons.svg#icon-close"></use>
+            <use href={`${icons}#icon-close`}></use>
           </svg>
         </button>
         {children}
