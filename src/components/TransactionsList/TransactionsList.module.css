@@ -10,7 +10,7 @@
 }
 
 .transactionsListHeader {
-  background-color: var(--background-main);
+  background-color: var(--background-table-header);
 
   tr {
     th {

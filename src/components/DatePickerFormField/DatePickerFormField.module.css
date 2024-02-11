@@ -80,8 +80,8 @@
   }
 }
 :global(.react-datepicker__calendar-icon) {
-  top: 5px;
-  right: 30px;
+  top: 7px !important;
+  right: 22px !important;
   padding: 0;
 
   width: 20px;
