@@ -1,0 +1,90 @@
+.datapickerWrapper {
+  width: 100%;
+}
+:global(.react-datepicker__triangle) {
+  fill: var(--main-green) !important;
+  color: var(--main-green) !important;
+  stroke: var(--main-green) !important;
+}
+
+.datapicker {
+  font-family: Suisse Intl, sans-serif;
+  background-color: var(--main-green);
+  border-radius: 8px;
+  border: none;
+
+  :global(.react-datepicker__month-container) {
+    border-radius: 8px;
+  }
+  :global(.react-datepicker__header) {
+    padding: 0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: none;
+    background-color: var(--main-green);
+  }
+  :global(.react-datepicker__navigation--previous),
+  :global(.react-datepicker__navigation--next) {
+    padding-top: 10px;
+  }
+  :global(.react-datepicker__navigation-icon::before) {
+    border-width: 2px 2px 0 0;
+    border-color: rgba(12, 13, 13, 0.4);
+  }
+  :global(
+      .react-datepicker__navigation--next
+        .react-datepicker__navigation-icon::before
+    ) {
+    border-color: rgb(12, 13, 13);
+  }
+  :global(.react-datepicker__current-month) {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 14px 14px 0 14px;
+    letter-spacing: -0.02em;
+  }
+  :global(.react-datepicker__current-month::after) {
+    content: "";
+    height: 1px;
+    width: 100%;
+    display: block;
+    margin-top: 14px;
+    border-bottom: 1px solid rgba(12, 13, 13, 0.5);
+  }
+  :global(
+      .react-datepicker__header
+        .react-datepicker__day-names
+        .react-datepicker__day-name
+    ) {
+    color: rgba(12, 13, 13, 0.5);
+    padding-top: 5px;
+    font-size: 14px;
+  }
+
+  :global(.react-datepicker__day) {
+    font-size: 14px;
+  }
+  :global(.react-datepicker__day--disabled),
+  :global(.react-datepicker__day--outside-month) {
+    color: rgba(12, 13, 13, 0.2);
+  }
+  :global(.react-datepicker__day--selected) {
+    color: white;
+    font-weight: 400;
+
+    background-color: black;
+    border-radius: 50%;
+  }
+  :global(.react-datepicker__day--keyboard-selected) {
+    background-color: transparent;
+  }
+}
+:global(.react-datepicker__calendar-icon) {
+  top: 5px;
+  right: 30px;
+  padding: 0;
+
+  width: 20px;
+  height: 20px;
+  stroke: var(--main-green);
+}

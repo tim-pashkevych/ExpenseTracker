@@ -1,0 +1,30 @@
+.btn {
+  width: 30px;
+  height: 30px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  border: none;
+
+  &.btnAccent {
+    margin-right: 8px;
+    background-color: var(--main-green);
+
+    .pensilIcon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &.btnDefault {
+    background-color: var(--background-main);
+
+    .trashIcon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
