@@ -27,7 +27,7 @@ const slice = createSlice({
         state.transactionsTotal = action.payload.user.transactionsTotal
       })
       .addCase(fetchUserThunk.fulfilled, (state, { payload }) => {
-        state.transactionsTotal = payload
+        state.transactionsTotal = payload.transactionsTotal
       })
       .addCase(logoutThunk.fulfilled, () => initialState)
       .addCase(fetchTransactionsThunk.fulfilled, (state, { payload }) => {
@@ -38,35 +38,35 @@ const slice = createSlice({
           createTransactionThunk.pending,
           fetchTransactionsThunk.pending,
           updateTransactionThunk.pending,
-          deleteTransactionThunk.pending
+          deleteTransactionThunk.pending,
         ),
         state => {
           state.isLoading = true
           state.error = null
-        }
+        },
       )
       .addMatcher(
         isAnyOf(
           createTransactionThunk.fulfilled,
           fetchTransactionsThunk.fulfilled,
           updateTransactionThunk.fulfilled,
-          deleteTransactionThunk.fulfilled
+          deleteTransactionThunk.fulfilled,
         ),
         state => {
           state.isLoading = false
-        }
+        },
       )
       .addMatcher(
         isAnyOf(
           createTransactionThunk.rejected,
           fetchTransactionsThunk.rejected,
           updateTransactionThunk.rejected,
-          deleteTransactionThunk.rejected
+          deleteTransactionThunk.rejected,
         ),
         (state, { payload }) => {
           state.error = payload
           state.isLoading = false
-        }
+        },
       )
   },
   selectors: {

@@ -1,5 +1,7 @@
+import { Suspense } from "react"
 import { Outlet } from "react-router-dom"
 import { Container, HeaderComponent, Loader } from "../index"
+
 import { useSelector } from "react-redux"
 import { selectIsLoading } from "@/redux/auth/slice"
 
@@ -9,8 +11,7 @@ export const Layout = () => {
   return (
     <Container>
       <HeaderComponent />
-      
-      {isLoading ? <Loader /> : <Outlet />}
+      {isLoading ? <Loader /> :  <Suspense fallback={<Loader />}><Outlet /></Suspense>}
     </Container>
   )
 }
