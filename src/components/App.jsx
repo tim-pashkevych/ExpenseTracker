@@ -15,7 +15,7 @@ import { PrivateRoute } from "@/routes/PrivateRoute"
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
 function App() {
-  console.log("FIX2")
+  console.log("FIX5")
   const dispatch = useDispatch()
   const refreshToken = useSelector(selectRefreshToken)
   const isLoggedIn = useSelector(selectIsLoggedIn)
