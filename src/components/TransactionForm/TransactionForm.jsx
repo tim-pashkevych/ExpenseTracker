@@ -6,7 +6,7 @@ import TransactionFormActionType from "../../constants/TransactionFormActionType
 import CurrencyType from "../../constants/CurrencyType";
 import { CategoriesModal } from "../CategoriesModal/CategoriesModal";
 import { Modal } from "../Modal/Modal";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import TransactionFormFields from "../../constants/TransactionFormFields";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -21,20 +21,13 @@ export const TransactionForm = ({
   formData = {
     TransactionType: TransactionType.Expense,
     Date: new Date().toISOString().split("T")[0],
-    Time: new Date()
-      .toISOString()
-      .split("T")[1]
-      .split(":")
-      .slice(0, 2)
-      .join(":"),
+    Time: moment(),
     Category: "",
     Sum: "",
     Comment: "",
   },
   currency = CurrencyType.UAH,
 }) => {
-  const defaultTime = moment();
-
   const [isModalWindowOpened, setIsModalWindowOpened] = useState(false);
 
   const schema = yup.object({
@@ -51,6 +44,7 @@ export const TransactionForm = ({
     setValue,
     getValues,
     formState: { errors },
+    control,
   } = useForm({
     defaultValues: formData,
     resolver: yupResolver(schema),
@@ -74,8 +68,12 @@ export const TransactionForm = ({
       data.Category = "Different";
     }
 
+    const fullTime = data.Time.split(" ");
+    data.Time = fullTime[fullTime.length - 2];
+
     console.log(data);
     reset();
+    setValue(TransactionFormFields.Time, moment());
   };
 
   const handleApproveCategory = (category) => {
@@ -126,15 +124,19 @@ export const TransactionForm = ({
             </div>
             <div className={styles.fieldContainer}>
               <label>Time</label>
-              {/* <input
-                className={clsx(styles.timeField, styles.timePicker)}
-                type="time"
-                {...register(TransactionFormFields.Time)}
-              ></input> */}
-              <TimePicker
-                inputIcon={<Icon />}
-                clearIcon={<Icon />}
-                defaultValue={defaultTime}
+              <Controller
+                name={TransactionFormFields.Time}
+                control={control}
+                render={({ field }) => (
+                  <TimePicker
+                    inputIcon={<Icon />}
+                    clearIcon={<Icon />}
+                    value={field.value}
+                    onChange={(value) => {
+                      field.onChange(value);
+                    }}
+                  />
+                )}
               />
             </div>
           </div>
@@ -199,13 +201,10 @@ export const TransactionForm = ({
         onClose={() => setIsModalWindowOpened(false)}
       >
         <CategoriesModal
-          // transactionType={transactionType}
-          transactionType={getValues("transactionType")}
+          transactionType={getValues(TransactionFormFields.TransactionType)}
           approveCategory={handleApproveCategory}
         />
       </Modal>
     </>
   );
 };
-
-export default TransactionForm;

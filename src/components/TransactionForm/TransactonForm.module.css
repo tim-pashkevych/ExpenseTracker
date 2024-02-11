@@ -145,6 +145,10 @@
   color: rgba(250, 250, 250, 0.4);
 }
 
+.sumField:not(:placeholder-shown) + .currencyLabel {
+  color: #fafafa;
+}
+
 .textArea {
   resize: none;
 }
