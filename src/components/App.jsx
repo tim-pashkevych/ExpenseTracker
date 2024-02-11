@@ -16,10 +16,14 @@ const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
 function App() {
 
+  console.log("FIX5")
+
+
   // const isRefreshing = useSelector(selectIsLoading);
   const isLoading = false;
 
-  console.log("fix4");
+
+
   const dispatch = useDispatch()
   const refreshToken = useSelector(selectRefreshToken)
   const isLoggedIn = useSelector(selectIsLoggedIn)
