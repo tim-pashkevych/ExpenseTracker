@@ -1,7 +1,23 @@
-.list{
-  width: 191px;
+.scrollbar {
   height: 126px;
+  width: 295px;
+}
+.noScrollbar {
+  height: auto;
+  min-height: 126px;
+}
+.list {
+  width: 269px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 14px;
+}
+
+@media only screen and (min-width:768px) {
+  .scrollbar {
+    width: 211px;
+  }
+  .list {
+    width: 191px;
+  }
 }

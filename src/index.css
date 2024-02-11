@@ -76,3 +76,10 @@ body {
   background-color: var(--background-main);
   color: white;
 }
+.os-scrollbar-track {
+  background-color: rgb(12, 13, 13) !important;
+}
+.os-scrollbar-handle {
+  background-color: rgb(68, 68, 70) !important;
+  height: 64px !important;
+}

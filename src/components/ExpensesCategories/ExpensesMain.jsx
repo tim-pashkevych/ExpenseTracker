@@ -1,28 +1,51 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect } from "react"
 import styles from "./styles/ExpensesMain.module.css"
-import { Cell, Pie, PieChart } from "recharts"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTransactionsThunk } from "@/redux/transactions/operations"
 import { ExpensesDonut } from "./ExpensesDonut"
 import { selectTransactions } from "@/redux/transactions/slice"
-import { selectIsLoading } from "@/redux/auth/slice"
+import randomColor from "randomcolor"
+import { ExpensesList } from "./ExpensesList"
 
 const ExpensesMain = () => {
   const dispatch = useDispatch()
   const expenses = useSelector(selectTransactions)
+  const categorySums = []
+  expenses?.forEach(transaction => {
+    const { category, sum } = transaction
+    const { categoryName, _id } = category
 
+    let found = false
+    categorySums.forEach(item => {
+      if (item._id === _id) {
+        item.sum += sum
+        found = true
+      }
+    })
+
+    if (!found) {
+      categorySums.push({
+        _id,
+        categoryName,
+        sum,
+      })
+    }
+  })
+
+  const colors = randomColor({
+    count: Object.keys(categorySums).length,
+    hue: "green",
+  })
   useEffect(() => {
     dispatch(fetchTransactionsThunk("expenses"))
   }, [dispatch])
-
-  console.log(expenses)
 
   return (
     <div className={styles.container}>
       <p className={styles.text}>Expenses categories</p>
       <div className={styles.content}>
-        <ExpensesDonut />
-        <div className={styles.list}></div>
+        <ExpensesDonut data={categorySums} colors={colors} />
+        <ExpensesList data={categorySums} colors={colors} />
       </div>
     </div>
   )
