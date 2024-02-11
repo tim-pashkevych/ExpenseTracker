@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     if (refreshToken && !isLoggedIn) dispatch(refreshThunk())
   }, [dispatch, isLoggedIn, refreshToken])
-
+  console.log("object")
   return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
