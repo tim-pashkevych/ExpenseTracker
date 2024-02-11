@@ -1,7 +1,26 @@
-.wrapper {
+.wrapperMain {
   padding-top: 126px;
 }
 
+@media only screen and (min-width: 768px) {
+  .wrapperMain {
+    padding: 204px 0;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .wrapperMain {
+    padding: 92px 0 92px 665px;
+    display: block;
+    /* justify-content: center; */
+  }
+}
+@media only screen and (min-width: 768px) {
+  .wrapper {
+    width: 399px;
+  }
+}
 .title {
   color: var(--paper);
   font-size: 32px;
@@ -9,10 +28,21 @@
   letter-spacing: -0.02em;
   margin-bottom: 20px;
 }
+@media only screen and (min-width: 768px) {
+  .title {
+    font-size: 56px;
+  }
+}
 .description {
   margin-bottom: 40px;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: -0.02em;
   color: var(--grey-40);
+}
+
+@media only screen and (min-width: 768px) {
+  .description {
+    font-size: 16px;
+  }
 }

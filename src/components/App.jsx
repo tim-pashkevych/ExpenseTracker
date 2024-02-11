@@ -1,16 +1,20 @@
 import { Route, Routes } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { lazy, useEffect } from "react"
 
 import { Layout } from "../components"
 import { PublicRoute } from "@/routes/PublicRoute"
-import { LoginPage, RegisterPage } from "../pages"
+import { LoginPage, RegisterPage, WelcomePage } from "../pages"
 import Expenses from "./ExpensesCategories"
 
 import { ROUTES } from "../constants"
 import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
 import { refreshThunk } from "@/redux/auth/operations"
 import { PrivateRoute } from "@/routes/PrivateRoute"
+
+const TarnsactionsHistoryPage = lazy(() =>
+  import("./../pages/TarnsactionsHistoryPage/TarnsactionsHistoryPage"),
+)
 
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
@@ -26,7 +30,7 @@ function App() {
   return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
-        <Route index element />
+        <Route index element={<WelcomePage />} />
         <Route
           path={SIGN_IN}
           element={
@@ -44,7 +48,14 @@ function App() {
           }
         />
         <Route path={`${TRANSACTION}/:transactionsType`} element />
-        <Route path={`${TRANSACTION}/${HISTORY}/:transactionsType`} element />
+        <Route
+          path={`${TRANSACTION}/${HISTORY}/:transactionsType`}
+          element={
+            <PrivateRoute>
+              <TarnsactionsHistoryPage />
+            </PrivateRoute>
+          }
+        />
         <Route
           path={`/exp`}
           element={

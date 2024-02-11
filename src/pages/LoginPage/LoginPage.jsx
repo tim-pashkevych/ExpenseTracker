@@ -7,13 +7,21 @@ import { AuthForm } from "../../components/index"
 
 import styles from "./LoginPage.module.css"
 import { loginThunk } from "@/redux/auth/operations"
-import { useEffect } from "react"
-import { selectError } from "@/redux/auth/slice"
+import { useEffect, useState } from "react"
+import { selectError, selectIsLoading } from "@/redux/auth/slice"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
+
+import { ROUTES } from "../../constants"
+const { TRANSACTION } = ROUTES
 
 export const LoginPage = () => {
   const dispatch = useDispatch()
   const error = useSelector(selectError)
+
+  const [isRequested, setIsRequested] = useState(false)
+  const isLoading = useSelector(selectIsLoading)
+  const navigate = useNavigate()
 
   const formData = [
     { name: "email", type: "text", placeholder: "Email" },
@@ -39,6 +47,13 @@ export const LoginPage = () => {
     if (error) toast.error(error)
   }, [error])
 
+  useEffect(() => {
+    if (isRequested && !isLoading) {
+      setIsRequested(false)
+      navigate(`${TRANSACTION}/:transactionsType`)
+    }
+  }, [isLoading, isRequested, navigate])
+
   const navigation = {
     text: "Don't have an account?",
     textLink: "Sign Up",
@@ -46,20 +61,22 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.title}>Sign In</h1>
-      <p className={styles.description}>
-        Welcome back to effortless expense tracking! Your financial dashboard
-        awaits.
-      </p>
-      <AuthForm
-        formData={formData}
-        buttonText="Sign In"
-        onSumbit={onSumbit}
-        register={register}
-        errors={errors}
-        navigation={navigation}
-      />
+    <div className={styles.wrapperMain}>
+      <div className={styles.wrapper}>
+        <h1 className={styles.title}>Sign In</h1>
+        <p className={styles.description}>
+          Welcome back to effortless expense tracking! Your financial dashboard
+          awaits.
+        </p>
+        <AuthForm
+          formData={formData}
+          buttonText='Sign In'
+          onSumbit={onSumbit}
+          register={register}
+          errors={errors}
+          navigation={navigation}
+        />
+      </div>
     </div>
   )
 }
