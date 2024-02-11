@@ -1,27 +1,29 @@
-import { Route, Routes } from "react-router-dom";
-import { Layout, Loader } from "../components";
-import { LoginPage, RegisterPage } from "../pages";
-import { ROUTES } from "../constants";
-import { PublicRoute } from "@/routes/PublicRoute";
-// import { useDispatch, useSelector } from "react-redux";
-// import { selectIsLoading } from "@/redux/auth/slice";
-// import { useEffect } from "react";
-// import { refreshThunk } from "@/redux/auth/operations";
+import { Route, Routes } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 
-const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES;
+import { Layout } from "../components"
+import { PublicRoute } from "@/routes/PublicRoute"
+import { LoginPage, RegisterPage } from "../pages"
+import Expenses from "./ExpensesCategories"
+
+import { ROUTES } from "../constants"
+import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
+import { refreshThunk } from "@/redux/auth/operations"
+import { PrivateRoute } from "@/routes/PrivateRoute"
+
+const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
 function App() {
-  // const isRefreshing = useSelector(selectIsLoading);
-  const isLoading = false;
+  const dispatch = useDispatch()
+  const refreshToken = useSelector(selectRefreshToken)
+  const isLoggedIn = useSelector(selectIsLoggedIn)
 
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(refreshThunk());
-  // }, [dispatch]);
+  useEffect(() => {
+    if (refreshToken && !isLoggedIn) dispatch(refreshThunk())
+  }, [dispatch, isLoggedIn, refreshToken])
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
         <Route index element />
@@ -43,9 +45,17 @@ function App() {
         />
         <Route path={`${TRANSACTION}/:transactionsType`} element />
         <Route path={`${TRANSACTION}/${HISTORY}/:transactionsType`} element />
+        <Route
+          path={`/exp`}
+          element={
+            <PrivateRoute>
+              <Expenses />
+            </PrivateRoute>
+          }
+        />
       </Route>
     </Routes>
-  );
+  )
 }
 
-export default App;
+export default App
