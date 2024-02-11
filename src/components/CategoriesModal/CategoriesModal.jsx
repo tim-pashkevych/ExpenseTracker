@@ -1,18 +1,29 @@
-import { nanoid } from "@reduxjs/toolkit";
 import TransactionType from "../../constants/TransactionType";
 import styles from "./CategoriesModal.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CategoryItem } from "./CategoryItem/CategoryItem";
 import CategoryActionType from "../../constants/CategoryActionType";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createCategoryThunk,
+  deleteCategoryThunk,
+  fetchCategoriesThunk,
+  updateCategoryThunk,
+} from "@/redux/categories/operations";
+import { selectExpenses, selectIncomes } from "@/redux/categories/slice";
 
 export const CategoriesModal = ({
   transactionType = TransactionType.Expense,
-  categories: backendCategories = [],
   approveCategory,
 }) => {
+  const dispatch = useDispatch();
+
+  const categories = useSelector(
+    transactionType === TransactionType.Expense ? selectExpenses : selectIncomes
+  );
+
   const [newCategory, setNewCategory] = useState("");
 
-  const [categories, setCategories] = useState(backendCategories);
   const [formActionType, setFormActionType] = useState(CategoryActionType.Add);
   const [activeCategory, setActiveCategory] = useState({});
   const [isBeingEdited, setIsBeingEdited] = useState(false);
@@ -21,15 +32,25 @@ export const CategoriesModal = ({
     event.preventDefault();
 
     if (formActionType === CategoryActionType.Add) {
-      setCategories([...categories, { id: nanoid(), name: newCategory }]);
+      dispatch(
+        createCategoryThunk({
+          type: transactionType + "s",
+          categoryName: newCategory,
+        })
+      );
       setNewCategory("");
     } else if (formActionType === CategoryActionType.Edit) {
       setIsBeingEdited(false);
       setFormActionType(CategoryActionType.Add);
 
-      categories.filter(
-        (category) => category.id === activeCategory.id
-      )[0].name = newCategory;
+      dispatch(
+        updateCategoryThunk({
+          id: activeCategory.id,
+          newName: newCategory,
+          type: transactionType + "s",
+        })
+      );
+
       setActiveCategory({});
       setNewCategory("");
     }
@@ -52,8 +73,14 @@ export const CategoriesModal = ({
   };
 
   const deleteCategory = (id) => {
-    setCategories(categories.filter((category) => category.id !== id));
+    dispatch(deleteCategoryThunk({ id, type: transactionType + "s" }));
   };
+
+  useEffect(() => {
+    dispatch(fetchCategoriesThunk())
+      .unwrap()
+      .then((data) => console.log(data));
+  }, [dispatch]);
 
   return (
     <div className={styles.categoryModalContainer}>
@@ -61,11 +88,11 @@ export const CategoriesModal = ({
       <p className={styles.allCategoryLabel}>All category</p>
       {(categories.length > 0 && (
         <ul className={styles.categoriesList}>
-          {categories.map((category) => (
+          {categories.map(({ _id: id, categoryName: name }) => (
             <CategoryItem
-              key={category.id}
-              id={category.id}
-              name={category.name}
+              key={id}
+              id={id}
+              name={name}
               approve={approveCategory}
               edit={editCategory}
               remove={deleteCategory}

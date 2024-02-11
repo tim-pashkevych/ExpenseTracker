@@ -15,26 +15,32 @@ import { Icon } from "./TimePicker/Icon";
 import moment from "moment";
 import "rc-time-picker/assets/index.css";
 import "./TimePicker/TimePicker.css";
+import { useDispatch } from "react-redux";
+import { createTransactionThunk } from "@/redux/transactions/operations";
+// import PropTypes from "prop-types";
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
-  formData = {
-    TransactionType: TransactionType.Expense,
-    Date: new Date().toISOString().split("T")[0],
-    Time: moment(),
-    Category: "",
-    Sum: "",
-    Comment: "",
-  },
+  TransactionType: Type = TransactionType.Expense,
+  Date: TransactionDate = new Date().toISOString().split("T")[0],
+  Time = moment(),
+  Category = { _id: "", categoryName: "" },
+  Sum = "",
+  Comment = "",
   currency = CurrencyType.UAH,
 }) => {
+  const dispatch = useDispatch();
+
   const [isModalWindowOpened, setIsModalWindowOpened] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(Category._id);
 
   const schema = yup.object({
     [TransactionFormFields.TransactionType]: yup.string().required(),
     [TransactionFormFields.Date]: yup.string().required(),
     [TransactionFormFields.Time]: yup.string().required(),
+    [TransactionFormFields.Category]: yup.string().required(),
     [TransactionFormFields.Sum]: yup.string().required(),
+    [TransactionFormFields.Comment]: yup.string().min(3),
   });
 
   const {
@@ -46,7 +52,14 @@ export const TransactionForm = ({
     formState: { errors },
     control,
   } = useForm({
-    defaultValues: formData,
+    defaultValues: {
+      [TransactionFormFields.TransactionType]: Type,
+      Date: TransactionDate,
+      Time: typeof Time === "object" ? Time : moment(Time, "HH:mm"),
+      Category: Category.categoryName,
+      Sum,
+      Comment,
+    },
     resolver: yupResolver(schema),
   });
 
@@ -57,27 +70,52 @@ export const TransactionForm = ({
     setIsModalWindowOpened(true);
   };
 
+  const convertData = (data) => {
+    const time = data.Time.split(":").slice(0, 2).join(":");
+
+    const convertedData = {
+      type: data.TransactionType + "s",
+      date: data.Date,
+      time,
+      category: activeCategory,
+      sum: parseInt(data.Sum),
+      comment: data.Comment,
+    };
+
+    return convertedData;
+  };
+
   const handleTransactionFormOnSubmit = (data) => {
-    if (actionType === TransactionFormActionType.Add) {
-      alert("New transaction was added");
-    } else if (actionType === TransactionFormActionType.Send) {
-      alert("New transaction was sended");
-    }
+    // if (data.Category === "") {
+    //   data.Category = "Different";
+    // }
 
-    if (data.Category === "") {
-      data.Category = "Different";
-    }
-
+    //10:30:23 GMT+1
     const fullTime = data.Time.split(" ");
     data.Time = fullTime[fullTime.length - 2];
 
-    console.log(data);
+    if (actionType === TransactionFormActionType.Add) {
+      alert("New transaction was added");
+
+      data = convertData(data);
+      console.log(data);
+      dispatch(createTransactionThunk(data));
+    } else if (actionType === TransactionFormActionType.Send) {
+      alert("New transaction was sended");
+
+      console.log(convertData(data));
+    }
     reset();
+    setValue(
+      TransactionFormFields.Date,
+      new Date().toISOString().split("T")[0]
+    );
     setValue(TransactionFormFields.Time, moment());
   };
 
   const handleApproveCategory = (category) => {
     setIsModalWindowOpened(false);
+    setActiveCategory(category.id);
     setValue(TransactionFormFields.Category, category.name);
   };
 
