@@ -1,5 +1,5 @@
-import { AuthNav, BgImageWrapper, AllUsersTab } from "../../components/index";
-import styles from "./WelcomePage.module.css";
+import { AuthNav, BgImageWrapper, AllUsersTab } from "../../components/index"
+import styles from "./WelcomePage.module.css"
 
 export const WelcomePage = () => {
   return (
@@ -20,10 +20,7 @@ export const WelcomePage = () => {
         </div>
         <AuthNav />
       </div>
-      <div className={styles.bgImage}>
-        <BgImageWrapper className={styles.bgImage} />
-        <AllUsersTab />
-      </div>
+      <AllUsersTab />
     </div>
-  );
-};
+  )
+}
