@@ -9,6 +9,8 @@ import {
 import { fetchTransactionsThunk } from "@/redux/transactions/operations"
 import { TransactionsListItem } from "../TransactionsListItem/TransactionsListItem"
 
+import css from "./TransactionsList.module.css"
+
 export const TransactionsList = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -25,25 +27,27 @@ export const TransactionsList = () => {
   }, [dispatch, navigate, transactionsType, date])
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Comment</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Sum</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {transactions.map(transaction => (
-          <TransactionsListItem
-            key={transaction._id}
-            transaction={transaction}
-          />
-        ))}
-      </tbody>
-    </table>
+    <div className={css.TransactionsListWrap}>
+      <table className={css.transactionsList}>
+        <thead className={css.transactionsListHeader}>
+          <tr>
+            <th>Category</th>
+            <th>Comment</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Sum</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody className={css.transactionsListBody}>
+          {transactions.map(transaction => (
+            <TransactionsListItem
+              key={transaction._id}
+              transaction={transaction}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
