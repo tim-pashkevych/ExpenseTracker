@@ -25,6 +25,11 @@ export const loginThunk = createAsyncThunk(
       setToken(data.accessToken)
       return data
     } catch (error) {
+      if (error.request.status === 403) {
+        return thunkAPI.rejectWithValue(
+          "The email doesn't exist or password is incorrect. Please try again.",
+        )
+      }
       return thunkAPI.rejectWithValue(error.message)
     }
   },
