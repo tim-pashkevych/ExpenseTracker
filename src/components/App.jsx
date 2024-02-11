@@ -4,7 +4,7 @@ import { useEffect } from "react"
 
 import { Layout } from "../components"
 import { PublicRoute } from "@/routes/PublicRoute"
-import { LoginPage, RegisterPage } from "../pages"
+import { LoginPage, RegisterPage, WelcomePage } from "../pages"
 import Expenses from "./ExpensesCategories"
 
 import { ROUTES } from "../constants"
@@ -15,10 +15,19 @@ import { PrivateRoute } from "@/routes/PrivateRoute"
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 
 function App() {
+
   console.log("FIX5")
+
+
+  // const isRefreshing = useSelector(selectIsLoading);
+  const isLoading = false;
+
+
+
   const dispatch = useDispatch()
   const refreshToken = useSelector(selectRefreshToken)
   const isLoggedIn = useSelector(selectIsLoggedIn)
+
 
   useEffect(() => {
     if (refreshToken && !isLoggedIn) dispatch(refreshThunk())
@@ -27,7 +36,7 @@ function App() {
   return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
-        <Route index element />
+        <Route index element={<WelcomePage />} />
         <Route
           path={SIGN_IN}
           element={
