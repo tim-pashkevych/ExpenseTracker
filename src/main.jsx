@@ -10,6 +10,7 @@ import App from "./components/App.jsx"
 import { persistor, store } from "./redux"
 import "modern-normalize/modern-normalize.css"
 import "react-toastify/dist/ReactToastify.min.css"
+import "overlayscrollbars/overlayscrollbars.css"
 import "./index.css"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
