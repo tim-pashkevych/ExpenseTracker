@@ -11,6 +11,10 @@
   :global(.os-scrollbar-vertical .os-scrollbar-handle) {
     width: 8px !important;
   }
+
+  @media screen and (min-width: 1440px) {
+    height: 405px;
+  }
 }
 
 .transactionsList {
@@ -31,6 +35,10 @@
 
   tr {
     th {
+      position: sticky;
+      top: 0px;
+      background-color: #121214;
+
       color: var(--grey-40);
       text-align: left;
       font-size: 12px;

@@ -9,6 +9,7 @@ import {
 
 import styles from "./TarnsactionsHistoryPage.module.css"
 import { TransactionsTotal } from "@/components/TransactionsTotal/TransactionsTotal"
+import clsx from "clsx"
 
 export const TarnsactionsHistoryPage = () => {
   const { transactionsType } = useParams()
@@ -21,7 +22,12 @@ export const TarnsactionsHistoryPage = () => {
           <h1 className={styles.pageTitle}>
             {transactionsType === "expenses" ? "All Expense" : "All Income"}
           </h1>
-          <p className={styles.pageParagraph}>
+          <p
+            className={clsx(styles.pageParagraph, {
+              [styles.pageExpensesParagraph]: transactionsType === "expenses",
+              [styles.pageIncomesParagraph]: transactionsType === "incomes",
+            })}
+          >
             {transactionsType === "expenses"
               ? "View and manage every transaction seamlessly! Your entire financial landscape, all in one place."
               : "Track and celebrate every bit of earnings effortlessly! Gain insights into your total revenue in a snap."}
