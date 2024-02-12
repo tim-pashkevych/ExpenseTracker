@@ -31,13 +31,16 @@
   &:hover {
     background-color: var(--main-green);
     color: #0c0d0d;
+    transition: 0.8s ease;
   }
   &:focus {
     background-color: var(--main-green);
     color: #0c0d0d;
+    transition: 0.8s ease;
   }
   &:active {
     background-color: var(--main-green);
     color: #0c0d0d;
+    transition: 1.3s ease;
   }
 }

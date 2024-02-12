@@ -91,3 +91,11 @@ body {
 .os-scrollbar-horizontal .os-scrollbar-handle {
   height: 8px !important;
 }
+
+#modal-window {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  margin: 0 auto;
+  z-index: 997;
+}
