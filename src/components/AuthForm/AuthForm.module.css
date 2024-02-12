@@ -114,14 +114,25 @@
   border: transparent;
   width: 16px;
   height: 16px;
-  right: 32px;
+  right: 18px;
   top: 13px;
+}
+@media only screen and (min-width: 768x) {
+  .eyeIconBtn {
+    width: 20px;
+    height: 20px;
+  }
 }
 .eyeIcon {
   width: 16px;
   height: 16px;
 }
-
+@media only screen and (min-width: 768x) {
+  .eyeIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
 .errors {
   margin-top: 4px;
   font-size: 10px;
@@ -163,3 +174,21 @@
   outline: none;
   font-size: 14px;
 }
+
+.error {
+  border-color: var(--error);
+}
+
+.success {
+  border-color: var(--main-green);
+}
+
+/* .secure_password {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0%;
+  padding-left: 18px;
+  color: var(--main-green);
+} */
