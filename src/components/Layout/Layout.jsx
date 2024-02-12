@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import { Outlet } from "react-router-dom"
 
 import { BgImageWrapper, Container, HeaderComponent, Loader } from "../index"

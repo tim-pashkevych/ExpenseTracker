@@ -2,6 +2,11 @@ import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { DatePickerFormField } from "../DatePickerFormField/DatePickerFormField"
 import { format } from "date-fns"
+import clsx from "clsx"
+
+import css from "./TransactionsSearchTools.module.css"
+import SearchIcon from "../../../src/assets/icons/Search.svg?react"
+import CalendarAccentIcon from "../../../src/assets/icons/CalendarAccent.svg?react"
 
 import {
   selectFiltersCategory,
@@ -27,14 +32,29 @@ export const TransactionsSearchTools = () => {
   }
 
   return (
-    <form>
-      <input
-        type='text'
-        value={categoryFilter}
-        {...register("category")}
-        onChange={onCategoryChange}
-      />
-      <DatePickerFormField onChange={onDateChange} value={dateFilter} />
+    <form autoComplete='off' className={css.searchToolsControls}>
+      <div className={clsx(css.fieldWrap, css.SearchFieldWrap)}>
+        <label>
+          <input
+            type='text'
+            value={categoryFilter}
+            placeholder='Search for anything...'
+            {...register("category")}
+            onChange={onCategoryChange}
+            className={clsx(css.inputField, css.inputSearchField)}
+          />
+          <SearchIcon className={css.fieldIconAddon} />
+        </label>
+      </div>
+      <div className={clsx(css.fieldWrap, css.datepickerFieldWrap)}>
+        <DatePickerFormField
+          onChange={onDateChange}
+          value={dateFilter}
+          className={css.inputField}
+          placeholder='dd/mm/yyyy'
+          icon={<CalendarAccentIcon className={css.fieldIconAddon} />}
+        />
+      </div>
     </form>
   )
 }
