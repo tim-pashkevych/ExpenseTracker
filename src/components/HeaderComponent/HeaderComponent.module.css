@@ -5,11 +5,20 @@
   align-items: center;
   flex-direction: row;
   text-align: center;
+  margin: 0 auto 0 20px;
 }
 
 @media only screen and (min-width: 768px) {
   .wrapperLogo {
     text-align: start;
+    margin: 0 auto 0 32px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .wrapperLogo {
+    text-align: start;
+    margin: 0 auto 0 100px;
   }
 }
 
