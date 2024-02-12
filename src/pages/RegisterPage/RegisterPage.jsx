@@ -11,7 +11,7 @@ import { registerThunk } from "@/redux/auth/operations"
 import { selectError, selectIsLoading } from "@/redux/auth/slice"
 import styles from "./RegisterPage.module.css"
 import { useNavigate } from "react-router"
-import { useWindowSize } from "@/hooks/useWindowSize"
+import { WindowSizeHook } from "@/hooks/WindowSizeHook"
 
 export const RegisterPage = () => {
   const dispatch = useDispatch()
@@ -20,7 +20,7 @@ export const RegisterPage = () => {
   const [isRequested, setIsRequested] = useState(false)
   const isLoading = useSelector(selectIsLoading)
   const navigate = useNavigate()
-  const { windowSize } = useWindowSize()
+  const { windowSize } = WindowSizeHook()
 
   const formData = [
     { name: "name", type: "text", placeholder: "Name" },

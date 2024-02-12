@@ -7,7 +7,7 @@ import { selectCurrency } from "@/redux/user/slice"
 import css from "./TransactionsListItem.module.css"
 import EditIcon from "../../../src/assets/icons/EditPensil.svg?react"
 import DeleteIcon from "../../../src/assets/icons/DeleteTrash.svg?react"
-import { useWindowSize } from "@/hooks/useWindowSize"
+import { WindowSizeHook } from "@/hooks/WindowSizeHook"
 
 const trim = text => {
   if (text.length > 12) {
@@ -19,7 +19,7 @@ const trim = text => {
 
 export const TransactionsListItem = ({ transaction }) => {
   const currency = useSelector(selectCurrency)
-  const { windowSize } = useWindowSize()
+  const { windowSize } = WindowSizeHook()
 
   return (
     <tr>
