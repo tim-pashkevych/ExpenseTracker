@@ -5,8 +5,8 @@ import { format } from "date-fns"
 import clsx from "clsx"
 
 import css from "./TransactionsSearchTools.module.css"
-import SearchIcon from "../../../src/assets/icons/Search.svg?react"
-import CalendarAccentIcon from "../../../src/assets/icons/CalendarAccent.svg?react"
+import SearchIcon from "@/assets/icons/Search.svg?react"
+import CalendarAccentIcon from "@/assets/icons/CalendarAccent.svg?react"
 
 import {
   selectFiltersCategory,

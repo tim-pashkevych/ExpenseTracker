@@ -1,11 +1,10 @@
 import {
-  Container,
   TransactionsList,
   TransactionsSearchTools,
   WidgetContainer,
 } from "../../components"
 
-const TarnsactionsHistoryPage = () => {
+export const TarnsactionsHistoryPage = () => {
   return (
     <WidgetContainer>
       <TransactionsSearchTools />
@@ -14,4 +13,3 @@ const TarnsactionsHistoryPage = () => {
   )
 }
 
-export default TarnsactionsHistoryPage

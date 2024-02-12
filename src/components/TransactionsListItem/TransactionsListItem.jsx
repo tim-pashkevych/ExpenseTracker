@@ -5,8 +5,8 @@ import clsx from "clsx"
 import { selectCurrency } from "@/redux/user/slice"
 
 import css from "./TransactionsListItem.module.css"
-import EditIcon from "../../../src/assets/icons/EditPensil.svg?react"
-import DeleteIcon from "../../../src/assets/icons/DeleteTrash.svg?react"
+import EditIcon from "@/assets/icons/EditPensil.svg?react"
+import DeleteIcon from "@/assets/icons/DeleteTrash.svg?react"
 import { useWindowSize } from "@/hooks/useWindowSize"
 
 const trim = text => {
