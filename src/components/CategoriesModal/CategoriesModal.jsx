@@ -43,13 +43,15 @@ export const CategoriesModal = ({
       setIsBeingEdited(false);
       setFormActionType(CategoryActionType.Add);
 
-      dispatch(
-        updateCategoryThunk({
-          id: activeCategory.id,
-          newName: newCategory,
-          type: transactionType + "s",
-        })
-      );
+      if (newCategory !== activeCategory.name) {
+        dispatch(
+          updateCategoryThunk({
+            id: activeCategory.id,
+            newName: newCategory,
+            type: transactionType + "s",
+          })
+        );
+      }
 
       setActiveCategory({});
       setNewCategory("");
@@ -77,9 +79,9 @@ export const CategoriesModal = ({
   };
 
   useEffect(() => {
-    dispatch(fetchCategoriesThunk())
-      .unwrap()
-      .then((data) => console.log(data));
+    dispatch(fetchCategoriesThunk());
+    // .unwrap()
+    // .then((data) => console.log(data));
   }, [dispatch]);
 
   return (
@@ -119,6 +121,8 @@ export const CategoriesModal = ({
               value={newCategory}
               onChange={handleAddCategoryOnChange}
               required
+              minLength={2}
+              maxLength={16}
             />
             <button className={styles.addCategoryButton}>
               {formActionType}

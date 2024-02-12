@@ -17,7 +17,7 @@ import "rc-time-picker/assets/index.css";
 import "./TimePicker/TimePicker.css";
 import { useDispatch } from "react-redux";
 import { createTransactionThunk } from "@/redux/transactions/operations";
-// import PropTypes from "prop-types";
+import icons from "icons/icons.svg";
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
@@ -39,8 +39,16 @@ export const TransactionForm = ({
     [TransactionFormFields.Date]: yup.string().required(),
     [TransactionFormFields.Time]: yup.string().required(),
     [TransactionFormFields.Category]: yup.string().required(),
-    [TransactionFormFields.Sum]: yup.string().required(),
-    [TransactionFormFields.Comment]: yup.string().min(3),
+    [TransactionFormFields.Sum]: yup
+      .number()
+      .transform((value, originalValue) => {
+        return originalValue === "" ? undefined : value;
+      })
+      .typeError("The value must be a number")
+      .required()
+      .min(1, "Number must be greater than or equal to 1")
+      .max(1_000_000, "Number must be less than or equal to 1 million"),
+    [TransactionFormFields.Comment]: yup.string().required().min(3).max(48),
   });
 
   const {
@@ -49,13 +57,14 @@ export const TransactionForm = ({
     reset,
     setValue,
     getValues,
+    trigger,
     formState: { errors },
     control,
   } = useForm({
     defaultValues: {
       [TransactionFormFields.TransactionType]: Type,
       Date: TransactionDate,
-      Time: typeof Time === "object" ? Time : moment(Time, "HH:mm"),
+      Time: typeof Time === "object" ? Time : moment(Time, "HH:mm"), // if I receieve a moment object than I can use it, but if not then I need to create one using moment() method
       Category: Category.categoryName,
       Sum,
       Comment,
@@ -86,10 +95,6 @@ export const TransactionForm = ({
   };
 
   const handleTransactionFormOnSubmit = (data) => {
-    // if (data.Category === "") {
-    //   data.Category = "Different";
-    // }
-
     //10:30:23 GMT+1
     const fullTime = data.Time.split(" ");
     data.Time = fullTime[fullTime.length - 2];
@@ -117,6 +122,10 @@ export const TransactionForm = ({
     setIsModalWindowOpened(false);
     setActiveCategory(category.id);
     setValue(TransactionFormFields.Category, category.name);
+
+    if (errors[TransactionFormFields.Category]) {
+      trigger();
+    }
   };
 
   return (
@@ -182,7 +191,9 @@ export const TransactionForm = ({
           <div className={styles.fieldContainer}>
             <label>Category</label>
             <input
-              className={clsx(styles.sharedTextFieldStyles, styles.sumField)}
+              className={clsx(styles.sharedTextFieldStyles, styles.sumField, {
+                [styles.errorBorder]: errors[TransactionFormFields.Category],
+              })}
               type="text"
               placeholder="Different"
               id="categoryTextBox"
@@ -190,42 +201,85 @@ export const TransactionForm = ({
               onFocus={handleCategoryFieldOnClickOnFocus}
               {...register(TransactionFormFields.Category)}
             ></input>
+            {/* Category Validation error */}
+            {errors[TransactionFormFields.Category] && (
+              <>
+                <p className={styles.error}>
+                  {errors[TransactionFormFields.Category]?.message}
+                </p>
+                <svg className={styles.errorIcon} width="20px" height="20px">
+                  <use href={`${icons}#icon-error`}></use>
+                </svg>
+              </>
+            )}
           </div>
           {/* Sum */}
           <div className={styles.fieldContainer}>
             <label>Sum</label>
             <input
-              className={clsx(styles.sharedTextFieldStyles, styles.sumField)}
+              className={clsx(styles.sharedTextFieldStyles, styles.sumField, {
+                [styles.errorBorder]: errors[TransactionFormFields.Sum],
+              })}
               type="text"
-              pattern="[0-9]*"
               placeholder="Enter the sum"
               {...register(TransactionFormFields.Sum)}
-            ></input>
+            />
             <span className={styles.currencyLabel}>{currency}</span>
+
+            {/* Sum Validation error */}
+            {errors[TransactionFormFields.Sum] && (
+              <>
+                <p className={styles.error}>
+                  {errors[TransactionFormFields.Sum]?.message}
+                </p>
+                <svg
+                  className={styles.sumFieldErrorIcon}
+                  width="20px"
+                  height="20px"
+                >
+                  <use href={`${icons}#icon-error`}></use>
+                </svg>
+              </>
+            )}
           </div>
-          {/* Sum Validation error */}
-          {errors[TransactionFormFields.Sum] && (
-            <p style={{ color: "red" }}>
-              {errors[TransactionFormFields.Sum]?.message}
-            </p>
-          )}
           {/* Comment */}
           <div className={styles.fieldContainer}>
             <label>Comment</label>
             <div
-              className={clsx(styles.commentField, styles.commentFieldWrapper)}
+              className={clsx(styles.commentFieldWrapper, {
+                [styles.errorBorder]: errors[TransactionFormFields.Comment],
+              })}
             >
               <textarea
                 className={clsx(
                   styles.textArea,
                   styles.sharedTextFieldStyles,
-                  styles.commentField
+                  styles.commentField,
+                  {
+                    [styles.errorBorder]: errors[TransactionFormFields.Comment],
+                  }
                 )}
                 name="comment"
                 id="commentTextBox"
                 placeholder="Enter the text"
                 {...register(TransactionFormFields.Comment)}
               ></textarea>
+
+              {/* Comment Validation error */}
+              {errors[TransactionFormFields.Comment] && (
+                <>
+                  <p className={styles.error}>
+                    {errors[TransactionFormFields.Comment]?.message}
+                  </p>
+                  <svg
+                    className={styles.textAreaErrorIcon}
+                    width="20px"
+                    height="20px"
+                  >
+                    <use href={`${icons}#icon-error`}></use>
+                  </svg>
+                </>
+              )}
             </div>
           </div>
           {/* Send */}
