@@ -9,22 +9,53 @@
   border-radius: 50%;
   border: none;
 
+  .pensilIcon,
+  .trashIcon {
+    width: 12px;
+    height: 12px;
+  }
+
   &.btnAccent {
     margin-right: 8px;
     background-color: var(--main-green);
-
-    .pensilIcon {
-      width: 12px;
-      height: 12px;
-    }
+  }
+  &.btnAccent:hover,
+  &.btnAccent:focus {
+    background-color: var(--main-green-hover);
   }
 
   &.btnDefault {
+    color: white;
+    border: 1px solid var(--background-main);
     background-color: var(--background-main);
+  }
+  &.btnDefault:hover,
+  &.btnDefault:focus {
+    border-color: var(--main-green);
+  }
 
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+
+    .pensilIcon,
     .trashIcon {
-      width: 12px;
-      height: 12px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: auto;
+    height: auto;
+
+    font-size: 16px;
+    padding: 14px 32px;
+    border-radius: 40px;
+
+    .pensilIcon,
+    .trashIcon {
+      margin-right: 10px;
     }
   }
 }
