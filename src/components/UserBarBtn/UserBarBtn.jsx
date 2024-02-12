@@ -8,17 +8,21 @@ import { useSelector } from "react-redux"
 import { selectAvatarUrl, selectName } from "@/redux/user/slice"
 import { SureLogOutModal } from "../SureLogOutModal/SureLogOutModal"
 import { Modal } from "../Modal/Modal"
+import { UserSetsModal } from "../UserSetsModal/UserSetsModal"
 
 export const UserBarBtn = () => {
-  const [rotated, setrotated] = useState(false)
+  const [rotated, setRotated] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
+
+  const [isVisibleLogout, setIsVisibleLogout] = useState(false)
+  const [isVisibleProfile, setIsVisibleProfile] = useState(false)
+
   const name = useSelector(selectName)
   const avatar = useSelector(selectAvatarUrl)
   const altText = name ? name[0] : ""
   const handleChangeBar = () => {
     setIsOpen(!isOpen)
-    setrotated(prev => !prev)
+    setRotated(prev => !prev)
   }
   return (
     <div className={styles.boxAbsolute}>
@@ -44,7 +48,10 @@ export const UserBarBtn = () => {
         </button>
         <ul className={isOpen ? styles.listDrop : styles.listNone}>
           <li className={styles.itemDrop}>
-            <button className={styles.buttonStyle}>
+            <button
+              className={styles.buttonStyle}
+              onClick={() => setIsVisibleProfile(true)}
+            >
               <UserBarIcon className={styles.iconUserHower} />
               Profile settings
             </button>
@@ -52,15 +59,24 @@ export const UserBarBtn = () => {
           <li className={styles.itemDrop}>
             <button
               className={styles.buttonStyle}
-              onClick={() => setIsVisible(true)}
+              onClick={() => setIsVisibleLogout(true)}
             >
               <UserBarLogOutIcon className={styles.iconUserHower} />
               Log out
             </button>
           </li>
         </ul>
-        <Modal isOpened={isVisible} onClose={() => setIsVisible(false)}>
-          <SureLogOutModal />
+        <Modal
+          isOpened={isVisibleLogout}
+          onClose={() => setIsVisibleLogout(false)}
+        >
+          <SureLogOutModal closeModal={setIsVisibleLogout} />
+        </Modal>
+        <Modal
+          isOpened={isVisibleProfile}
+          onClose={() => setIsVisibleProfile(false)}
+        >
+          <UserSetsModal closeModal={setIsVisibleProfile} />
         </Modal>
       </div>
     </div>
