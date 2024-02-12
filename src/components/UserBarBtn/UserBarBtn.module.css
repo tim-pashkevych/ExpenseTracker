@@ -79,6 +79,8 @@
 }
 
 .buttonStyle {
+  display: flex;
+  gap: 12px;
   font-family: "Suisse Intl", sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -89,11 +91,15 @@
   &:focus {
     color: var(--paper);
   }
+  &:active {
+    color: var(--paper);
+  }
 }
-
+.buttonStyle:active .iconUserHower {
+  fill: var(--main-green);
+}
 .itemDrop {
   display: flex;
-  gap: 12px;
   margin-left: 16px;
   cursor: pointer;
 }
@@ -114,6 +120,10 @@
   height: 16px;
   transition: 0.6s ease;
   &:focus {
+    fill: var(--main-green);
+    stroke: var(--main-green);
+  }
+  &:active {
     fill: var(--main-green);
     stroke: var(--main-green);
   }

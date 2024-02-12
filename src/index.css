@@ -85,3 +85,11 @@ body {
   background-color: rgb(68, 68, 70) !important;
   height: 64px !important;
 }
+
+#modal-window {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  margin: 0 auto;
+  z-index: 997;
+}

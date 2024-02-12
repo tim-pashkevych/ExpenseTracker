@@ -3,18 +3,23 @@ import styles from "./UserBarBtn.module.css"
 import DropIcon from "@/assets/icons/DropIcon.svg?react"
 import UserBarIcon from "@/assets/icons/UserBarIcon.svg?react"
 import UserBarLogOutIcon from "@/assets/icons/UserBarLogOutIcon.svg?react"
-import { Link } from "react-router-dom"
 import clsx from "clsx"
 import { useSelector } from "react-redux"
 import { selectAvatarUrl, selectName } from "@/redux/user/slice"
+import { SureLogOutModal } from "../SureLogOutModal/SureLogOutModal"
+import { Modal } from "../Modal/Modal"
 
 export const UserBarBtn = () => {
   const [rotated, setrotated] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   const name = useSelector(selectName)
   const avatar = useSelector(selectAvatarUrl)
-  const altText = name ? name[0] : "user"
-  console.log(avatar)
+  const altText = name ? name[0] : ""
+  const handleChangeBar = () => {
+    setIsOpen(!isOpen)
+    setrotated(prev => !prev)
+  }
   return (
     <div className={styles.boxAbsolute}>
       <div className={styles.wrapperSummary}>
@@ -33,23 +38,30 @@ export const UserBarBtn = () => {
             [styles.buttonDropDown]: true,
             [styles.rotated]: rotated,
           })}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => handleChangeBar()}
         >
-          <DropIcon
-            className={styles.dropIcon}
-            onClick={() => setrotated(prev => !prev)}
-          />
+          <DropIcon className={styles.dropIcon} />
         </button>
         <ul className={isOpen ? styles.listDrop : styles.listNone}>
           <li className={styles.itemDrop}>
-            <UserBarIcon className={styles.iconUserHower} />
-            <button className={styles.buttonStyle}>Profile settings</button>
+            <button className={styles.buttonStyle}>
+              <UserBarIcon className={styles.iconUserHower} />
+              Profile settings
+            </button>
           </li>
           <li className={styles.itemDrop}>
-            <UserBarLogOutIcon className={styles.iconUserHower} />
-            <button className={styles.buttonStyle}>Log out</button>
+            <button
+              className={styles.buttonStyle}
+              onClick={() => setIsVisible(true)}
+            >
+              <UserBarLogOutIcon className={styles.iconUserHower} />
+              Log out
+            </button>
           </li>
         </ul>
+        <Modal isOpened={isVisible} onClose={() => setIsVisible(false)}>
+          <SureLogOutModal />
+        </Modal>
       </div>
     </div>
   )
