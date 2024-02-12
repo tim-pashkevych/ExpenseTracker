@@ -32,28 +32,29 @@ export const TransactionsSearchTools = () => {
   }
 
   return (
-    <form
-      autoComplete='off'
-      className={clsx(css.flex, css.flexGap10, css.flexDirCol, css.padding20)}
-    >
-      <label className={css.fieldWrap}>
-        <input
-          type='text'
-          value={categoryFilter}
-          placeholder='Search for anything...'
-          {...register("category")}
-          onChange={onCategoryChange}
-          className={clsx(css.inputField, css.inputSearchField)}
+    <form autoComplete='off' className={css.searchToolsControls}>
+      <div className={clsx(css.fieldWrap, css.SearchFieldWrap)}>
+        <label>
+          <input
+            type='text'
+            value={categoryFilter}
+            placeholder='Search for anything...'
+            {...register("category")}
+            onChange={onCategoryChange}
+            className={clsx(css.inputField, css.inputSearchField)}
+          />
+          <SearchIcon className={css.fieldIconAddon} />
+        </label>
+      </div>
+      <div className={clsx(css.fieldWrap, css.datepickerFieldWrap)}>
+        <DatePickerFormField
+          onChange={onDateChange}
+          value={dateFilter}
+          className={css.inputField}
+          placeholder='dd/mm/yyyy'
+          icon={<CalendarAccentIcon className={css.fieldIconAddon} />}
         />
-        <SearchIcon className={css.fieldIconAddon} />
-      </label>
-      <DatePickerFormField
-        onChange={onDateChange}
-        value={dateFilter}
-        className={css.inputField}
-        placeholder='dd/mm/yyyy'
-        icon={<CalendarAccentIcon className={css.fieldIconAddon} />}
-      />
+      </div>
     </form>
   )
 }
