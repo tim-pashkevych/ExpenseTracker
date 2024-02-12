@@ -1,6 +1,6 @@
 import clsx from "clsx"
-import css from "./WidgetContainer.module.css"
+import styles from "./WidgetContainer.module.css"
 
 export const WidgetContainer = ({ children }) => {
-  return <article className={clsx(css.widgetContainer)}>{children}</article>
+  return <article className={clsx(styles.widgetContainer)}>{children}</article>
 }

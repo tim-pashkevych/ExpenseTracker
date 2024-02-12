@@ -13,7 +13,7 @@ import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 
 import { ROUTES } from "../../constants"
-import { WindowSizeHook } from "@/hooks/WindowSizeHook"
+import { useWindowSizeHook } from "@/hooks/WindowSizeHook"
 const { TRANSACTION } = ROUTES
 
 export const LoginPage = () => {
@@ -23,7 +23,7 @@ export const LoginPage = () => {
   const [isRequested, setIsRequested] = useState(false)
   const isLoading = useSelector(selectIsLoading)
   const navigate = useNavigate()
-  const { windowSize } = WindowSizeHook()
+  const { windowSize } = useWindowSizeHook()
 
   const formData = [
     { name: "email", type: "text", placeholder: "Email" },

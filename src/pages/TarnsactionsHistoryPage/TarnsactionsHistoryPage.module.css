@@ -1,0 +1,15 @@
+.pageTitle {
+  font-weight: 400;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.pageParagraph {
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+  color: var(--grey-40);
+
+  margin-bottom: 40px;
+}
