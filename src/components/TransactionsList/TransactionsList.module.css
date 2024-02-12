@@ -1,0 +1,100 @@
+.TransactionsListWrap {
+  overflow-x: scroll;
+  min-height: 313px;
+}
+
+.transactionsList {
+  border-collapse: collapse;
+
+  width: 100%;
+}
+
+.transactionsListHeader {
+  background-color: var(--background-table-header);
+
+  tr {
+    th {
+      color: var(--grey-40);
+      text-align: left;
+      font-size: 12px;
+      font-weight: 400;
+
+      padding-right: 14px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+      &:last-child {
+        padding-right: 20px;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+        padding-right: 26px;
+
+        &:first-child {
+          padding-left: 32px;
+        }
+        &:last-child {
+          padding-right: 32px;
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        &:first-child {
+          padding-left: 40px;
+        }
+        &:last-child {
+          padding-right: 40px;
+        }
+      }
+    }
+  }
+}
+
+.transactionsListBody {
+  tr {
+    td {
+      color: white;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+
+      padding-top: 25px;
+      padding-right: 14px;
+      white-space: nowrap;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+      &:last-child {
+        padding-right: 20px;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 20px;
+        padding-right: 26px;
+
+        &:first-child {
+          padding-left: 32px;
+        }
+        &:last-child {
+          padding-right: 32px;
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        padding-right: 74px;
+        &:first-child {
+          padding-left: 40px;
+        }
+        &:last-child {
+          padding-right: 40px;
+        }
+      }
+    }
+  }
+}

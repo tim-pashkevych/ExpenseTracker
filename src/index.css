@@ -63,7 +63,9 @@ img {
   --error: #e74a3b;
 
   --background-main: rgb(13, 13, 13);
+  --background-secondary: rgb(23, 23, 25);
   --background-modal: rgb(24, 24, 25);
+  --background-table-header: rgba(0, 0, 0, 0.2);
 
   /* transition */
   --delay: 350ms;

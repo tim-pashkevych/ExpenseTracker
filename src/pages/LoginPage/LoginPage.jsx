@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useDispatch, useSelector } from "react-redux"
 
-import { AuthForm } from "../../components/index"
+import { AuthForm, BgImageWrapper } from "../../components/index"
 
 import styles from "./LoginPage.module.css"
 import { loginThunk } from "@/redux/auth/operations"
@@ -13,6 +13,7 @@ import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
 
 import { ROUTES } from "../../constants"
+import { useWindowSize } from "@/hooks/useWindowSize"
 const { TRANSACTION } = ROUTES
 
 export const LoginPage = () => {
@@ -22,6 +23,7 @@ export const LoginPage = () => {
   const [isRequested, setIsRequested] = useState(false)
   const isLoading = useSelector(selectIsLoading)
   const navigate = useNavigate()
+  const { windowSize } = useWindowSize()
 
   const formData = [
     { name: "email", type: "text", placeholder: "Email" },
@@ -61,22 +63,25 @@ export const LoginPage = () => {
   }
 
   return (
-    <div className={styles.wrapperMain}>
-      <div className={styles.wrapper}>
-        <h1 className={styles.title}>Sign In</h1>
-        <p className={styles.description}>
-          Welcome back to effortless expense tracking! Your financial dashboard
-          awaits.
-        </p>
-        <AuthForm
-          formData={formData}
-          buttonText='Sign In'
-          onSumbit={onSumbit}
-          register={register}
-          errors={errors}
-          navigation={navigation}
-        />
+    <>
+      <div className={styles.wrapperMain}>
+        <div className={styles.wrapper}>
+          <h1 className={styles.title}>Sign In</h1>
+          <p className={styles.description}>
+            Welcome back to effortless expense tracking! Your financial
+            dashboard awaits.
+          </p>
+          <AuthForm
+            formData={formData}
+            buttonText='Sign In'
+            onSumbit={onSumbit}
+            register={register}
+            errors={errors}
+            navigation={navigation}
+          />
+        </div>
       </div>
-    </div>
+      {windowSize.innerWidth >= 1440 && <BgImageWrapper />}
+    </>
   )
 }
