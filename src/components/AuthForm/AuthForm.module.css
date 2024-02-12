@@ -43,10 +43,6 @@
   }
 }
 
-.input:hover,
-.input:focus {
-  border-color: var(--main-green);
-}
 .btnLRegister {
   width: 138px;
   height: 44px;
@@ -182,13 +178,3 @@
 .success {
   border-color: var(--main-green);
 }
-
-/* .secure_password {
-  margin-top: 4px;
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 12px;
-  letter-spacing: 0%;
-  padding-left: 18px;
-  color: var(--main-green);
-} */

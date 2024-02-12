@@ -3,10 +3,10 @@ import { Link, useLocation } from "react-router-dom"
 import styles from "./AuthForm.module.css"
 import { Fragment, useState } from "react"
 
-import OpenEye from "../../../src/assets/icons/OpenEye.svg?react"
-import ClosedEye from "../../../src/assets/icons/ClosedEye.svg?react"
-import ErrorIcon from "../../../src/assets/icons/ErrorIcon.svg?react"
-import SuccessIcon from "../../../src/assets/icons/SuccessIcon.svg?react"
+import OpenEye from "@/assets/icons/OpenEye.svg?react"
+import ClosedEye from "@/assets/icons/ClosedEye.svg?react"
+import ErrorIcon from "@/assets/icons/ErrorIcon.svg?react"
+import SuccessIcon from "@/assets/icons/SuccessIcon.svg?react"
 
 export const AuthForm = ({
   onSumbit,
@@ -36,9 +36,11 @@ export const AuthForm = ({
   }
 
   const [touched, setTouched] = useState({})
+
   const handleInputChange = inputName => {
     setTouched(prev => ({ ...prev, [inputName]: true }))
   }
+
   const getClassNameInput = inputName => {
     if (errors[inputName]) {
       return styles.error
@@ -88,10 +90,6 @@ export const AuthForm = ({
               {errors[input.name] && (
                 <p className={styles.errors}>{errors[input.name].message}</p>
               )}
-              {/* {input.name === "password" &&
-                getClassNameInput(input.name) === styles.success && (
-                  <p className={styles.secure_password}>Password is secure</p>
-                )} */}
             </div>
           </Fragment>
         ))}
