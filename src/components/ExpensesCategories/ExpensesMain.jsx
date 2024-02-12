@@ -37,16 +37,21 @@ const ExpensesMain = () => {
     hue: "green",
   })
   useEffect(() => {
-    dispatch(fetchTransactionsThunk("expenses"))
+    dispatch(fetchTransactionsThunk({type:"expenses", date:''}))
   }, [dispatch])
 
   return (
     <div className={styles.container}>
-      <p className={styles.text}>Expenses categories</p>
-      <div className={styles.content}>
-        <ExpensesDonut data={categorySums} colors={colors} />
-        <ExpensesList data={categorySums} colors={colors} />
-      </div>
+      {categorySums.length>0 ? 
+        <>
+          <p className={styles.text}>Expenses categories</p>
+          <div className={styles.content}>
+            <ExpensesDonut data={categorySums} colors={colors} />
+            <ExpensesList data={categorySums} colors={colors} />
+          </div>
+        </>
+      : <p>No data</p>
+      }
     </div>
   )
 }
