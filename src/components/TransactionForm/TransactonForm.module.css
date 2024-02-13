@@ -178,13 +178,17 @@
 
 .commentField.errorBorder {
   padding-right: 34px;
-  border: none;
+  /* border: none; */
 }
 
 .textArea {
   --sb-track-color: transparent;
   --sb-thumb-color: #4dc274;
   --sb-size: 7px;
+}
+
+.textArea.errorBorder {
+  --sb-thumb-color: #e74a3b;
 }
 
 .textArea::-webkit-scrollbar {

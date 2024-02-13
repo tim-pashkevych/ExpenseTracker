@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import clsx from "clsx";
+import { toast } from "react-toastify";
 
 export const CategoriesModal = ({
   transactionType = TransactionType.Expense,
@@ -102,13 +103,17 @@ export const CategoriesModal = ({
   };
 
   const deleteCategory = (id) => {
-    console.log("You removed id: ", id);
-
     dispatch(deleteCategoryThunk({ id, type: transactionType + "s" }))
       .unwrap()
-      .then(() => {
-        console.log("22222 You removed id: ", id);
+      .then((response) => {
         removeCategory(id);
+      })
+      .catch((error) => {
+        console.log(
+          error,
+          "\nCan`t remove! Some transactions depend on this category"
+        );
+        toast.error("Can`t remove! Some transactions depend on this category");
       });
   };
 

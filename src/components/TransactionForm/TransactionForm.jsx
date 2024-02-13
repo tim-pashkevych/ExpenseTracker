@@ -37,6 +37,7 @@ export const TransactionForm = ({
   Sum = "",
   Comment = "",
   currency = CurrencyType.UAH,
+  onSubmit = (data) => console.log(data),
 }) => {
   const dispatch = useDispatch();
 
@@ -110,25 +111,28 @@ export const TransactionForm = ({
     const fullTime = data.Time.split(" ");
     data.Time = fullTime[fullTime.length - 2];
 
+    data = convertData(data);
+
     if (actionType === TransactionFormActionType.Add) {
       alert("New transaction was added");
-
-      data = convertData(data);
       // console.log(data);
 
       dispatch(createTransactionThunk(data));
-    } else if (actionType === TransactionFormActionType.Send) {
-      alert("New transaction was sended");
-
-      // data = convertData(data);
+    } else if (actionType === TransactionFormActionType.Save) {
+      alert("New transaction was saved");
       // console.log(data);
+
+      onSubmit(data);
     }
     reset();
+
     setValue(
       TransactionFormFields.Date,
       new Date().toISOString().split("T")[0]
     );
-    setValue(TransactionFormFields.Time, moment());
+    if (!Time) {
+      setValue(TransactionFormFields.Time, moment());
+    }
     // setValue(
     //   TransactionFormFields.Time,
     //   new Date().toISOString().split("T")[1].split(":").slice(0, 2).join(":")
@@ -296,9 +300,11 @@ export const TransactionForm = ({
           <div className={styles.fieldContainer}>
             <label>Comment</label>
             <div
-              className={clsx(styles.commentFieldWrapper, {
+              className={clsx(
+                styles.commentFieldWrapper /* {
                 [styles.errorBorder]: errors[TransactionFormFields.Comment],
-              })}
+              } */
+              )}
             >
               <textarea
                 className={clsx(
