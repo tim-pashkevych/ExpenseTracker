@@ -1,21 +1,25 @@
 .modalWindow {
   background-color: rgba(0, 0, 0, 0.6);
-
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  z-index: 1000;
 }
 
 .modalWindowContent {
-  position: fixed;
+  width: 335px;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 998;
+}
+
+@media only screen and (min-width: 768px) {
+  .modalWindowContent {
+    width: 500px;
+  }
 }
 
 .closeModalButton {
@@ -28,7 +32,7 @@
 
   background-color: transparent;
   stroke: white;
-
+  z-index: 999;
   border: none;
 
   padding: 0;

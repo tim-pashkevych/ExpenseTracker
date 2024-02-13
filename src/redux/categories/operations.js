@@ -1,53 +1,49 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { api } from "../../axiosConfig/expenseTrackerApi";
+import { createAsyncThunk } from "@reduxjs/toolkit"
+import { api } from "../../axiosConfig/expenseTrackerApi"
 
-export const createCategoryThunk = createAsyncThunk(
+export const createCategotyThunk = createAsyncThunk(
   "create a category",
   async (reqData, thunkAPI) => {
     try {
-      const { data } = await api.post("/categories", reqData);
-      return data;
+      const { data } = await api.post("/categories", reqData)
+      return data
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
-);
+)
 
 export const fetchCategoriesThunk = createAsyncThunk(
   "get categories",
   async (_, thunkAPI) => {
     try {
-      const { data } = await api.get("/categories");
-      return data;
+      const { data } = await api.get("/categories")
+      return data
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
-);
+)
 
 export const updateCategoryThunk = createAsyncThunk(
   "update a category",
-  async ({ id, newName, type }, thunkAPI) => {
+  async ({ reqData, id }, thunkAPI) => {
     try {
-      const { data } = await api.patch(`/categories/${id}`, {
-        categoryName: newName,
-      });
-      return { ...data, type };
+      const { data } = await api.patch(`/categories/${id}`, reqData)
+      return data
     } catch (error) {
-      // console.log(error.message);
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
-);
+)
 
 export const deleteCategoryThunk = createAsyncThunk(
   "delete a category",
-  async ({ id, type }, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
-      await api.delete(`/categories/${id}`);
-      return { id, type };
+      await api.delete(`/categories/${id}`)
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message)
     }
   }
-);
+)
