@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom"
 import styles from "./Modal.module.css"
 import { useCallback, useEffect } from "react"
-import CloseIcon from "@/assets/icons/icons.svg"
+import CloseIcon from "@/assets/icons/icons.svg?react"
 
 export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
   const handleKeyPress = useCallback(
