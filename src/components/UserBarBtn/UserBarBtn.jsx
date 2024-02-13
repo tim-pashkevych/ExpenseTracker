@@ -36,7 +36,9 @@ export const UserBarBtn = () => {
         ) : (
           <span className={styles.spanFirstL}>{altText}</span>
         )}
-        <p className={styles.nameUserStyle}>{name}</p>
+        <p className={styles.nameUserStyle}>
+          {name?.length > 12 ? `${name.slice(0, 10)}...` : name}
+        </p>
         <button
           className={clsx({
             [styles.buttonDropDown]: true,
