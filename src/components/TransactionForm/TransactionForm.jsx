@@ -99,8 +99,8 @@ export const TransactionForm = ({
 
   const handleTransactionFormOnSubmit = (data) => {
     //10:30:23 GMT+1
-    const fullTime = data.Time.split(" ");
-    data.Time = fullTime[fullTime.length - 2];
+    // const fullTime = data.Time.split(" ");
+    // data.Time = fullTime[fullTime.length - 2];
 
     if (actionType === TransactionFormActionType.Add) {
       alert("New transaction was added");
@@ -111,14 +111,19 @@ export const TransactionForm = ({
     } else if (actionType === TransactionFormActionType.Send) {
       alert("New transaction was sended");
 
-      // console.log(convertData(data));
+      // data = convertData(data);
+      // console.log(data);
     }
     reset();
     setValue(
       TransactionFormFields.Date,
       new Date().toISOString().split("T")[0]
     );
-    setValue(TransactionFormFields.Time, moment());
+    // setValue(TransactionFormFields.Time, moment());
+    setValue(
+      TransactionFormFields.Time,
+      new Date().toISOString().split("T")[1].split(":").slice(0, 2).join(":")
+    );
   };
 
   const handleApproveCategory = (category) => {
@@ -189,7 +194,7 @@ export const TransactionForm = ({
             </div>
             <div className={styles.fieldContainer}>
               <label>Time</label>
-              <Controller
+              {/* <Controller
                 name={TransactionFormFields.Time}
                 control={control}
                 render={({ field }) => (
@@ -202,7 +207,8 @@ export const TransactionForm = ({
                     }}
                   />
                 )}
-              />
+              /> */}
+              <input type="time" {...register(TransactionFormFields.Time)} />
             </div>
           </div>
           {/* Category */}
