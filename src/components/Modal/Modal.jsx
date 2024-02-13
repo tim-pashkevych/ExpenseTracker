@@ -1,32 +1,32 @@
-import { createPortal } from "react-dom";
-import styles from "./Modal.module.css";
-import { useCallback, useEffect } from "react";
-import icons from "icons/icons.svg";
+import { createPortal } from "react-dom"
+import styles from "./Modal.module.css"
+import { useCallback, useEffect } from "react"
+import icons from "@/assets/icons/icons.svg"
 
 export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
   const handleKeyPress = useCallback(
-    (event) => {
+    event => {
       if (
         event.key === "Escape" ||
         event.key === "Esc" ||
         event.keyCode === 27 ||
         event.keyCode === 9
       ) {
-        onClose();
+        onClose()
       }
     },
-    [onClose]
-  );
+    [onClose],
+  )
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress)
 
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [handleKeyPress]);
+      window.removeEventListener("keydown", handleKeyPress)
+    }
+  }, [handleKeyPress])
 
-  if (!isOpened) return null;
+  if (!isOpened) return null
 
   return createPortal(
     <>
@@ -47,6 +47,6 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
         {children}
       </div>
     </>,
-    document.getElementById(`modal-window`)
-  );
-};
+    document.getElementById(`modal-window`),
+  )
+}
