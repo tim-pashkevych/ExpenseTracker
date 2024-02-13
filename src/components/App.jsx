@@ -16,6 +16,7 @@ import { ROUTES } from "../constants"
 import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
 import { refreshThunk } from "@/redux/auth/operations"
 import { PrivateRoute } from "@/routes/PrivateRoute"
+import Home from "@/pages/Home/Home"
 
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 function App() {
@@ -30,7 +31,7 @@ function App() {
   return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
-        <Route index element={<WelcomePage />} />
+        <Route index element={isLoggedIn ? <Home /> : <WelcomePage />} />
         <Route
           path={SIGN_IN}
           element={
