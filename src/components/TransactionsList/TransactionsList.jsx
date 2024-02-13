@@ -49,6 +49,7 @@ export const TransactionsList = () => {
             <TransactionsListItem
               key={transaction._id}
               transaction={transaction}
+              transactionType={transactionsType}
             />
           ))}
         </tbody>

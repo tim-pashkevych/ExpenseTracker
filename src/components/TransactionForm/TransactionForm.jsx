@@ -21,6 +21,7 @@ import icons from "icons/icons.svg";
 import { DatePickerFormField as DatePicker } from "../DatePickerFormField/DatePickerFormField";
 import datePickerStyles from "./DatePicker/DatePicker.module.css";
 import { format } from "date-fns";
+import { toast } from "react-toastify";
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
@@ -114,13 +115,15 @@ export const TransactionForm = ({
     data = convertData(data);
 
     if (actionType === TransactionFormActionType.Add) {
-      alert("New transaction was added");
+      // alert("New transaction was added");
       // console.log(data);
+      toast.success("New transaction added successfully!");
 
       dispatch(createTransactionThunk(data));
     } else if (actionType === TransactionFormActionType.Save) {
-      alert("New transaction was saved");
+      // alert("New transaction was saved");
       // console.log(data);
+      toast.success("Transaction changes saved successfully!");
 
       onSubmit(data);
     }
@@ -165,6 +168,10 @@ export const TransactionForm = ({
     }
   };
 
+  const handleChangeType = () => {
+    setValue(TransactionFormFields.Category, "");
+  };
+
   return (
     <>
       <div className={styles.transactionFormContainer}>
@@ -181,6 +188,7 @@ export const TransactionForm = ({
                 name={TransactionFormFields.TransactionType}
                 value={TransactionType.Expense}
                 {...register(TransactionFormFields.TransactionType)}
+                onChange={() => handleChangeType()}
               />
               <span className={styles.customRadioButton}></span>
               <span>Expense</span>
@@ -192,6 +200,7 @@ export const TransactionForm = ({
                 name={TransactionFormFields.TransactionType}
                 value={TransactionType.Income}
                 {...register(TransactionFormFields.TransactionType)}
+                onChange={() => handleChangeType()}
               />
               <span className={styles.customRadioButton}></span>
               <span>Income</span>
@@ -299,13 +308,7 @@ export const TransactionForm = ({
           {/* Comment */}
           <div className={styles.fieldContainer}>
             <label>Comment</label>
-            <div
-              className={clsx(
-                styles.commentFieldWrapper /* {
-                [styles.errorBorder]: errors[TransactionFormFields.Comment],
-              } */
-              )}
-            >
+            <div className={clsx(styles.commentFieldWrapper)}>
               <textarea
                 className={clsx(
                   styles.textArea,
