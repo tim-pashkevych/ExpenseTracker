@@ -3,7 +3,7 @@ import styles from "./Modal.module.css";
 import { useCallback, useEffect } from "react";
 import icons from "icons/icons.svg";
 
-export const Modal = ({ children, isOpened, onClose, zIndex }) => {
+export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
   const handleKeyPress = useCallback(
     (event) => {
       if (
