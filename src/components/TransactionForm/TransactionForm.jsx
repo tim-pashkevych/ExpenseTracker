@@ -106,12 +106,12 @@ export const TransactionForm = ({
       alert("New transaction was added");
 
       data = convertData(data);
-      console.log(data);
+      // console.log(data);
       dispatch(createTransactionThunk(data));
     } else if (actionType === TransactionFormActionType.Send) {
       alert("New transaction was sended");
 
-      console.log(convertData(data));
+      // console.log(convertData(data));
     }
     reset();
     setValue(
