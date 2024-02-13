@@ -13,7 +13,8 @@ export default defineConfig(() => {
     plugins: [react(), svgr()],
     resolve: {
       alias: {
-        "@": new URL("src/", import.meta.url).pathname,
+        // "@": new URL("src/", import.meta.url).pathname,
+        "@": "/src",
         components: "/src/components",
         pages: "/src/pages",
         constants: "/src/constants",
