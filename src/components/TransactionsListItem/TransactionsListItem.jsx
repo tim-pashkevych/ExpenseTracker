@@ -16,6 +16,7 @@ import DeleteIcon from "@/assets/icons/DeleteTrash.svg?react"
 import { useWindowSizeHook } from "@/hooks/WindowSizeHook"
 import { Modal } from "../Modal/Modal"
 import { TransactionForm } from "../TransactionForm/TransactionForm"
+import { SureModal } from "../SureModal/SureModal"
 
 const trim = (text, windowWidth) => {
   const limit = windowWidth >= 1440 ? 12 : 9
@@ -33,6 +34,7 @@ export const TransactionsListItem = ({ transaction, transactionType }) => {
   const { windowSize } = useWindowSizeHook()
 
   const [isOpened, setIsOpened] = useState(false)
+  const [isOpenedDel, setIsOpenedDel] = useState(false)
 
   const handleEditTransaction = data => {
     if (transaction.type !== data.type) {
@@ -85,7 +87,7 @@ export const TransactionsListItem = ({ transaction, transactionType }) => {
         </button>
         <button
           className={clsx(styles.btn, styles.btnDefault)}
-          onClick={() => dispatch(deleteTransactionThunk(transaction._id))}
+          onClick={() => setIsOpenedDel(true)}
         >
           <DeleteIcon className={styles.trashIcon} />
           {windowSize.innerWidth >= 1440 && "Delete"}
@@ -111,6 +113,12 @@ export const TransactionsListItem = ({ transaction, transactionType }) => {
             />
           </Modal>
         )}
+        <Modal
+          isOpened={isOpenedDel}
+          onClose={() => setIsOpenedDel(false)}
+        >
+          <SureModal closeModal={setIsOpenedDel} text={'Delete'}  id={transaction._id} />
+        </Modal>
       </td>
     </tr>
   )
