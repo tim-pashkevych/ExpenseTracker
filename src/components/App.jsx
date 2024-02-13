@@ -4,7 +4,12 @@ import { useEffect } from "react"
 
 import { Layout } from "../components"
 import { PublicRoute } from "@/routes/PublicRoute"
-import { LoginPage, RegisterPage, WelcomePage } from "../pages"
+import {
+  LoginPage,
+  RegisterPage,
+  WelcomePage,
+  TarnsactionsHistoryPage,
+} from "../pages"
 import Expenses from "./ExpensesCategories"
 
 import { ROUTES } from "../constants"
@@ -13,7 +18,6 @@ import { refreshThunk } from "@/redux/auth/operations"
 import { PrivateRoute } from "@/routes/PrivateRoute"
 
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
-
 function App() {
   const dispatch = useDispatch()
   const refreshToken = useSelector(selectRefreshToken)
@@ -44,7 +48,14 @@ function App() {
           }
         />
         <Route path={`${TRANSACTION}/:transactionsType`} element />
-        <Route path={`${TRANSACTION}/${HISTORY}/:transactionsType`} element />
+        <Route
+          path={`${TRANSACTION}/${HISTORY}/:transactionsType`}
+          element={
+            <PrivateRoute>
+              <TarnsactionsHistoryPage />
+            </PrivateRoute>
+          }
+        />
         <Route
           path={`/exp`}
           element={

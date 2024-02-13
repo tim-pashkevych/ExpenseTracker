@@ -21,7 +21,7 @@ export const Layout = () => {
   }, [dispatch]);
 
   return (
-    <Container>
+    <>
       <HeaderComponent />
 
       {/* {isLoading ? <Loader /> : <Outlet />} */}

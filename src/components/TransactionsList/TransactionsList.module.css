@@ -1,0 +1,168 @@
+.TransactionsListWrap {
+  height: 386px;
+
+  :global(.os-scrollbar-vertical) {
+    padding: 70px 0 0 2px;
+    margin-right: 10px;
+  }
+  :global(.os-scrollbar-vertical .os-scrollbar-track) {
+    background: transparent !important;
+  }
+  :global(.os-scrollbar-vertical .os-scrollbar-handle) {
+    width: 8px !important;
+  }
+
+  @media screen and (min-width: 1440px) {
+    height: 405px;
+  }
+}
+
+.transactionsList {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  @media screen and (min-width: 768px) {
+    width: auto;
+  }
+  @media screen and (min-width: 1440px) {
+    width: auto;
+  }
+}
+
+.transactionsListHeader {
+  background-color: var(--background-table-header);
+
+  tr {
+    th {
+      position: sticky;
+      top: 0px;
+      background-color: #121214;
+
+      color: var(--grey-40);
+      text-align: left;
+      font-size: 12px;
+      font-weight: 400;
+
+      /* padding-right: 14px; */
+      padding-top: 20px;
+      padding-bottom: 20px;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+      &:nth-child(1) {
+        width: 90px;
+      }
+      &:nth-child(2) {
+        width: 80px;
+      }
+      &:nth-child(3) {
+        width: 70px;
+      }
+      &:nth-child(4) {
+        width: 55px;
+      }
+      &:nth-child(5) {
+        width: 110px;
+      }
+      &:nth-child(6) {
+        width: 100px;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+
+        &:first-child {
+          padding-left: 32px;
+        }
+        &:nth-child(1) {
+          width: 140px;
+        }
+        &:nth-child(2) {
+          width: 120px;
+        }
+        &:nth-child(3) {
+          width: 100px;
+        }
+        &:nth-child(4) {
+          width: 80px;
+        }
+        &:nth-child(5) {
+          width: 140px;
+        }
+        &:nth-child(6) {
+          width: 130px;
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        &:first-child {
+          padding-left: 40px;
+        }
+        &:nth-child(1) {
+          width: 190px;
+        }
+        &:nth-child(2) {
+          width: 190px;
+        }
+        &:nth-child(3) {
+          width: 200px;
+        }
+        &:nth-child(4) {
+          width: 120px;
+        }
+        &:nth-child(5) {
+          width: 200px;
+        }
+        &:nth-child(6) {
+          width: 350px;
+        }
+      }
+    }
+  }
+}
+
+.transactionsListBody {
+  tr {
+    td {
+      color: white;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+
+      padding-top: 20px;
+      white-space: nowrap;
+
+      &:first-child {
+        padding-left: 20px;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 20px;
+
+        &:first-child {
+          padding-left: 32px;
+        }
+      }
+
+      @media screen and (min-width: 1440px) {
+        &:first-child {
+          padding-left: 40px;
+        }
+      }
+    }
+  }
+
+  tr:last-child td {
+    padding-bottom: 30px;
+
+    @media screen and (min-width: 768px) {
+      padding-bottom: 0;
+    }
+    @media screen and (min-width: 1440px) {
+      padding-bottom: 0;
+    }
+  }
+}

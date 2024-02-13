@@ -10,19 +10,20 @@ export const createTransactionThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
     }
-  }
+  },
 )
 
 export const fetchTransactionsThunk = createAsyncThunk(
   "get transactions",
-  async (type, thunkAPI) => {
+  async ({ type, date }, thunkAPI) => {
     try {
-      const { data } = await api.get(`/transactions/${type}`)
+      const params = new URLSearchParams({ type, date })
+      const { data } = await api.get(`/transactions/${type}`, { params })
       return data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
     }
-  }
+  },
 )
 
 export const updateTransactionThunk = createAsyncThunk(
@@ -34,7 +35,7 @@ export const updateTransactionThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
     }
-  }
+  },
 )
 
 export const deleteTransactionThunk = createAsyncThunk(
@@ -45,5 +46,5 @@ export const deleteTransactionThunk = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message)
     }
-  }
+  },
 )

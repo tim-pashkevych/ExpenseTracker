@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react"
+import styles from "./styles/ExpensesItem.module.css"
 
-export const ExpensesItem = () => {
+export const ExpensesItem = ({ category, color, persent }) => {
   return (
-    <div>ExpensesItem</div>
+    <li className={styles.item}>
+      <span
+        className={styles.colorDot}
+        style={{ backgroundColor: color }}
+      ></span>
+      <p className={styles.text}>{category}</p>
+      <span className={styles.persent}>{persent}%</span>
+    </li>
   )
 }

@@ -1,26 +1,42 @@
 .container {
-  padding: 40px;
-  background-color: var(--background-expenses);
-  width: 630px;
+  padding: 28px 20px 40px;
+  background-color: rgb(23, 23, 25);
+  width: 100%;
   border-radius: 30px;
-  
 }
 
 .text {
   color: var(--grey-50);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 19px;
-  letter-spacing: 0%;
-  margin-bottom: 37px;
+  line-height: 1.14;
+  margin-bottom: 74px;
 }
 
-.content{
+.content {
   display: flex;
   gap: 40px;
+  flex-direction: column;
 }
 
-.chart{
-  width:292px; 
-  height:150px;
+@media only screen and (min-width: 768px) {
+  .container {
+    padding: 40px 60px 37px 40px;
+  }
+  .content {
+    flex-direction: row;
+    gap: 95px;
+  }
+  .text {
+    margin-bottom: 37px;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .container {
+    width: 630px;
+    padding: 40px 40px 37px;
+  }
+  .content {
+    gap: 40px;
+  }
 }
