@@ -7,15 +7,12 @@ export const AllUsersTab = () => {
         <li className={styles.usersPhotosElem}>
           <picture>
             <source
-              srcSet='
-            @/assets/images/women1@1x.png 1x,
-            @/assets/images/women1@2x.png 2x
-          '
+              srcSet='/src/assets/images/women1@1x.png 1x,/src/assets/images/women1@2x.png 2x'
               type='image/png'
             />
             <img
               className={styles.userPhoto}
-              src='@/assets/images/women1@1x.png'
+              src='/src/assets/images/women1@1x.png'
               alt='Photo of the user'
             />
           </picture>
@@ -23,15 +20,12 @@ export const AllUsersTab = () => {
         <li className={styles.usersPhotosElemTwo}>
           <picture>
             <source
-              srcSet='
-           @/assets/images/men@1x.png 1x,
-            @/assets/images/men@2x.png 2x
-          '
+              srcSet='/src/assets/images/men@1x.png 1x,/src/assets/images/men@2x.png 2x'
               type='image/png'
             />
             <img
               className={styles.userPhoto}
-              src='@/assets/images/men@1x.png'
+              src='/src/assets/images/men@1x.png'
               alt='Photo of the user'
             />
           </picture>
@@ -39,15 +33,12 @@ export const AllUsersTab = () => {
         <li>
           <picture>
             <source
-              srcSet='
-            @/assets/images/women2@1x.png 1x,
-            @/assets/images/women2@2x.png 2x
-          '
+              srcSet='/src/assets/images/women2@1x.png 1x, /src/assets/images/women2@2x.png 2x'
               type='image/png'
             />
             <img
               className={styles.userPhoto}
-              src='@/assets/images/women2@1x.png'
+              src='/src/assets/images/women2@1x.png'
               alt='Photo of the user'
             />
           </picture>
