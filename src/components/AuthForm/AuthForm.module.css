@@ -138,13 +138,14 @@
   padding-left: 18px;
   color: var(--error);
 }
-
-.invalid {
-  border-color: var(--error);
-}
-
 .valid {
-  border-color: var(--main-green);
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0%;
+  padding-left: 18px;
+  color: var(--main-green);
 }
 
 .inputSuccess {

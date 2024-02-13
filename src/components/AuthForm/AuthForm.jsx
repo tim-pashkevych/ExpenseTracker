@@ -7,15 +7,12 @@ import OpenEye from "@/assets/icons/OpenEye.svg?react"
 import ClosedEye from "@/assets/icons/ClosedEye.svg?react"
 import ErrorIcon from "@/assets/icons/ErrorIcon.svg?react"
 import SuccessIcon from "@/assets/icons/SuccessIcon.svg?react"
+import { useForm } from "react-hook-form"
 
-export const AuthForm = ({
-  onSumbit,
-  formData,
-  buttonText,
-  errors,
-  register,
-  navigation,
-}) => {
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as yup from "yup"
+
+export const AuthForm = ({ onSubmit, formData, buttonText, navigation }) => {
   const location = useLocation()
   const getClassNameDivWrapper = () => {
     return location.pathname === "/login"
@@ -37,10 +34,12 @@ export const AuthForm = ({
 
   const [touched, setTouched] = useState({})
 
-  const handleInputChange = inputName => {
+  const handleInputChange = (inputName, event) => {
+    trigger(event.target.name)
+    formRegister(inputName).onChange(event)
     setTouched(prev => ({ ...prev, [inputName]: true }))
+    const value = event.target.value
   }
-
   const getClassNameInput = inputName => {
     if (errors[inputName]) {
       return styles.error
@@ -50,14 +49,41 @@ export const AuthForm = ({
     return styles.input
   }
 
+  const loginSchema = yup.object().shape({
+    email: yup.string().email().required("Email is required"),
+    password: yup.string().required("Password is required"),
+  })
+
+  const registerSchema = yup.object().shape({
+    name: yup.string().required("Name is required"),
+    email: yup.string().email("Invalid email").required("Email is required"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(8, "Password must be at least 8 characters"),
+  })
+  const {
+    handleSubmit,
+    register: formRegister,
+    trigger,
+    formState: { errors },
+  } = useForm({
+    resolver:
+      location.pathname === "/login"
+        ? yupResolver(loginSchema)
+        : yupResolver(registerSchema),
+  })
+  const handleFormSubmit = data => {
+    onSubmit(data)
+  }
   return (
-    <form onSubmit={onSumbit} className={styles.form}>
+    <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
       <div className={classNamesDiv}>
         {formData?.map(input => (
           <Fragment key={input.name}>
             <div className={styles.divWrapperRelative}>
               <input
-                {...register(input.name)}
+                {...formRegister(input.name)}
                 placeholder={input.placeholder}
                 className={`${styles.input} ${getClassNameInput(input.name)}`}
                 type={
@@ -68,7 +94,12 @@ export const AuthForm = ({
                     : input.type
                 }
                 name={input.name}
-                onChange={() => handleInputChange(input.name)}
+                onChange={event => {
+                  handleInputChange(input.name, event)
+                }}
+                onInput={event => {
+                  handleInputChange(input.name, event)
+                }}
               />
               {input.name === "password" && (
                 <button
@@ -87,8 +118,14 @@ export const AuthForm = ({
                   )}
                 </button>
               )}
-              {errors[input.name] && (
+              {errors[input.name] ? (
                 <p className={styles.errors}>{errors[input.name].message}</p>
+              ) : touched[input.name] && !errors[input.name] ? (
+                input.name === "password" ? (
+                  <p className={styles.valid}>Password is secure</p>
+                ) : null
+              ) : (
+                ""
               )}
             </div>
           </Fragment>
