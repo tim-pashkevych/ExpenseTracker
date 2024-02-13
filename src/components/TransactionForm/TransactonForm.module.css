@@ -3,12 +3,27 @@
 
   border-radius: 30px;
 
-  padding: 40px 20px;
-  max-width: 335px;
+  padding: 28px 20px;
 
-  /* border: 1px solid green; */
+  font-size: 14px;
+}
 
-  /* margin-top: 20px; */
+@media only screen and (min-width: 768px) {
+  .transactionForm {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .transactionFormContainer {
+    padding: 40px 109px;
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .transactionFormContainer {
+    padding: 40px 40px;
+  }
 }
 
 .transactionForm {
@@ -17,6 +32,12 @@
   row-gap: 20px;
 
   max-width: 295px;
+}
+
+@media only screen and (min-width: 768px) {
+  .transactionForm {
+    max-width: 486px;
+  }
 }
 
 .radioButtonsContainer {
@@ -97,11 +118,21 @@
   gap: 6px;
 
   position: relative;
+
+  width: 100%;
 }
 
 .dateAndTimeContainer {
   display: flex;
   gap: 14px;
+
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 768px) {
+  .dateAndTimeContainer {
+    gap: 20px;
+  }
 }
 
 .timePicker {
@@ -163,7 +194,7 @@
   overflow: hidden;
   border-radius: 12px;
 
-  height: 64px;
+  height: 91px;
   width: 100%;
 }
 
@@ -172,8 +203,18 @@
 }
 
 .commentField {
-  height: 64px;
+  height: 91px;
   width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .commentFieldWrapper {
+    height: 97px;
+  }
+
+  .commentField {
+    height: 97px;
+  }
 }
 
 .commentField.errorBorder {

@@ -8,6 +8,12 @@
   padding-right: 8px;
 }
 
+@media only screen and (min-width: 768px) {
+  .categoryItem {
+    height: 43px;
+  }
+}
+
 .categoryItem:hover {
   background-color: #121214;
 }
