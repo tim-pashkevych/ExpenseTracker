@@ -11,9 +11,9 @@ import styles from "./TransactionsTotal.module.css"
 export const TransactionsTotal = ({ className, title, amount }) => {
   const currency = useSelector(selectCurrency)
   const currencySymbol = decode(CURRENCY_SYMBOL[currency?.toUpperCase()])
-
+  const moneyDeal = title.split(" ")[1].toLowerCase() + "s"
   return (
-    <WidgetContainer className={className}>
+    <WidgetContainer className={className} moneyDeal={moneyDeal}>
       <div className={styles.flexWrap}>
         <div className={styles.iconWrap}>
           {title.toLowerCase() === "all expense" ? (
