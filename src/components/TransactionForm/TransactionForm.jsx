@@ -194,7 +194,7 @@ export const TransactionForm = ({
             </div>
             <div className={styles.fieldContainer}>
               <label>Time</label>
-              {/* <Controller
+              <Controller
                 name={TransactionFormFields.Time}
                 control={control}
                 render={({ field }) => (
@@ -207,8 +207,8 @@ export const TransactionForm = ({
                     }}
                   />
                 )}
-              /> */}
-              <input type="time" {...register(TransactionFormFields.Time)} />
+              />
+              {/* <input type="time" {...register(TransactionFormFields.Time)} /> */}
             </div>
           </div>
           {/* Category */}
