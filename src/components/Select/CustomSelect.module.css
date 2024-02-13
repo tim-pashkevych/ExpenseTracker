@@ -1,9 +1,10 @@
 .customSelectContainer {
   display: inline-block;
-  width: 122px;
-  height: 48px;
+  width: 98px;
+  height: 42px;
   text-align: center;
   position: relative;
+  font-size: 14px;
 }
 
 .selectedText {
@@ -33,15 +34,6 @@
   border-color: transparent transparent #fff transparent;
 }
 
-@media only screen and (min-width: 768px) {
-  .selectedText {
-    padding: 12px 56px 12px 14px;
-
-    width: 122px;
-    height: 48px;
-  }
-}
-
 .selectOptions {
   position: absolute;
   width: 100%;
@@ -67,4 +59,17 @@
 
 .customSelectOption:hover {
   color: var(--paper);
+}
+
+@media only screen and (min-width: 768px) {
+  .customSelectContainer {
+    width: 122px;
+    height: 48px;
+    font-size: 16px;
+  }
+  .selectedText {
+    padding: 12px 56px 12px 14px;
+    width: 122px;
+    height: 48px;
+  }
 }

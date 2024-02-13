@@ -6,6 +6,7 @@ import { selectAvatarUrl, selectCurrency, selectName } from "@/redux/user/slice"
 import { CustomSelect } from "../Select/CustomSelect"
 import { toast } from "react-toastify"
 import {
+  deleteUsersAvatarThunk,
   updateUsersAvatarThunk,
   updateUsersInfoThunk,
 } from "@/redux/user/operations"
@@ -45,8 +46,16 @@ export const UserSetsModal = ({ closeModal }) => {
       reader.readAsDataURL(file)
     }
   }
-  const handleFileRemove = () => {
-    setAvatar(userAvatar)
+  const handleFileRemove = async () => {
+    try {
+      const avatarArr = userAvatar.split("avatar/")
+      const avatarId = avatarArr[1].split(".")[0]
+      console.log(avatarId)
+      await dispatch(deleteUsersAvatarThunk(avatarId))
+      setAvatar(null)
+    } catch (e) {
+      toast.error(e)
+    }
   }
   return (
     <div className={styles.backDrop}>
