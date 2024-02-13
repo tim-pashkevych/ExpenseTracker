@@ -5,10 +5,15 @@ import { useNavigate } from "react-router-dom"
 export const WidgetContainer = ({ className, children, moneyDeal }) => {
   const navigate = useNavigate()
 
+  const handle = () => {
+    if (moneyDeal === "expenses" || moneyDeal === "incomes")
+      navigate(`/transactions/${moneyDeal}`)
+  }
+
   return (
     <article
       className={clsx(styles.widgetContainer, className)}
-      onClick={() => navigate(`/transactions/${moneyDeal}`)}
+      onClick={() => handle()}
     >
       {children}
     </article>
