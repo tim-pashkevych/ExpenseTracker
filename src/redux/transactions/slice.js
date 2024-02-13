@@ -43,7 +43,7 @@ const slice = createSlice({
           transaction => transaction._id !== payload._id,
         )
 
-        if (filteredTransaction.date !== payload.date) {
+        if (!filteredTransaction || filteredTransaction.date !== payload.date) {
           state.list = state.list.filter(
             transaction => transaction._id !== payload._id,
           )
