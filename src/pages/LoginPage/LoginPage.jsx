@@ -5,7 +5,7 @@ import { AuthForm, BgImageWrapper } from "../../components/index"
 
 import styles from "./LoginPage.module.css"
 import { loginThunk } from "@/redux/auth/operations"
-import { selectError } from "@redux/auth/slice"
+import { selectError } from "@/redux/auth/slice"
 import { useEffect } from "react"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
