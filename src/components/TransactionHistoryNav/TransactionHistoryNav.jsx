@@ -1,26 +1,26 @@
 import React from "react"
+import { NavLink } from "react-router-dom"
 import styles from "./TransactionHistoryNav.module.css"
-import { Link } from "react-router-dom"
 
 export const TransactionHistoryNav = () => {
   return (
     <div className={styles.wrapperNavigate}>
       <ul className={styles.listNavigate}>
         <li>
-          <Link
+          <NavLink
             className={styles.linkStyleNav}
             to={"/transactions/history/expenses"}
           >
             All Expense
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             className={styles.linkStyleNav}
             to={"/transactions/history/incomes"}
           >
             All Income
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>

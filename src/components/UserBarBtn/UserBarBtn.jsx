@@ -49,7 +49,9 @@ export const UserBarBtn = () => {
         <ul className={isOpen ? styles.listDrop : styles.listNone}>
           <li className={styles.itemDrop}>
             <button
-              className={styles.buttonStyle}
+              className={clsx(styles.buttonStyle, {
+                [styles.iconUserHoverActive]: isVisibleProfile,
+              })}
               onClick={() => setIsVisibleProfile(true)}
             >
               <UserBarIcon className={styles.iconUserHower} />
@@ -58,7 +60,9 @@ export const UserBarBtn = () => {
           </li>
           <li className={styles.itemDrop}>
             <button
-              className={styles.buttonStyle}
+              className={clsx(styles.buttonStyle, {
+                [styles.iconUserHoverActive]: isVisibleLogout,
+              })}
               onClick={() => setIsVisibleLogout(true)}
             >
               <UserBarLogOutIcon className={styles.iconUserHower} />

@@ -1,7 +1,7 @@
 import styles from "./BurgerMenuModal.module.css"
 import CloseIcon from "@/assets/icons/Close.svg?react"
 import { UserBarBtnBox } from "../UserBarBtnBox/UserBarBtnBox"
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { Modal } from "../Modal/Modal"
 import { useState } from "react"
 import { SureLogOutModal } from "../SureLogOutModal/SureLogOutModal"
@@ -36,18 +36,20 @@ export const BurgerMenuModal = ({
             <CloseIcon className={styles.closeSvg} />
           </button>
           <ul className={styles.buttonList}>
-            <button
+            <NavLink
               className={styles.expenseButton}
+              to='/transactions/history/expenses'
               onClick={() => handleNavigate("/transactions/history/expenses")}
             >
               All Expense
-            </button>
-            <button
+            </NavLink>
+            <NavLink
               className={styles.incomeButton}
+              to='/transactions/history/incomes'
               onClick={() => handleNavigate("/transactions/history/incomes")}
             >
               All Income
-            </button>
+            </NavLink>
           </ul>
         </div>
       </div>
