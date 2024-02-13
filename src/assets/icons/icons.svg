@@ -28,5 +28,11 @@
 <symbol id="icon-error" viewBox="0 0 32 32">
 <path d="M0 16c0-8.838 7.162-16 16-16s16 7.162 16 16c0 8.837-7.163 16-16 16s-16-7.163-16-16zM10.938 13.006l2.944 2.938-2.944 2.994c-0.581 0.588-0.581 1.538 0 2.069 0.588 0.637 1.537 0.637 2.069 0l2.938-2.888 2.994 2.888c0.588 0.637 1.538 0.637 2.069 0 0.637-0.531 0.637-1.481 0-2.069l-2.888-2.994 2.888-2.938c0.637-0.531 0.637-1.481 0-2.069-0.531-0.581-1.481-0.581-2.069 0l-2.994 2.944-2.938-2.944c-0.531-0.581-1.481-0.581-2.069 0-0.581 0.588-0.581 1.537 0 2.069z"></path>
 </symbol>
+<symbol id="icon-calendar" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M25.333 5.333h-18.667c-1.473 0-2.667 1.194-2.667 2.667v18.667c0 1.473 1.194 2.667 2.667 2.667h18.667c1.473 0 2.667-1.194 2.667-2.667v-18.667c0-1.473-1.194-2.667-2.667-2.667z"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M21.331 2.667v5.333"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M10.669 2.667v5.333"></path>
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M4 13.333h24"></path>
+</symbol>
 </defs>
 </svg>

@@ -18,6 +18,9 @@ import "./TimePicker/TimePicker.css";
 import { useDispatch } from "react-redux";
 import { createTransactionThunk } from "@/redux/transactions/operations";
 import icons from "icons/icons.svg";
+import { DatePickerFormField as DatePicker } from "../DatePickerFormField/DatePickerFormField";
+import datePickerStyles from "./DatePicker/DatePicker.module.css";
+import { format } from "date-fns";
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
@@ -164,10 +167,25 @@ export const TransactionForm = ({
           <div className={styles.dateAndTimeContainer}>
             <div className={styles.fieldContainer}>
               <label>Date</label>
-              <input
-                type="date"
-                {...register(TransactionFormFields.Date)}
-              ></input>
+              <Controller
+                name={TransactionFormFields.Date}
+                control={control}
+                render={({ field }) => (
+                  <DatePicker
+                    className={datePickerStyles.inputField}
+                    value={field.value}
+                    onChange={(value) => {
+                      field.onChange(format(value, "yyyy-MM-dd"));
+                    }}
+                    icon={
+                      <Icon
+                        iconPath={`${icons}#icon-calendar`}
+                        iconClassName={styles.calendarIcon}
+                      />
+                    }
+                  />
+                )}
+              />
             </div>
             <div className={styles.fieldContainer}>
               <label>Time</label>
@@ -222,6 +240,7 @@ export const TransactionForm = ({
               })}
               type="text"
               placeholder="Enter the sum"
+              autoComplete="off"
               {...register(TransactionFormFields.Sum)}
             />
             <span className={styles.currencyLabel}>{currency}</span>

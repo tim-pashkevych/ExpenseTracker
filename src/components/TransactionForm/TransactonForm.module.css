@@ -278,3 +278,9 @@
 
   pointer-events: none;
 }
+
+.calendarIcon {
+  stroke: #fafafa;
+
+  /* pointer-events: none; */
+}

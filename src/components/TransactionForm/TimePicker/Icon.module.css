@@ -6,5 +6,7 @@
   width: 16px;
   height: 16px;
 
-  cursor: pointer;
+  /* cursor: pointer; */
+
+  pointer-events: none;
 }
