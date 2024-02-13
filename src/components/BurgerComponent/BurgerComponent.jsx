@@ -32,7 +32,7 @@ export const BurgerComponent = () => {
         isOpened={isVisibleLogout}
         onClose={() => setIsVisibleLogout(false)}
       >
-        <SureModal closeModal={setIsVisibleLogout} />
+        <SureModal text={'Log out'} closeModal={setIsVisibleLogout} />
       </Modal>
       <Modal
         isOpened={isVisibleProfile}
