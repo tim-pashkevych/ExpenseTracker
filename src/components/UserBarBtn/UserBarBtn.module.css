@@ -95,13 +95,18 @@
     color: var(--paper);
   }
 }
-.buttonStyle:active .iconUserHower {
+.buttonStyle:active .iconUserHower,
+.iconUserHoverActive svg {
   fill: var(--main-green);
 }
 .itemDrop {
   display: flex;
   margin-left: 16px;
   cursor: pointer;
+
+  &:first-child {
+    margin-bottom: 12px;
+  }
 }
 
 .itemDrop:hover .buttonStyle {

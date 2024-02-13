@@ -19,7 +19,7 @@ export const HeaderComponent = () => {
   return (
     <section className={classNamess}>
       <div>
-        <Link className={styles.wrapperLogo} to={name ? "/exp" : "/"}>
+        <Link className={styles.wrapperLogo} to='/'>
           <LogoIcon className={styles.logo} />
           <h2 className={styles.titleLogo}>ExpenseTracker</h2>
         </Link>
