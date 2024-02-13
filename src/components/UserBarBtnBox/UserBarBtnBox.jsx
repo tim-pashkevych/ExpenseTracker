@@ -6,9 +6,7 @@ import clsx from "clsx"
 import UserBarIcon from "@/assets/icons/UserBarIcon.svg?react"
 import UserBarLogOutIcon from "@/assets/icons/UserBarLogOutIcon.svg?react"
 import DropIcon from "@/assets/icons/DropIcon.svg?react"
-import { Modal } from "../Modal/Modal"
-import { SureLogOutModal } from "../SureLogOutModal/SureLogOutModal"
-import { UserSetsModal } from "../UserSetsModal/UserSetsModal"
+
 
 export const UserBarBtnBox = ({
   onClose,
