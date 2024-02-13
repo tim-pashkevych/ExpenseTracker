@@ -350,6 +350,7 @@ export const TransactionForm = ({
       <Modal
         isOpened={isModalWindowOpened}
         onClose={() => setIsModalWindowOpened(false)}
+        zIndex={3}
       >
         <CategoriesModal
           transactionType={getValues(TransactionFormFields.TransactionType)}

@@ -3,7 +3,7 @@ import styles from "./Modal.module.css";
 import { useCallback, useEffect } from "react";
 import icons from "icons/icons.svg";
 
-export const Modal = ({ children, isOpened, onClose }) => {
+export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
   const handleKeyPress = useCallback(
     (event) => {
       if (
@@ -30,8 +30,15 @@ export const Modal = ({ children, isOpened, onClose }) => {
 
   return createPortal(
     <>
-      <div className={styles.modalWindow} onClick={() => onClose()} />
-      <div className={styles.modalWindowContent}>
+      <div
+        className={styles.modalWindow}
+        onClick={() => onClose()}
+        style={{ zIndex: 1000 + zIndex }}
+      />
+      <div
+        className={styles.modalWindowContent}
+        style={{ zIndex: 1000 + zIndex }}
+      >
         <button className={styles.closeModalButton} onClick={() => onClose()}>
           <svg width={20} height={20}>
             <use href={`${icons}#icon-close`}></use>
