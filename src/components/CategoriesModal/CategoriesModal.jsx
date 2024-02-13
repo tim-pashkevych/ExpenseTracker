@@ -138,6 +138,7 @@ export const CategoriesModal = ({
               })}
               type="text"
               placeholder="Enter the text"
+              autoComplete="off"
               {...register("newCategory")}
             />
             <button
