@@ -45,6 +45,6 @@ export const Layout = () => {
         // currency={CurrencyType.EUR}
         />
       </div>
-    </Container>
+    </>
   );
 };

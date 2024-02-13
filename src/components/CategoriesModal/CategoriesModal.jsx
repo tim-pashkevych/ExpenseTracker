@@ -11,6 +11,10 @@ import {
   updateCategoryThunk,
 } from "@/redux/categories/operations";
 import { selectExpenses, selectIncomes } from "@/redux/categories/slice";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import clsx from "clsx";
 
 export const CategoriesModal = ({
   transactionType = TransactionType.Expense,
@@ -22,51 +26,65 @@ export const CategoriesModal = ({
     transactionType === TransactionType.Expense ? selectExpenses : selectIncomes
   );
 
-  const [newCategory, setNewCategory] = useState("");
+  const schema = yup.object({
+    newCategory: yup
+      .string()
+      .transform((value, originalValue) => {
+        return originalValue.trim() === "" ? undefined : value;
+      })
+      .required("This field can't be empty")
+      .min(2, "This field value must be at least 2 characters")
+      .max(16, "This field value must be at most 16 characters"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const [formActionType, setFormActionType] = useState(CategoryActionType.Add);
   const [activeCategory, setActiveCategory] = useState({});
   const [isBeingEdited, setIsBeingEdited] = useState(false);
 
-  const handleAddCategoryFormOnSubmit = (event) => {
-    event.preventDefault();
+  const handleAddCategoryFormOnSubmit = (data) => {
+    const newCategoryName = data.newCategory;
 
     if (formActionType === CategoryActionType.Add) {
       dispatch(
         createCategoryThunk({
           type: transactionType + "s",
-          categoryName: newCategory,
+          categoryName: newCategoryName,
         })
       );
-      setNewCategory("");
+      setValue("newCategory", "");
     } else if (formActionType === CategoryActionType.Edit) {
       setIsBeingEdited(false);
       setFormActionType(CategoryActionType.Add);
 
-      if (newCategory !== activeCategory.name) {
+      if (newCategoryName !== activeCategory.name) {
         dispatch(
           updateCategoryThunk({
             id: activeCategory.id,
-            newName: newCategory,
+            newName: newCategoryName,
             type: transactionType + "s",
           })
         );
       }
 
       setActiveCategory({});
-      setNewCategory("");
+      setValue("newCategory", "");
     }
-  };
-
-  const handleAddCategoryOnChange = (event) => {
-    setNewCategory(event.target.value);
   };
 
   const editCategory = (category) => {
     setIsBeingEdited(true);
     setFormActionType(CategoryActionType.Edit);
     setActiveCategory(category);
-    setNewCategory(category.name);
+    setValue("newCategory", category.name);
 
     const editCategoryName_TextBox = document.querySelector(
       `.${styles.addCategoryInput}`
@@ -105,7 +123,7 @@ export const CategoriesModal = ({
       )) || <p className={styles.emptyLabel}>Empty</p>}
       <form
         className={styles.addCategoryForm}
-        onSubmit={handleAddCategoryFormOnSubmit}
+        onSubmit={handleSubmit(handleAddCategoryFormOnSubmit)}
       >
         <label className={styles.addCategoryLabel}>
           <span className={styles.addCategorySpan}>
@@ -115,18 +133,26 @@ export const CategoriesModal = ({
           </span>
           <div className={styles.addInputContainer}>
             <input
-              className={styles.addCategoryInput}
+              className={clsx(styles.addCategoryInput, {
+                [styles.errorBorder]: errors.newCategory,
+              })}
               type="text"
               placeholder="Enter the text"
-              value={newCategory}
-              onChange={handleAddCategoryOnChange}
-              required
-              minLength={2}
-              maxLength={16}
+              {...register("newCategory")}
             />
-            <button className={styles.addCategoryButton}>
+            <button
+              className={styles.addCategoryButton}
+              disabled={errors.newCategory}
+            >
               {formActionType}
             </button>
+
+            {/* Category name field validation error */}
+            {errors.newCategory && (
+              <>
+                <p className={styles.error}>{errors.newCategory?.message}</p>
+              </>
+            )}
           </div>
         </label>
       </form>

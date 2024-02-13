@@ -122,3 +122,39 @@
 
   border: none;
 }
+
+.addCategoryButton:disabled {
+  background-color: #e74a3b;
+  cursor: not-allowed;
+  /* color: whitesmoke; */
+}
+
+.error {
+  position: absolute;
+  bottom: -16px;
+  left: 18px;
+
+  font-size: 10px;
+  letter-spacing: 0;
+
+  color: #e74a3b;
+
+  height: 12px;
+}
+
+.errorBorder,
+.errorBorder:hover,
+.errorBorder:active,
+.errorBorder:focus {
+  border-color: #e74a3b;
+}
+
+.errorIcon {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+
+  fill: #e74a3b;
+
+  pointer-events: none;
+}
