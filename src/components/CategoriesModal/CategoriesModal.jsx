@@ -19,6 +19,8 @@ import clsx from "clsx";
 export const CategoriesModal = ({
   transactionType = TransactionType.Expense,
   approveCategory,
+  removeCategory,
+  onEditCategory,
 }) => {
   const dispatch = useDispatch();
 
@@ -72,7 +74,14 @@ export const CategoriesModal = ({
             newName: newCategoryName,
             type: transactionType + "s",
           })
-        );
+        )
+          .unwrap()
+          .then(() =>
+            onEditCategory(activeCategory, {
+              id: activeCategory.id,
+              name: newCategoryName,
+            })
+          );
       }
 
       setActiveCategory({});
@@ -93,7 +102,14 @@ export const CategoriesModal = ({
   };
 
   const deleteCategory = (id) => {
-    dispatch(deleteCategoryThunk({ id, type: transactionType + "s" }));
+    console.log("You removed id: ", id);
+
+    dispatch(deleteCategoryThunk({ id, type: transactionType + "s" }))
+      .unwrap()
+      .then(() => {
+        console.log("22222 You removed id: ", id);
+        removeCategory(id);
+      });
   };
 
   useEffect(() => {
