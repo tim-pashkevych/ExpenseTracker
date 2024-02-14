@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom"
 import styles from "./Modal.module.css"
 import { useCallback, useEffect } from "react"
-import CloseSure from '@/assets/icons/CloseSure.svg?react'
+import CloseSure from "@/assets/icons/CloseSure.svg?react"
 
 export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
   const handleKeyPress = useCallback(
@@ -12,26 +12,26 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
         event.keyCode === 27
       ) {
         const modalWindows = document.querySelectorAll(
-          "div[data-modalwindowid]"
-        );
+          "div[data-modalwindowid]",
+        )
 
-        let idList = [];
-        modalWindows.forEach((modalWindow) => {
-          idList.push(modalWindow.dataset.modalwindowid);
-        });
+        let idList = []
+        modalWindows.forEach(modalWindow => {
+          idList.push(modalWindow.dataset.modalwindowid)
+        })
 
-        idList = idList.sort((a, b) => b - a);
+        idList = idList.sort((a, b) => b - a)
 
         // console.log("Here is your list: ", idList, "\n zIndex: ", zIndex);
 
         if (zIndex === +idList[0]) {
-          onClose();
+          onClose()
         }
       } /*else if (event.keyCode === 9) {
       }*/
     },
-    [onClose, zIndex]
-  );
+    [onClose, zIndex],
+  )
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress)
@@ -55,8 +55,8 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
         style={{ zIndex: 1000 + zIndex }}
         data-modalwindowid={zIndex}
       >
-        <button className={styles.closeModalButton} onClick={() => onClose()}>
-          <CloseSure style={{ width: 20, height: 20 }} />
+        <button className={styles.closeModalButton } style={{zIndex: 1000 + zIndex }} onClick={() => onClose()}>
+          <CloseSure style={{ width: 20, height: 20}} />
         </button>
         {children}
       </div>
