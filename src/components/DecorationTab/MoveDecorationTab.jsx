@@ -3,7 +3,7 @@ import bgImageStyles from "../BgImageWrapper/BgImageWrapper.module.css"
 import { useWindowSizeHook } from "@/hooks/WindowSizeHook"
 
 const MoveDecorationTab = ({ children }) => {
-  const [position, setPosition] = useState({ top: 141, left: -10 })
+  const [position, setPosition] = useState({ top: 240, left: -10 })
   const [direction, setDirection] = useState({ top: 1, left: 1 })
   const [balance, setBalance] = useState("632.000")
   const [percentage, setPercentage] = useState("1.29")
@@ -79,10 +79,12 @@ const MoveDecorationTab = ({ children }) => {
       return (Math.random() * 100).toFixed(2)
     }
 
-    const intervalId = setInterval(moveDecorationTab, 50)
+    if (windowSize.innerWidth > 768) {
+      const intervalId = setInterval(moveDecorationTab, 50)
 
-    return () => clearInterval(intervalId)
-  }, [direction])
+      return () => clearInterval(intervalId)
+    }
+  }, [direction, windowSize.innerWidth])
 
   return children(position, balance, percentage)
 }
