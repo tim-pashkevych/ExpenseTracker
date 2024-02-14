@@ -31,7 +31,22 @@ function App() {
   return (
     <Routes>
       <Route path={HOME} element={<Layout />}>
-        <Route index element={isLoggedIn ? <Home /> : <WelcomePage />} />
+        <Route
+          index
+          element={
+            <PublicRoute>
+              <WelcomePage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path={`${TRANSACTION}/:transactionsType`}
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
         <Route
           path={SIGN_IN}
           element={
@@ -48,20 +63,11 @@ function App() {
             </PublicRoute>
           }
         />
-        <Route path={`${TRANSACTION}/:transactionsType`} element />
         <Route
           path={`${TRANSACTION}/${HISTORY}/:transactionsType`}
           element={
             <PrivateRoute>
               <TarnsactionsHistoryPage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path={`/exp`}
-          element={
-            <PrivateRoute>
-              <Expenses />
             </PrivateRoute>
           }
         />
