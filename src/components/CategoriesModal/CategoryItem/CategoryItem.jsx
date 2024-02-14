@@ -1,6 +1,5 @@
 import styles from "./CategoryItem.module.css"
-import icons from "@/assets/icons/icons.svg"
-import SuccessIcon from "@/assets/icons/Vector.svg?react"
+import SuccessIcon from "icons/Vector.svg?react"
 import EditPensil from "icons/EditPensil.svg?react"
 import DeleteTrash from "icons/DeleteTrash.svg?react"
 
