@@ -19,7 +19,7 @@ import { TransactionForm } from "../TransactionForm/TransactionForm"
 import { SureModal } from "../SureModal/SureModal"
 
 const trim = (text, windowWidth) => {
-  const limit = windowWidth >= 1440 ? 12 : 9
+  const limit = windowWidth >= 1440 ? 14 : 9
 
   if (text.length > limit) {
     return `${text.slice(0, limit - 3)}...`
@@ -57,11 +57,7 @@ export const TransactionsListItem = ({ transaction, transactionType }) => {
 
   return (
     <tr>
-      <td>
-        {windowSize.innerWidth < 1440
-          ? trim(transaction.category.categoryName, windowSize.innerWidth)
-          : transaction.category.categoryName}
-      </td>
+      <td>{trim(transaction.category.categoryName, windowSize.innerWidth)}</td>
       <td>{trim(transaction.comment, windowSize.innerWidth)}</td>
       <td>
         {windowSize.innerWidth < 1440
@@ -113,11 +109,12 @@ export const TransactionsListItem = ({ transaction, transactionType }) => {
             />
           </Modal>
         )}
-        <Modal
-          isOpened={isOpenedDel}
-          onClose={() => setIsOpenedDel(false)}
-        >
-          <SureModal closeModal={setIsOpenedDel} text={'Delete'}  id={transaction._id} />
+        <Modal isOpened={isOpenedDel} onClose={() => setIsOpenedDel(false)}>
+          <SureModal
+            closeModal={setIsOpenedDel}
+            text={"Delete"}
+            id={transaction._id}
+          />
         </Modal>
       </td>
     </tr>

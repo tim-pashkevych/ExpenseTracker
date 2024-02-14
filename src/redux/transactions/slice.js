@@ -42,19 +42,9 @@ const slice = createSlice({
         state.list.push(payload)
       })
       .addCase(updateTransactionThunk.fulfilled, (state, { payload }) => {
-        const filteredTransaction = state.list.find(
-          transaction => transaction._id !== payload._id,
+        state.list = state.list.map(transaction =>
+          transaction._id === payload._id ? payload : transaction,
         )
-
-        if (!filteredTransaction || filteredTransaction.date !== payload.date) {
-          state.list = state.list.filter(
-            transaction => transaction._id !== payload._id,
-          )
-        } else {
-          state.list = state.list.map(transaction =>
-            transaction._id === payload._id ? payload : transaction,
-          )
-        }
       })
       .addMatcher(
         isAnyOf(

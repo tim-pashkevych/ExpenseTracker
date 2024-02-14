@@ -11,6 +11,7 @@ import { fetchTransactionsThunk } from "@/redux/transactions/operations"
 import { Loader, TransactionsListItem } from "@/components"
 
 import styles from "./TransactionsList.module.css"
+import { changeFilterType } from "@/redux/transactionsFilters/slice"
 
 export const TransactionsList = () => {
   const dispatch = useDispatch()
@@ -26,6 +27,7 @@ export const TransactionsList = () => {
     if (transactionsType !== "expenses" && transactionsType !== "incomes") {
       navigate("/", { replace: true })
     } else {
+      dispatch(changeFilterType(transactionsType))
       dispatch(fetchTransactionsThunk({ type: transactionsType, date }))
         .unwrap()
         .then(() => setShowTransactions(true))
