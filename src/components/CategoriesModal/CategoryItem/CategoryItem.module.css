@@ -43,8 +43,9 @@
 
 .categoryActionButtonIcon {
   /* border: 1px solid green; */
-
   stroke: #0ef387;
+  width: 16px;
+  height: 16px;
 }
 
 .categoryActionButton:disabled .categoryActionButtonIcon {

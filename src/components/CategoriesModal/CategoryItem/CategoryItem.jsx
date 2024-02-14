@@ -1,6 +1,8 @@
-import styles from "./CategoryItem.module.css";
-import icons from "@/assets/icons/icons.svg";
-// import SuccessIcon from '@/assets/'
+import styles from "./CategoryItem.module.css"
+import icons from "@/assets/icons/icons.svg"
+import SuccessIcon from "@/assets/icons/Vector.svg?react"
+import EditPensil from "icons/EditPensil.svg?react"
+import DeleteTrash from "icons/DeleteTrash.svg?react"
 
 export const CategoryItem = ({
   id,
@@ -17,52 +19,33 @@ export const CategoryItem = ({
         <li className={styles.categoryItemAction}>
           <button
             className={styles.categoryActionButton}
-            type="button"
+            type='button'
             onClick={() => approve({ id, name })}
             disabled={isBeingEdited}
           >
-            <svg
-              className={styles.categoryActionButtonIcon}
-              width="16"
-              height="16"
-            >
-              <use href={`${icons}#icon-check-mark`}></use>
-            </svg>
-            {/* <SuccessIcon /> */}
+            <SuccessIcon className={styles.categoryActionButtonIcon} />
           </button>
         </li>
         <li>
           <button
             className={styles.categoryActionButton}
-            type="button"
+            type='button'
             onClick={() => edit({ id, name })}
           >
-            <svg
-              className={styles.categoryActionButtonIcon}
-              width="16"
-              height="16"
-            >
-              <use href={`${icons}#icon-edit-pencil`}></use>
-            </svg>
+            <EditPensil className={styles.categoryActionButtonIcon} />
           </button>
         </li>
         <li>
           <button
             className={styles.categoryActionButton}
-            type="button"
+            type='button'
             onClick={() => remove(id)}
             disabled={isBeingEdited}
           >
-            <svg
-              className={styles.categoryActionButtonIcon}
-              width="16"
-              height="16"
-            >
-              <use href={`${icons}#icon-trash-can`}></use>
-            </svg>
+            <DeleteTrash className={styles.categoryActionButtonIcon} />
           </button>
         </li>
       </ul>
     </li>
-  );
-};
+  )
+}
