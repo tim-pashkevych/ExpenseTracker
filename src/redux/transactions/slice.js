@@ -38,6 +38,9 @@ const slice = createSlice({
           transaction => transaction._id !== payload,
         )
       })
+      .addCase(createTransactionThunk.fulfilled, (state, { payload }) => {
+        state.list.push(payload)
+      })
       .addCase(updateTransactionThunk.fulfilled, (state, { payload }) => {
         const filteredTransaction = state.list.find(
           transaction => transaction._id !== payload._id,
