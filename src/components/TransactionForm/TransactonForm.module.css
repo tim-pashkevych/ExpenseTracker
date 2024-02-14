@@ -345,10 +345,25 @@
   pointer-events: none;
 }
 
-.calendarIcon {
+.clockIcon {
   stroke: #fafafa;
-  top: 14px !important;
-  right: 18px !important;
+  top: 10px !important;
+  right: 11px !important;
   padding: 0 !important;
   /* pointer-events: none; */
+}
+
+.calendarIcon {
+  stroke: #fafafa;
+  top: 10px !important;
+  right: 11px !important;
+  padding: 0 !important;
+  /* pointer-events: none; */
+}
+
+@media only screen and (min-width: 768px) {
+  .calendarIcon {
+    top: 14px !important;
+    right: 14px !important;
+  }
 }
