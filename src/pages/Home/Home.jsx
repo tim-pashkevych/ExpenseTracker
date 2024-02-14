@@ -3,7 +3,7 @@ import welocomeStyles from "../WelcomePage/WelcomePage.module.css"
 import homeStyles from "./Home.module.css"
 import { ExpensesAndIncomes } from "@/components/ExpensesAndIncomes/ExpensesAndIncomes"
 import { useParams } from "react-router-dom"
-
+import { TransactionForm } from "@/components/TransactionForm/TransactionForm"
 const Home = () => {
   const { transactionsType } = useParams()
   
@@ -25,13 +25,15 @@ const Home = () => {
           <ExpensesAndIncomes />
         </section>
         <section className={homeStyles.mobileForm}>
-          the expenses incomes form
+          <TransactionForm />
         </section>
         <section>
           <ExpensesMain />
         </section>
       </div>
-      <section>the expenses incomes form</section>
+      <section className={homeStyles.desktopForm}>
+        <TransactionForm />
+      </section>
     </div>
   )
 }
