@@ -1,11 +1,11 @@
-import { createPortal } from "react-dom";
-import styles from "./Modal.module.css";
-import { useCallback, useEffect } from "react";
-import icons from "icons/icons.svg";
+import { createPortal } from "react-dom"
+import styles from "./Modal.module.css"
+import { useCallback, useEffect } from "react"
+import CloseSure from '@/assets/icons/CloseSure.svg?react'
 
 export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
   const handleKeyPress = useCallback(
-    (event) => {
+    event => {
       if (
         event.key === "Escape" ||
         event.key === "Esc" ||
@@ -34,14 +34,14 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
   );
 
   useEffect(() => {
-    window.addEventListener("keydown", handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress)
 
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [handleKeyPress]);
+      window.removeEventListener("keydown", handleKeyPress)
+    }
+  }, [handleKeyPress])
 
-  if (!isOpened) return null;
+  if (!isOpened) return null
 
   return createPortal(
     <>
@@ -56,13 +56,11 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
         data-modalwindowid={zIndex}
       >
         <button className={styles.closeModalButton} onClick={() => onClose()}>
-          <svg width={20} height={20}>
-            <use href={`${icons}#icon-close`}></use>
-          </svg>
+          <CloseSure style={{ width: 20, height: 20 }} />
         </button>
         {children}
       </div>
     </>,
-    document.getElementById(`modal-window`)
-  );
-};
+    document.getElementById(`modal-window`),
+  )
+}

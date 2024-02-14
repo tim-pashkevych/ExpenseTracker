@@ -19,7 +19,7 @@ export const HeaderComponent = () => {
   return (
     <section className={classNamess}>
       <div>
-        <Link className={styles.wrapperLogo} to='/'>
+        <Link className={styles.wrapperLogo} to='/transactions/expenses'>
           <LogoIcon className={styles.logo} />
           <h2 className={styles.titleLogo}>ExpenseTracker</h2>
         </Link>
