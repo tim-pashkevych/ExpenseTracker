@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useScrollbar } from "@/hooks/ScrollbarHook"
@@ -8,7 +8,7 @@ import {
   selectFiltersDate,
 } from "@/redux/transactionsFilters/selectors"
 import { fetchTransactionsThunk } from "@/redux/transactions/operations"
-import { TransactionsListItem } from "../TransactionsListItem/TransactionsListItem"
+import { Loader, TransactionsListItem } from "@/components"
 
 import styles from "./TransactionsList.module.css"
 
@@ -19,6 +19,7 @@ export const TransactionsList = () => {
   const { transactionsType } = useParams()
   const transactions = useSelector(selectFilteredTransactions)
   const date = useSelector(selectFiltersDate)
+  const [showTransactions, setShowTransactions] = useState(false)
   const hasScroll = true
 
   useEffect(() => {
@@ -26,6 +27,8 @@ export const TransactionsList = () => {
       navigate("/", { replace: true })
     } else {
       dispatch(fetchTransactionsThunk({ type: transactionsType, date }))
+        .unwrap()
+        .then(() => setShowTransactions(true))
     }
   }, [dispatch, navigate, transactionsType, date])
 
@@ -45,13 +48,21 @@ export const TransactionsList = () => {
           </tr>
         </thead>
         <tbody className={styles.transactionsListBody}>
-          {transactions.map(transaction => (
-            <TransactionsListItem
-              key={transaction._id}
-              transaction={transaction}
-              transactionType={transactionsType}
-            />
-          ))}
+          {!showTransactions ? (
+            <tr>
+              <td colSpan={6}>
+                <Loader />
+              </td>
+            </tr>
+          ) : (
+            transactions.map(transaction => (
+              <TransactionsListItem
+                key={transaction._id}
+                transaction={transaction}
+                transactionType={transactionsType}
+              />
+            ))
+          )}
         </tbody>
       </table>
     </div>

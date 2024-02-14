@@ -97,6 +97,10 @@
   gap: 6px;
 
   position: relative;
+
+  :global(.react-datepicker-popper) {
+    left: 50px !important;
+  }
 }
 
 .dateAndTimeContainer {
