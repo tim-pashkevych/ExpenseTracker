@@ -9,12 +9,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .transactionForm {
-    font-size: 16px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
   .transactionFormContainer {
     padding: 40px 109px;
   }
@@ -37,6 +31,7 @@
 @media only screen and (min-width: 768px) {
   .transactionForm {
     max-width: 486px;
+    font-size: 16px;
   }
 }
 
@@ -116,12 +111,18 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-
   position: relative;
-
   width: 100%;
 }
+.fieldContainer:first-child {
+  width: 242px;
+}
 
+@media screen and (min-width:768px) {
+  .fieldContainer{
+    gap: 8px;
+  }
+}
 .dateAndTimeContainer {
   display: flex;
   gap: 14px;
@@ -162,6 +163,13 @@
   border: 1px solid #0ef387;
 }
 
+@media screen and (min-width: 768px) {
+  .sharedTextFieldStyles {
+    padding: 12px 18px;
+    height: 48px;
+  }
+}
+
 .sumField {
   padding-right: 52px;
 }
@@ -174,12 +182,15 @@
   position: absolute;
   bottom: 12px;
   right: 14px;
-
   text-transform: uppercase;
-
   color: rgba(250, 250, 250, 0.4);
-
   pointer-events: none;
+}
+@media screen and (min-width:768px) {
+  .currencyLabel{
+    bottom: 14px;
+    right: 18px;
+  }
 }
 
 .sumField:not(:placeholder-shown) + .currencyLabel {
@@ -272,6 +283,12 @@
 .sendButton:hover,
 .sendButton:active {
   background-color: #0ebb69;
+}
+
+@media screen and (min-width:768px) {
+  .sendButton{
+    height: 47px;
+  }
 }
 
 .error {

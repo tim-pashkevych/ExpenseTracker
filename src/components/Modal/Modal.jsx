@@ -55,8 +55,8 @@ export const Modal = ({ children, isOpened, onClose, zIndex = 0 }) => {
         style={{ zIndex: 1000 + zIndex }}
         data-modalwindowid={zIndex}
       >
-        <button className={styles.closeModalButton} onClick={() => onClose()}>
-          <CloseSure style={{ width: 20, height: 20 }} />
+        <button className={styles.closeModalButton } style={{zIndex: 1000 + zIndex }} onClick={() => onClose()}>
+          <CloseSure style={{ width: 20, height: 20}} />
         </button>
         {children}
       </div>

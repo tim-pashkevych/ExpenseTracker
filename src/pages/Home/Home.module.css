@@ -1,9 +1,12 @@
 .hero {
-  padding: 60px 0 40px 0;
+  padding-bottom: 40px;
 }
 
 .mobileForm {
   margin-bottom: 40px;
+}
+.desktopForm {
+  display: none;
 }
 
 .contianer {
@@ -15,8 +18,13 @@
     display: flex;
     gap: 44px;
   }
-  
+
   .mobileForm {
     display: none;
+  }
+
+  .desktopForm {
+    display: flex;
+    align-items: end;
   }
 }

@@ -10,3 +10,9 @@
 
   pointer-events: none;
 }
+@media screen and (min-width: 768px) {
+  .timeFieldIcon {
+    top: 14px;
+    right: 18px;
+  }
+}
