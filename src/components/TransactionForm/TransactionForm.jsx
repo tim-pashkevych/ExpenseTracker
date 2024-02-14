@@ -117,9 +117,14 @@ export const TransactionForm = ({
     if (actionType === TransactionFormActionType.Add) {
       // alert("New transaction was added");
       // console.log(data);
-      toast.success("New transaction added successfully!")
 
       dispatch(createTransactionThunk(data))
+        .unwrap()
+        .then(() => {
+          /* toast.success("New transaction added successfully!") */
+          resetForm();
+        })
+        .catch((error) => toast.error(error));
     } else if (actionType === TransactionFormActionType.Save) {
       // alert("New transaction was saved");
       // console.log(data);
@@ -127,12 +132,19 @@ export const TransactionForm = ({
 
       onSubmit(data)
     }
-    reset()
+  };
 
-    setValue(TransactionFormFields.Date, new Date().toISOString().split("T")[0])
-    if (!Time) {
-      setValue(TransactionFormFields.Time, moment())
-    }
+  const resetForm = () => {
+    reset();
+
+    setValue(
+      TransactionFormFields.Date,
+      new Date().toISOString().split("T")[0]
+    );
+    // if (!Time) {
+    //   setValue(TransactionFormFields.Time, moment());
+    // }
+    setValue(TransactionFormFields.Time, moment());
     // setValue(
     //   TransactionFormFields.Time,
     //   new Date().toISOString().split("T")[1].split(":").slice(0, 2).join(":")
