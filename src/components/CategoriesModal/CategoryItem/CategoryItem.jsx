@@ -1,5 +1,6 @@
 import styles from "./CategoryItem.module.css";
-import icons from "icons/icons.svg";
+import icons from "@/assets/icons/icons.svg";
+// import SuccessIcon from '@/assets/'
 
 export const CategoryItem = ({
   id,
@@ -27,6 +28,7 @@ export const CategoryItem = ({
             >
               <use href={`${icons}#icon-check-mark`}></use>
             </svg>
+            {/* <SuccessIcon /> */}
           </button>
         </li>
         <li>
