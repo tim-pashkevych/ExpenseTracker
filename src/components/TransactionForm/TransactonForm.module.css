@@ -122,8 +122,8 @@
   width: 242px;
 }
 
-@media screen and (min-width:768px) {
-  .fieldContainer{
+@media screen and (min-width: 768px) {
+  .fieldContainer {
     gap: 8px;
   }
 }
@@ -190,8 +190,8 @@
   color: rgba(250, 250, 250, 0.4);
   pointer-events: none;
 }
-@media screen and (min-width:768px) {
-  .currencyLabel{
+@media screen and (min-width: 768px) {
+  .currencyLabel {
     bottom: 14px;
     right: 18px;
   }
@@ -289,8 +289,8 @@
   background-color: #0ebb69;
 }
 
-@media screen and (min-width:768px) {
-  .sendButton{
+@media screen and (min-width: 768px) {
+  .sendButton {
     height: 47px;
   }
 }
@@ -347,6 +347,8 @@
 
 .calendarIcon {
   stroke: #fafafa;
-
+  top: 14px !important;
+  right: 18px !important;
+  padding: 0 !important;
   /* pointer-events: none; */
 }

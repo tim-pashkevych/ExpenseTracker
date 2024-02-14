@@ -1,4 +1,6 @@
 import styles from "./TransactonForm.module.css"
+import stylesIcon from "./TimePicker/Icon.module.css"
+
 import TransactionType from "../../constants/TransactionType"
 import { useState } from "react"
 import clsx from "clsx"
@@ -17,11 +19,16 @@ import moment from "moment"
 import "./TimePicker/TimePicker.css"
 import { useDispatch } from "react-redux"
 import { createTransactionThunk } from "@/redux/transactions/operations"
+
 import icons from "icons/icons.svg"
+
 import { DatePickerFormField as DatePicker } from "../DatePickerFormField/DatePickerFormField"
 import datePickerStyles from "./DatePicker/DatePicker.module.css"
 import { format } from "date-fns"
 import { toast } from "react-toastify"
+
+import Clock from "icons/Clock.svg?react"
+import CalendarAccent from "icons/CalendarAccent.svg?react"
 
 export const TransactionForm = ({
   actionType = TransactionFormActionType.Add,
@@ -122,9 +129,9 @@ export const TransactionForm = ({
         .unwrap()
         .then(() => {
           /* toast.success("New transaction added successfully!") */
-          resetForm();
+          resetForm()
         })
-        .catch((error) => toast.error(error));
+        .catch(error => toast.error(error))
     } else if (actionType === TransactionFormActionType.Save) {
       // alert("New transaction was saved");
       // console.log(data);
@@ -132,19 +139,16 @@ export const TransactionForm = ({
 
       onSubmit(data)
     }
-  };
+  }
 
   const resetForm = () => {
-    reset();
+    reset()
 
-    setValue(
-      TransactionFormFields.Date,
-      new Date().toISOString().split("T")[0]
-    );
+    setValue(TransactionFormFields.Date, new Date().toISOString().split("T")[0])
     // if (!Time) {
     //   setValue(TransactionFormFields.Time, moment());
     // }
-    setValue(TransactionFormFields.Time, moment());
+    setValue(TransactionFormFields.Time, moment())
     // setValue(
     //   TransactionFormFields.Time,
     //   new Date().toISOString().split("T")[1].split(":").slice(0, 2).join(":")
@@ -230,9 +234,8 @@ export const TransactionForm = ({
                       field.onChange(format(value, "yyyy-MM-dd"))
                     }}
                     icon={
-                      <Icon
-                        iconPath={`${icons}#icon-calendar`}
-                        iconClassName={styles.calendarIcon}
+                      <CalendarAccent
+                        className={styles.calendarIcon}
                       />
                     }
                   />
@@ -246,8 +249,22 @@ export const TransactionForm = ({
                 control={control}
                 render={({ field }) => (
                   <TimePicker
-                    inputIcon={<Icon />}
-                    clearIcon={<Icon />}
+                    inputIcon={
+                      <Clock
+                        className={clsx(
+                          stylesIcon.timeFieldIcon,
+                          styles.calendarIcon,
+                        )}
+                      />
+                    }
+                    clearIcon={
+                      <Clock
+                        className={clsx(
+                          stylesIcon.timeFieldIcon,
+                          styles.calendarIcon,
+                        )}
+                      />
+                    }
                     value={field.value}
                     onChange={value => {
                       field.onChange(value)
