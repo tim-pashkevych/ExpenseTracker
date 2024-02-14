@@ -112,6 +112,10 @@
   flex-direction: column;
   gap: 6px;
   position: relative;
+
+  :global(.react-datepicker-popper) {
+    left: 50px !important;
+  }
   width: 100%;
 }
 .fieldContainer:first-child {

@@ -31,6 +31,8 @@
 .rc-time-picker-panel-inner {
   background-color: #171719;
   box-shadow: none;
+  margin-top: 50px;
+  margin-right: 10px;
 }
 
 .rc-time-picker-panel-input {
@@ -45,6 +47,7 @@
 
 .rc-time-picker-panel-select {
   border: none;
+  width: 52px;
 }
 
 /* time option hover background-color */
