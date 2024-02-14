@@ -62,12 +62,15 @@ export const CategoriesModal = ({
           type: transactionType + "s",
           categoryName: newCategoryName,
         })
-      );
-      setValue("newCategory", "");
-    } else if (formActionType === CategoryActionType.Edit) {
-      setIsBeingEdited(false);
-      setFormActionType(CategoryActionType.Add);
+      )
+        .unwrap()
+        .then(() => {
+          setValue("newCategory", "");
 
+          // toast.success("Category has been created successfully");
+        })
+        .catch((error) => toast.error(error));
+    } else if (formActionType === CategoryActionType.Edit) {
       if (newCategoryName !== activeCategory.name) {
         dispatch(
           updateCategoryThunk({
@@ -77,16 +80,30 @@ export const CategoriesModal = ({
           })
         )
           .unwrap()
-          .then(() =>
+          .then(() => {
+            setIsBeingEdited(false);
+            setFormActionType(CategoryActionType.Add);
+
             onEditCategory(activeCategory, {
               id: activeCategory.id,
               name: newCategoryName,
-            })
-          );
-      }
+            });
 
-      setActiveCategory({});
-      setValue("newCategory", "");
+            setActiveCategory({});
+            setValue("newCategory", "");
+
+            // toast.success("Category has been updated successfully");
+          })
+          .catch((error) => {
+            toast.error(error);
+          });
+      } else {
+        setIsBeingEdited(false);
+        setFormActionType(CategoryActionType.Add);
+
+        setActiveCategory({});
+        setValue("newCategory", "");
+      }
     }
   };
 
@@ -109,16 +126,18 @@ export const CategoriesModal = ({
         removeCategory(id);
       })
       .catch((error) => {
-        console.log(
-          error,
-          "\nCan`t remove! Some transactions depend on this category"
-        );
+        // console.log(
+        //   error,
+        //   "\nCan`t remove! Some transactions depend on this category"
+        // );
         toast.error("Can`t remove! Some transactions depend on this category");
       });
   };
 
   useEffect(() => {
-    dispatch(fetchCategoriesThunk());
+    dispatch(fetchCategoriesThunk())
+      .unwrap()
+      .catch((error) => toast.error(error));
     // .unwrap()
     // .then((data) => console.log(data));
   }, [dispatch]);
