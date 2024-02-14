@@ -40,6 +40,7 @@ const slice = createSlice({
       })
       .addCase(createTransactionThunk.fulfilled, (state, { payload }) => {
         state.list.push(payload)
+        state.transactionsTotal[payload.type] += payload.sum
       })
       .addCase(updateTransactionThunk.fulfilled, (state, { payload }) => {
         state.list = state.list.map(transaction =>
