@@ -233,11 +233,7 @@ export const TransactionForm = ({
                     onChange={value => {
                       field.onChange(format(value, "yyyy-MM-dd"))
                     }}
-                    icon={
-                      <CalendarAccent
-                        className={styles.calendarIcon}
-                      />
-                    }
+                    icon={<CalendarAccent className={styles.calendarIcon} />}
                   />
                 )}
               />
@@ -249,14 +245,14 @@ export const TransactionForm = ({
                 control={control}
                 render={({ field }) => (
                   <TimePicker
-                    inputIcon={
-                      <Clock
-                        className={clsx(
-                          stylesIcon.timeFieldIcon,
-                          styles.calendarIcon,
-                        )}
-                      />
-                    }
+                    // inputIcon={
+                    //   <Clock
+                    //     className={clsx(
+                    //       stylesIcon.timeFieldIcon,
+                    //       styles.clockIcon,
+                    //     )}
+                    //   />
+                    // }
                     clearIcon={
                       <Clock
                         className={clsx(
