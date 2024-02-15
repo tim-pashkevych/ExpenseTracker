@@ -23,7 +23,7 @@ export const WelcomePage = () => {
         </div>
         <AllUsersTab />
       </div>
-      <BgImageWrapper />
+      {/* <BgImageWrapper /> */}
     </>
   )
 }
