@@ -1,5 +1,5 @@
 /* Fonts */
-@font-face {
+/* @font-face {
   font-family: "SuisseIntl";
   src: local("SuisseIntlRegular"),
     url("/public/fonts/suisse-regular.ttf") format("truetype");
@@ -8,7 +8,7 @@
   font-family: "SuisseIntl";
   src: local("SuisseIntlBold"),
     url("/public/fonts/suisse-bold.ttf") format("truetype");
-}
+} */
 
 /* Reset styles */
 h1,
