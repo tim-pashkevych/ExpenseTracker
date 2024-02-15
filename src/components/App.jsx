@@ -1,22 +1,22 @@
 import { Route, Routes } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
+import { lazy, useEffect } from "react"
+import { PublicRoute } from "@/routes/PublicRoute"
 
 import { Layout } from "../components"
-import { PublicRoute } from "@/routes/PublicRoute"
-import {
-  LoginPage,
-  RegisterPage,
-  WelcomePage,
-  TarnsactionsHistoryPage,
-} from "../pages"
-import Expenses from "./ExpensesCategories"
+
+const LoginPage = lazy(() => import("@/pages/LoginPage/LoginPage"))
+const RegisterPage = lazy(() => import("@/pages/RegisterPage/RegisterPage"))
+const WelcomePage = lazy(() => import("@/pages/WelcomePage/WelcomePage"))
+const TarnsactionsHistoryPage = lazy(() =>
+  import("@/pages/TarnsactionsHistoryPage/TarnsactionsHistoryPage"),
+)
+const Home = lazy(() => import("@/pages/Home/Home"))
 
 import { ROUTES } from "../constants"
 import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
 import { refreshThunk } from "@/redux/auth/operations"
 import { PrivateRoute } from "@/routes/PrivateRoute"
-import Home from "@/pages/Home/Home"
 
 const { HOME, SIGN_IN, SIGN_UP, TRANSACTION, HISTORY } = ROUTES
 function App() {
