@@ -12,6 +12,7 @@ const TarnsactionsHistoryPage = lazy(() =>
   import("@/pages/TarnsactionsHistoryPage/TarnsactionsHistoryPage"),
 )
 const Home = lazy(() => import("@/pages/Home/Home"))
+const NotFound = lazy(() => import("@/pages/NotFound/NotFound"))
 
 import { ROUTES } from "../constants"
 import { selectIsLoggedIn, selectRefreshToken } from "@/redux/auth/slice"
@@ -71,6 +72,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path='*' element={<NotFound />} />
       </Route>
     </Routes>
   )
